@@ -1,0 +1,3 @@
+app.root.ExecuteCommand(commandString);% Build command string and execute command
+
+AddAttitude */Satellite/CLIMB Profile Thrust "07-Aug-2023 21:48:23" AlignConstrain Axis 0 0 -1 "Velocity" Axis 1 1 0 "Sun"

@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 3.5.0 commit date:2023-03-29, commit time:02:56, hash:1be25cfff18b</authoring_tool>
+    </contributor>
+    <created>2023-04-27T09:27:09</created>
+    <modified>2023-04-27T09:27:09</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_geometries>
+    <geometry id="SatelliteCarloExplanation_-_SolarCell-3_001-mesh" name="SatelliteCarloExplanation - SolarCell-3.001">
+      <mesh>
+        <source id="SatelliteCarloExplanation_-_SolarCell-3_001-mesh-positions">
+          <float_array id="SatelliteCarloExplanation_-_SolarCell-3_001-mesh-positions-array" count="24">0.06088149 -0.03756016 0.1486095 0.06088149 -0.03756016 -0.1513905 0.06288146 -0.03756016 0.1486095 0.06288146 -0.03756016 -0.1513905 0.06088149 0.03743976 0.1486095 0.06288146 0.03743976 0.1486095 0.06088149 0.03743976 -0.1513905 0.06288146 0.03743976 -0.1513905</float_array>
+          <technique_common>
+            <accessor source="#SatelliteCarloExplanation_-_SolarCell-3_001-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="SatelliteCarloExplanation_-_SolarCell-3_001-mesh-normals">
+          <float_array id="SatelliteCarloExplanation_-_SolarCell-3_001-mesh-normals-array" count="18">0 -1 0 0 0 1 0 1 0 0 0 -1 -1 0 0 1 0 0</float_array>
+          <technique_common>
+            <accessor source="#SatelliteCarloExplanation_-_SolarCell-3_001-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="SatelliteCarloExplanation_-_SolarCell-3_001-mesh-vertices">
+          <input semantic="POSITION" source="#SatelliteCarloExplanation_-_SolarCell-3_001-mesh-positions"/>
+        </vertices>
+        <triangles count="12">
+          <input semantic="VERTEX" source="#SatelliteCarloExplanation_-_SolarCell-3_001-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#SatelliteCarloExplanation_-_SolarCell-3_001-mesh-normals" offset="1"/>
+          <p>0 0 1 0 2 0 2 0 1 0 3 0 4 1 0 1 5 1 5 1 0 1 2 1 6 2 4 2 7 2 7 2 4 2 5 2 1 3 6 3 3 3 3 3 6 3 7 3 4 4 6 4 0 4 0 4 6 4 1 4 7 5 5 5 3 5 3 5 5 5 2 5</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="SatelliteCarloExplanation_-_Satellite-1-mesh" name="SatelliteCarloExplanation - Satellite-1">
+      <mesh>
+        <source id="SatelliteCarloExplanation_-_Satellite-1-mesh-positions">
+          <float_array id="SatelliteCarloExplanation_-_Satellite-1-mesh-positions-array" count="60">-0.0481953 -0.05041873 -0.1511516 0.05039042 -0.05041873 -0.1511516 -0.0481953 -0.05041873 0.1488484 0.05039042 -0.05041873 0.1488484 0.05039042 0.04816699 0.1488484 0.05039042 0.04816699 -0.1511516 -0.04960954 0.04958122 0.1488484 -0.04960954 0.04958122 -0.1511516 -0.04960954 -0.05041873 0.1488484 -0.04960954 -0.05041873 -0.1511516 0.05039042 0.04958122 0.1488484 0.05039042 0.04958122 -0.1511516 -0.1544659 -0.1566894 -0.1511516 -0.155173 -0.1559822 -0.1511516 0.155954 0.1551447 -0.1511516 0.156661 0.1544376 -0.1511516 0.156661 0.1544376 0.1488484 0.155954 0.1551447 0.1488484 -0.155173 -0.1559822 0.1488484 -0.1544659 -0.1566894 0.1488484</float_array>
+          <technique_common>
+            <accessor source="#SatelliteCarloExplanation_-_Satellite-1-mesh-positions-array" count="20" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="SatelliteCarloExplanation_-_Satellite-1-mesh-normals">
+          <float_array id="SatelliteCarloExplanation_-_Satellite-1-mesh-normals-array" count="54">0 -1 0 1 0 0 -1 0 0 0 1 0 0 -1.05541e-5 -1 0 0 -1 0 0 1 0 1.89783e-5 1 0.7071043 0.7071093 0 0.7071291 0.7070845 0 -0.7071068 0.7071068 0 -0.7071068 0.7071068 0 0.7071069 -0.7071067 0 0.7071068 -0.7071068 0 0.7071067 -0.7071068 0 0.7071067 -0.7071069 0 -0.7071291 -0.7070845 0 -0.7071167 -0.7070969 0</float_array>
+          <technique_common>
+            <accessor source="#SatelliteCarloExplanation_-_Satellite-1-mesh-normals-array" count="18" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="SatelliteCarloExplanation_-_Satellite-1-mesh-vertices">
+          <input semantic="POSITION" source="#SatelliteCarloExplanation_-_Satellite-1-mesh-positions"/>
+        </vertices>
+        <triangles count="36">
+          <input semantic="VERTEX" source="#SatelliteCarloExplanation_-_Satellite-1-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#SatelliteCarloExplanation_-_Satellite-1-mesh-normals" offset="1"/>
+          <p>0 0 1 0 2 0 2 0 1 0 3 0 4 1 3 1 5 1 5 1 3 1 1 1 6 2 7 2 8 2 8 2 7 2 9 2 10 3 11 3 6 3 6 3 11 3 7 3 0 4 12 4 13 4 5 5 1 5 0 5 14 5 15 5 11 5 11 5 15 5 5 5 11 5 5 5 7 5 7 5 5 5 0 5 7 5 0 5 9 5 9 5 0 5 13 5 2 6 3 6 4 6 4 7 16 7 17 7 18 6 19 6 8 6 8 6 19 6 2 6 8 6 2 6 6 6 6 6 2 6 4 6 6 6 4 6 10 6 10 6 4 6 17 6 16 8 15 8 17 8 17 9 15 9 14 9 10 10 17 10 11 10 11 11 17 11 14 11 15 12 16 12 5 12 5 13 16 13 4 13 19 14 12 14 2 14 2 15 12 15 0 15 9 10 13 10 8 10 8 10 13 10 18 10 12 16 19 16 13 16 13 17 19 17 18 17</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="SatelliteCarloExplanation_-_SolarCell-5-mesh" name="SatelliteCarloExplanation - SolarCell-5">
+      <mesh>
+        <source id="SatelliteCarloExplanation_-_SolarCell-5-mesh-positions">
+          <float_array id="SatelliteCarloExplanation_-_SolarCell-5-mesh-positions-array" count="24">-0.05375802 -0.0591343 0.1486095 -0.05375802 -0.0591343 -0.1513905 -0.0551722 -0.05772006 0.1486095 -0.0551722 -0.05772006 -0.1513905 -0.106791 -0.1121673 0.1486095 -0.1082052 -0.1107531 0.1486095 -0.106791 -0.1121673 -0.1513905 -0.1082052 -0.1107531 -0.1513905</float_array>
+          <technique_common>
+            <accessor source="#SatelliteCarloExplanation_-_SolarCell-5-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="SatelliteCarloExplanation_-_SolarCell-5-mesh-normals">
+          <float_array id="SatelliteCarloExplanation_-_SolarCell-5-mesh-normals-array" count="33">0.7071056 0.7071081 0 0.7071024 0.7071112 0 0 0 1 0 9.11917e-6 1 -0.7071154 -0.7070981 0 0 0 -1 0 1.18354e-5 -1 0.7071068 -0.7071068 0 0.7071069 -0.7071067 0 -0.7071067 0.7071069 0 -0.7071068 0.7071068 0</float_array>
+          <technique_common>
+            <accessor source="#SatelliteCarloExplanation_-_SolarCell-5-mesh-normals-array" count="11" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="SatelliteCarloExplanation_-_SolarCell-5-mesh-vertices">
+          <input semantic="POSITION" source="#SatelliteCarloExplanation_-_SolarCell-5-mesh-positions"/>
+        </vertices>
+        <triangles count="12">
+          <input semantic="VERTEX" source="#SatelliteCarloExplanation_-_SolarCell-5-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#SatelliteCarloExplanation_-_SolarCell-5-mesh-normals" offset="1"/>
+          <p>0 0 1 0 2 0 2 1 1 1 3 1 4 2 0 2 5 2 5 3 0 3 2 3 6 4 4 4 7 4 7 4 4 4 5 4 1 5 6 5 3 5 3 6 6 6 7 6 4 7 6 7 0 7 0 8 6 8 1 8 7 9 5 9 3 9 3 10 5 10 2 10</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="SatelliteCarloExplanation_-_SolarCell-4-mesh" name="SatelliteCarloExplanation - SolarCell-4">
+      <mesh>
+        <source id="SatelliteCarloExplanation_-_SolarCell-4-mesh-positions">
+          <float_array id="SatelliteCarloExplanation_-_SolarCell-4-mesh-positions-array" count="24">-0.1115207 -0.116897 0.1486095 -0.1115207 -0.116897 -0.1513905 -0.112935 -0.1154828 0.1486095 -0.112935 -0.1154828 -0.1513905 -0.1645537 -0.16993 0.1486095 -0.165968 -0.1685158 0.1486095 -0.1645537 -0.16993 -0.1513905 -0.165968 -0.1685158 -0.1513905</float_array>
+          <technique_common>
+            <accessor source="#SatelliteCarloExplanation_-_SolarCell-4-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="SatelliteCarloExplanation_-_SolarCell-4-mesh-normals">
+          <float_array id="SatelliteCarloExplanation_-_SolarCell-4-mesh-normals-array" count="33">0.7071012 0.7071124 0 0.7071074 0.7071062 0 0 -1.24176e-5 1 0 1.14475e-5 1 -0.7071055 -0.7071081 0 -0.7070994 -0.7071143 0 0 0 -1 0 -7.76104e-6 -1 0.7071069 -0.7071067 0 0.707107 -0.7071067 0 -0.7071068 0.7071067 0</float_array>
+          <technique_common>
+            <accessor source="#SatelliteCarloExplanation_-_SolarCell-4-mesh-normals-array" count="11" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="SatelliteCarloExplanation_-_SolarCell-4-mesh-vertices">
+          <input semantic="POSITION" source="#SatelliteCarloExplanation_-_SolarCell-4-mesh-positions"/>
+        </vertices>
+        <triangles count="12">
+          <input semantic="VERTEX" source="#SatelliteCarloExplanation_-_SolarCell-4-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#SatelliteCarloExplanation_-_SolarCell-4-mesh-normals" offset="1"/>
+          <p>0 0 1 0 2 0 2 1 1 1 3 1 4 2 0 2 5 2 5 3 0 3 2 3 6 4 4 4 7 4 7 5 4 5 5 5 1 6 6 6 3 6 3 7 6 7 7 7 4 8 6 8 0 8 0 9 6 9 1 9 7 10 5 10 3 10 3 10 5 10 2 10</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="SatelliteCarloExplanation_-_SolarCell-3-mesh" name="SatelliteCarloExplanation - SolarCell-3">
+      <mesh>
+        <source id="SatelliteCarloExplanation_-_SolarCell-3-mesh-positions">
+          <float_array id="SatelliteCarloExplanation_-_SolarCell-3-mesh-positions-array" count="24">0.06088149 -0.03756016 0.1486095 0.06088149 -0.03756016 -0.1513905 0.06288146 -0.03756016 0.1486095 0.06288146 -0.03756016 -0.1513905 0.06088149 0.03743976 0.1486095 0.06288146 0.03743976 0.1486095 0.06088149 0.03743976 -0.1513905 0.06288146 0.03743976 -0.1513905</float_array>
+          <technique_common>
+            <accessor source="#SatelliteCarloExplanation_-_SolarCell-3-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="SatelliteCarloExplanation_-_SolarCell-3-mesh-normals">
+          <float_array id="SatelliteCarloExplanation_-_SolarCell-3-mesh-normals-array" count="18">0 -1 0 0 0 1 0 1 0 0 0 -1 -1 0 0 1 0 0</float_array>
+          <technique_common>
+            <accessor source="#SatelliteCarloExplanation_-_SolarCell-3-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="SatelliteCarloExplanation_-_SolarCell-3-mesh-vertices">
+          <input semantic="POSITION" source="#SatelliteCarloExplanation_-_SolarCell-3-mesh-positions"/>
+        </vertices>
+        <triangles count="12">
+          <input semantic="VERTEX" source="#SatelliteCarloExplanation_-_SolarCell-3-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#SatelliteCarloExplanation_-_SolarCell-3-mesh-normals" offset="1"/>
+          <p>0 0 1 0 2 0 2 0 1 0 3 0 4 1 0 1 5 1 5 1 0 1 2 1 6 2 4 2 7 2 7 2 4 2 5 2 1 3 6 3 3 3 3 3 6 3 7 3 4 4 6 4 0 4 0 4 6 4 1 4 7 5 5 5 3 5 3 5 5 5 2 5</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="SatelliteCarloExplanation_-_SolarCell-2-mesh" name="SatelliteCarloExplanation - SolarCell-2">
+      <mesh>
+        <source id="SatelliteCarloExplanation_-_SolarCell-2-mesh-positions">
+          <float_array id="SatelliteCarloExplanation_-_SolarCell-2-mesh-positions-array" count="24">0.05738121 0.05483329 0.1486095 0.05738121 0.05483329 -0.1513905 0.05879539 0.05341911 0.1486095 0.05879539 0.05341911 -0.1513905 0.1104142 0.1078664 0.1486095 0.1118284 0.1064521 0.1486095 0.1104142 0.1078664 -0.1513905 0.1118284 0.1064521 -0.1513905</float_array>
+          <technique_common>
+            <accessor source="#SatelliteCarloExplanation_-_SolarCell-2-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="SatelliteCarloExplanation_-_SolarCell-2-mesh-normals">
+          <float_array id="SatelliteCarloExplanation_-_SolarCell-2-mesh-normals-array" count="36">-0.7071062 -0.7071075 0 -0.7071092 -0.7071043 0 0 0 1 0 -1.35818e-6 1 0.707103 0.7071105 0 0.7071154 0.7070981 0 0 0 -1 0 5.82076e-7 -1 -0.7071068 0.7071067 0 -0.7071068 0.7071068 0 0.7071067 -0.7071069 0 0.7071068 -0.7071067 0</float_array>
+          <technique_common>
+            <accessor source="#SatelliteCarloExplanation_-_SolarCell-2-mesh-normals-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="SatelliteCarloExplanation_-_SolarCell-2-mesh-vertices">
+          <input semantic="POSITION" source="#SatelliteCarloExplanation_-_SolarCell-2-mesh-positions"/>
+        </vertices>
+        <triangles count="12">
+          <input semantic="VERTEX" source="#SatelliteCarloExplanation_-_SolarCell-2-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#SatelliteCarloExplanation_-_SolarCell-2-mesh-normals" offset="1"/>
+          <p>0 0 1 0 2 0 2 1 1 1 3 1 4 2 0 2 5 2 5 3 0 3 2 3 6 4 4 4 7 4 7 5 4 5 5 5 1 6 6 6 3 6 3 7 6 7 7 7 4 8 6 8 0 8 0 9 6 9 1 9 7 10 5 10 3 10 3 11 5 11 2 11</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="SatelliteCarloExplanation_-_SolarCell-1-mesh" name="SatelliteCarloExplanation - SolarCell-1">
+      <mesh>
+        <source id="SatelliteCarloExplanation_-_SolarCell-1-mesh-positions">
+          <float_array id="SatelliteCarloExplanation_-_SolarCell-1-mesh-positions-array" count="24">0.1151439 0.112596 0.1486095 0.1151439 0.112596 -0.1513905 0.1165581 0.1111818 0.1486095 0.1165581 0.1111818 -0.1513905 0.1681769 0.165629 0.1486095 0.1695911 0.1642149 0.1486095 0.1681769 0.165629 -0.1513905 0.1695911 0.1642149 -0.1513905</float_array>
+          <technique_common>
+            <accessor source="#SatelliteCarloExplanation_-_SolarCell-1-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="SatelliteCarloExplanation_-_SolarCell-1-mesh-normals">
+          <float_array id="SatelliteCarloExplanation_-_SolarCell-1-mesh-normals-array" count="30">-0.7071092 -0.7071043 0 0 -1.24176e-5 1 0 -1.35818e-6 1 0.7071018 0.7071118 0 0 0 -1 0 2.52231e-6 -1 -0.7071071 0.7071065 0 -0.7071069 0.7071067 0 0.7071067 -0.7071069 0 0.7071068 -0.7071067 0</float_array>
+          <technique_common>
+            <accessor source="#SatelliteCarloExplanation_-_SolarCell-1-mesh-normals-array" count="10" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="SatelliteCarloExplanation_-_SolarCell-1-mesh-vertices">
+          <input semantic="POSITION" source="#SatelliteCarloExplanation_-_SolarCell-1-mesh-positions"/>
+        </vertices>
+        <triangles count="12">
+          <input semantic="VERTEX" source="#SatelliteCarloExplanation_-_SolarCell-1-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#SatelliteCarloExplanation_-_SolarCell-1-mesh-normals" offset="1"/>
+          <p>0 0 1 0 2 0 2 0 1 0 3 0 4 1 0 1 5 1 5 2 0 2 2 2 6 3 4 3 7 3 7 3 4 3 5 3 1 4 6 4 3 4 3 5 6 5 7 5 4 6 6 6 0 6 0 7 6 7 1 7 7 8 5 8 3 8 3 9 5 9 2 9</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      
+      <node id="SatelliteCarloExplanation_-_Satellite-1" name="SatelliteCarloExplanation - Satellite-1" type="NODE">
+        <matrix sid="transform">0.7071068 0.7071068 0 -1.45519e-11 -0.7071068 0.7071068 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#SatelliteCarloExplanation_-_Satellite-1-mesh" name="SatelliteCarloExplanation - Satellite-1"/>
+      </node>
+	  
+	  
+	<node>  
+			<node id="SatelliteCarloExplanation_-_SolarCell-3_001" name="SatelliteCarloExplanation - SolarCell-3.001" type="NODE">
+				<matrix sid="transform">-0.5856118 -0.7071068 2.27017e-7 0 -0.5856118 0.7071068 1.54616e-7 0 -2.69855e-7 -6.18172e-8 -0.82818 0 0 0 0 1</matrix>
+				<instance_geometry url="#SatelliteCarloExplanation_-_SolarCell-3_001-mesh" name="SatelliteCarloExplanation - SolarCell-3.001"/>
+			</node>
+	
+	
+	
+			<node id="SatelliteCarloExplanation_-_SolarCell-5" name="SatelliteCarloExplanation - SolarCell-5" type="NODE">
+				<matrix sid="transform">0.6492077 0.6492077 0 0 -0.6492077 0.6492077 0 2.22045e-16 0 0 0.82818 0 0 0 0 1</matrix>
+				<instance_geometry url="#SatelliteCarloExplanation_-_SolarCell-5-mesh" name="SatelliteCarloExplanation - SolarCell-5"/>
+			</node>
+	
+	
+	
+			<node id="SatelliteCarloExplanation_-_SolarCell-4" name="SatelliteCarloExplanation - SolarCell-4" type="NODE">
+				<matrix sid="transform">0.6492077 0.6492077 0 0 -0.6492077 0.6492077 0 0 0 0 0.82818 0 0 0 0 1</matrix>
+				<instance_geometry url="#SatelliteCarloExplanation_-_SolarCell-4-mesh" name="SatelliteCarloExplanation - SolarCell-4"/>
+			</node>
+	
+	
+	
+			<node id="SatelliteCarloExplanation_-_SolarCell-3" name="SatelliteCarloExplanation - SolarCell-3" type="NODE">
+				<matrix sid="transform">0.5856118 0.7071068 0 0 -0.5856118 0.7071068 0 0 0 0 0.82818 0 0 0 0 1</matrix>
+				<instance_geometry url="#SatelliteCarloExplanation_-_SolarCell-3-mesh" name="SatelliteCarloExplanation - SolarCell-3"/>
+			</node>
+	
+	
+	
+			<node id="SatelliteCarloExplanation_-_SolarCell-2" name="SatelliteCarloExplanation - SolarCell-2" type="NODE">
+				<matrix sid="transform">0.6492077 0.6492077 0 0 -0.6492077 0.6492077 0 0 0 0 0.82818 0 0 0 0 1</matrix>
+				<instance_geometry url="#SatelliteCarloExplanation_-_SolarCell-2-mesh" name="SatelliteCarloExplanation - SolarCell-2"/>
+			</node>
+	
+	
+	
+			<node id="SatelliteCarloExplanation_-_SolarCell-1" name="SatelliteCarloExplanation - SolarCell-1" type="NODE">
+				<matrix sid="transform">0.6492077 0.6492077 0 0 -0.6492077 0.6492077 0 -4.44089e-16 0 0 0.82818 0 0 0 0 1</matrix>
+				<instance_geometry url="#SatelliteCarloExplanation_-_SolarCell-1-mesh" name="SatelliteCarloExplanation - SolarCell-1"/>
+				<extra type="attach_point">
+						<technique profile="AGI">
+							<pointing_attach_point>
+								<pointable_vector>1 1 0</pointable_vector>
+							</pointing_attach_point>
+						</technique>
+			</extra>
+			</node>
+	<extra type="attach_point">
+    <technique profile="AGI">
+    <solar_panel group="Solar_Panels" efficiency="29.5"/>
+    </technique>
+    </extra>
+    </node>
+	
+	
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

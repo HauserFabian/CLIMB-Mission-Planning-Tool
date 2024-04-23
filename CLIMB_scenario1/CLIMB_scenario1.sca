@@ -1,0 +1,292 @@
+stk.v.12.0
+WrittenBy    STK_v12.7.1
+BEGIN Access
+    Scenario/CLIMB_scenario1/Satellite/CLIMB
+    Scenario/CLIMB_scenario1/Place/FHWN
+
+    IsComputed		 Yes
+    SaveComputedData		 Yes
+    ComputationMode		 1
+    UpdateOnReference		 Yes
+    DupIsDifferent		 No
+    UIOrderReversed		 No
+    UITimePeriod		 Object
+    UseLightTimeDelay		 Yes
+    ClockHost		 Base
+    TimeSense		 Transmit
+    AberrationType		 Annual
+    TimeDelayConvergence		 0.0005
+    SetMaxStepFromInsts		 Yes
+    MaxTimeStep		 360
+    MinTimeStep		 0.01
+    TimeConvergence		 0.005
+    AbsValueConvergence		 1e-14
+    RelValueConvergence		 1e-07
+    DetectEventsUsingSamplesOnly		 No
+
+    BEGIN ConsideredIntervals
+
+        2023-05-01T10:00:00.000000000 2023-05-04T01:40:33.987556992
+
+    END ConsideredIntervals
+
+    BEGIN AccessIntervals
+
+        2023-05-01T19:56:51.207209906 2023-05-01T20:07:35.074307754
+        2023-05-01T21:30:26.304281165 2023-05-01T21:41:18.816030215
+        2023-05-01T23:06:11.987221861 2023-05-01T23:10:27.528715273
+        2023-05-02T06:37:50.246844987 2023-05-02T06:48:04.648273968
+        2023-05-02T08:10:40.955429894 2023-05-02T08:22:02.748611217
+        2023-05-02T09:48:47.596356254 2023-05-02T09:53:12.377562394
+        2023-05-02T19:36:07.101577695 2023-05-02T19:45:55.759227956
+        2023-05-02T21:09:19.532755966 2023-05-02T21:20:38.314772888
+        2023-05-02T22:44:18.965181266 2023-05-02T22:51:10.168622958
+        2023-05-03T06:17:43.579159869 2023-05-03T06:26:57.872217658
+        2023-05-03T07:49:42.711852750 2023-05-03T08:01:18.272110383
+        2023-05-03T09:26:05.073787730 2023-05-03T09:33:40.366605316
+        2023-05-03T19:15:56.794743808 2023-05-03T19:24:19.405563161
+        2023-05-03T20:48:38.620050929 2023-05-03T21:00:07.425486283
+        2023-05-03T22:23:11.274428352 2023-05-03T22:31:40.716586348
+
+    END AccessIntervals
+
+    BEGIN StageList
+
+        BEGIN Stage
+
+            MaxRelMotion		 0.34
+
+            BEGIN ConstraintList
+
+                BEGIN Constraint
+
+                    Name		 LineOfSight
+                    Instance		 Object2
+                    Action		 IncludeIntervals
+                    Type		 ZeroBound
+                    ComputationID		 1
+
+                    BEGIN ConstraintInputTimes
+
+                        2023-05-01T10:00:00.000000000 2023-05-04T01:40:33.987556992
+
+                    END ConstraintInputTimes
+
+                    StartConstrainedByAvailability		 No
+                    StopConstrainedByAvailability		 No
+
+                    BEGIN ConstraintSatisfaction
+
+                        2023-05-01T19:56:51.207209906 2023-05-01T20:07:35.074307754
+                        2023-05-01T21:30:26.304281165 2023-05-01T21:41:18.816030215
+                        2023-05-01T23:06:11.987221861 2023-05-01T23:10:27.528715273
+                        2023-05-02T06:37:50.246844987 2023-05-02T06:48:04.648273968
+                        2023-05-02T08:10:40.955429894 2023-05-02T08:22:02.748611217
+                        2023-05-02T09:48:47.596356254 2023-05-02T09:53:12.377562394
+                        2023-05-02T19:36:07.101577695 2023-05-02T19:45:55.759227956
+                        2023-05-02T21:09:19.532755966 2023-05-02T21:20:38.314772888
+                        2023-05-02T22:44:18.965181266 2023-05-02T22:51:10.168622958
+                        2023-05-03T06:17:43.579159869 2023-05-03T06:26:57.872217658
+                        2023-05-03T07:49:42.711852750 2023-05-03T08:01:18.272110383
+                        2023-05-03T09:26:05.073787730 2023-05-03T09:33:40.366605316
+                        2023-05-03T19:15:56.794743808 2023-05-03T19:24:19.405563161
+                        2023-05-03T20:48:38.620050929 2023-05-03T21:00:07.425486283
+                        2023-05-03T22:23:11.274428352 2023-05-03T22:31:40.716586348
+
+                    END ConstraintSatisfaction
+
+                END Constraint
+
+            END ConstraintList
+
+        END Stage
+
+
+    END StageList
+
+    Show		 Yes
+    Inherit		 Yes
+    ShowIV		 Yes
+    ShowLineGfx		 Yes
+    ShowHiliteGfx		 Yes
+    LineWidth		 1
+
+    BEGIN Crdn
+    END Crdn
+
+END Access
+
+BEGIN Access
+    Scenario/CLIMB_scenario1/Place/FHWN/Sensor/Sensor
+    Scenario/CLIMB_scenario1/Satellite/CLIMB
+
+    IsComputed		 Yes
+    SaveComputedData		 Yes
+    ComputationMode		 1
+    UpdateOnReference		 Yes
+    DupIsDifferent		 No
+    UIOrderReversed		 No
+    UITimePeriod		 Object
+    UseLightTimeDelay		 Yes
+    ClockHost		 Base
+    TimeSense		 Transmit
+    AberrationType		 Annual
+    TimeDelayConvergence		 0.0005
+    SetMaxStepFromInsts		 Yes
+    MaxTimeStep		 360
+    MinTimeStep		 0.01
+    TimeConvergence		 0.005
+    AbsValueConvergence		 1e-14
+    RelValueConvergence		 1e-07
+    DetectEventsUsingSamplesOnly		 No
+
+    BEGIN ConsideredIntervals
+
+        2023-05-01T10:00:00.000000000 2023-05-04T01:40:33.987556992
+
+    END ConsideredIntervals
+
+    BEGIN AccessIntervals
+
+        2023-05-01T19:58:10.094008830 2023-05-01T20:06:17.843520096
+        2023-05-01T21:31:41.285138046 2023-05-01T21:40:05.003587543
+        2023-05-02T06:39:11.497590764 2023-05-02T06:46:42.770604415
+        2023-05-02T08:11:52.880989324 2023-05-02T08:20:49.716317982
+        2023-05-02T19:37:37.764454649 2023-05-02T19:44:26.932777942
+        2023-05-02T21:10:31.032642889 2023-05-02T21:19:28.142835920
+        2023-05-03T06:19:18.398425282 2023-05-03T06:25:22.649358957
+        2023-05-03T07:50:52.466114098 2023-05-03T08:00:07.646229668
+        2023-05-03T09:28:39.469064801 2023-05-03T09:31:04.582874857
+        2023-05-03T19:17:56.134662607 2023-05-03T19:22:22.051853287
+        2023-05-03T20:49:49.101565726 2023-05-03T20:58:58.387763075
+        2023-05-03T22:24:59.196581256 2023-05-03T22:29:53.831499279
+
+    END AccessIntervals
+
+    BEGIN StageList
+
+        BEGIN Stage
+
+            MaxRelMotion		 0.34
+
+            BEGIN ConstraintList
+
+                BEGIN Constraint
+
+                    Name		 LineOfSight
+                    Instance		 Object1
+                    Action		 IncludeIntervals
+                    Type		 ZeroBound
+                    ComputationID		 1
+
+                    BEGIN ConstraintInputTimes
+
+                        2023-05-01T10:00:00.000000000 2023-05-04T01:40:33.987556992
+
+                    END ConstraintInputTimes
+
+                    StartConstrainedByAvailability		 No
+                    StopConstrainedByAvailability		 No
+
+                    BEGIN ConstraintSatisfaction
+
+                        2023-05-01T19:56:51.199031808 2023-05-01T20:07:35.065891739
+                        2023-05-01T21:30:26.295593149 2023-05-01T21:41:18.807977764
+                        2023-05-01T23:06:11.977849499 2023-05-01T23:10:27.522026767
+                        2023-05-02T06:37:50.239023585 2023-05-02T06:48:04.639738734
+                        2023-05-02T08:10:40.946852897 2023-05-02T08:22:02.740145991
+                        2023-05-02T09:48:47.585631214 2023-05-02T09:53:12.370984707
+                        2023-05-02T19:36:07.093209577 2023-05-02T19:45:55.750316729
+                        2023-05-02T21:09:19.523693692 2023-05-02T21:20:38.306563749
+                        2023-05-02T22:44:18.956192272 2023-05-02T22:51:10.161640335
+                        2023-05-03T06:17:43.571353105 2023-05-03T06:26:57.863747663
+                        2023-05-03T07:49:42.702868542 2023-05-03T08:01:18.263511945
+                        2023-05-03T09:26:05.064242683 2023-05-03T09:33:40.359016460
+                        2023-05-03T19:15:56.786746014 2023-05-03T19:24:19.396696710
+                        2023-05-03T20:48:38.611519041 2023-05-03T21:00:07.417160362
+                        2023-05-03T22:23:11.265866340 2023-05-03T22:31:40.708971049
+
+                    END ConstraintSatisfaction
+
+                END Constraint
+
+            END ConstraintList
+
+        END Stage
+
+
+        BEGIN Stage
+
+            MaxRelMotion		 0.17
+
+            BEGIN ConstraintList
+
+                BEGIN Constraint
+
+                    Name		 FieldOfView
+                    Instance		 Object1
+                    Action		 IncludeIntervals
+                    Type		 ZeroBound
+                    ComputationID		 2
+
+                    BEGIN ConstraintInputTimes
+
+                        2023-05-01T19:56:51.199031808 2023-05-01T20:07:35.065891739
+                        2023-05-01T21:30:26.295593149 2023-05-01T21:41:18.807977764
+                        2023-05-01T23:06:11.977849499 2023-05-01T23:10:27.522026767
+                        2023-05-02T06:37:50.239023585 2023-05-02T06:48:04.639738734
+                        2023-05-02T08:10:40.946852897 2023-05-02T08:22:02.740145991
+                        2023-05-02T09:48:47.585631214 2023-05-02T09:53:12.370984707
+                        2023-05-02T19:36:07.093209577 2023-05-02T19:45:55.750316729
+                        2023-05-02T21:09:19.523693692 2023-05-02T21:20:38.306563749
+                        2023-05-02T22:44:18.956192272 2023-05-02T22:51:10.161640335
+                        2023-05-03T06:17:43.571353105 2023-05-03T06:26:57.863747663
+                        2023-05-03T07:49:42.702868542 2023-05-03T08:01:18.263511945
+                        2023-05-03T09:26:05.064242683 2023-05-03T09:33:40.359016460
+                        2023-05-03T19:15:56.786746014 2023-05-03T19:24:19.396696710
+                        2023-05-03T20:48:38.611519041 2023-05-03T21:00:07.417160362
+                        2023-05-03T22:23:11.265866340 2023-05-03T22:31:40.708971049
+
+                    END ConstraintInputTimes
+
+                    StartConstrainedByAvailability		 No
+                    StopConstrainedByAvailability		 No
+
+                    BEGIN ConstraintSatisfaction
+
+                        2023-05-01T19:58:10.094008830 2023-05-01T20:06:17.843520096
+                        2023-05-01T21:31:41.285138046 2023-05-01T21:40:05.003587543
+                        2023-05-02T06:39:11.497590764 2023-05-02T06:46:42.770604415
+                        2023-05-02T08:11:52.880989324 2023-05-02T08:20:49.716317982
+                        2023-05-02T19:37:37.764454649 2023-05-02T19:44:26.932777942
+                        2023-05-02T21:10:31.032642889 2023-05-02T21:19:28.142835920
+                        2023-05-03T06:19:18.398425282 2023-05-03T06:25:22.649358957
+                        2023-05-03T07:50:52.466114098 2023-05-03T08:00:07.646229668
+                        2023-05-03T09:28:39.469064801 2023-05-03T09:31:04.582874857
+                        2023-05-03T19:17:56.134662607 2023-05-03T19:22:22.051853287
+                        2023-05-03T20:49:49.101565726 2023-05-03T20:58:58.387763075
+                        2023-05-03T22:24:59.196581256 2023-05-03T22:29:53.831499279
+
+                    END ConstraintSatisfaction
+
+                END Constraint
+
+            END ConstraintList
+
+        END Stage
+
+
+    END StageList
+
+    Show		 Yes
+    Inherit		 Yes
+    ShowIV		 Yes
+    ShowLineGfx		 Yes
+    ShowHiliteGfx		 Yes
+    LineWidth		 1
+
+    BEGIN Crdn
+    END Crdn
+
+END Access
+
