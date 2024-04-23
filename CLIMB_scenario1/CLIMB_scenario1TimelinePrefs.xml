@@ -1,0 +1,53 @@
+<?xml version = "1.0" encoding = "UTF-8" standalone = "yes"?>
+<TimelineLine_Prefs STK_version = "12.7.1">
+    <Views Type = "Content">
+        <ContentView Name = "Scenario Availability">
+            <Row ClassName = "Scenario" ComponentName = "AvailabilityIntervals" DisplayName = "CLIMB_scenario1 AvailabilityIntervals" IsDefaultName = "True" IsExpanded = "False" IsGroup = "False" IsHidden = "False" Path = "/Application/STK/Scenario/CLIMB_scenario1" Type = "IntervalList">
+                <Interval Name = "CLIMB_scenario1 AvailabilityIntervals" StartTime = "6 Aug 2023 20:15:04.320" StopTime = "15 Aug 2023 20:15:04.320" />
+            </Row>
+            <Row ClassName = "Access" ComponentName = "AccessIntervals" DisplayName = "Satellite-CLIMB-To-Place-FHWN AccessIntervals" IsDefaultName = "True" IsExpanded = "False" IsGroup = "False" IsHidden = "False" Path = "Access:/Application/STK/Scenario/CLIMB_scenario1/Satellite/CLIMB;/Application/STK/Scenario/CLIMB_scenario1/Place/FHWN" Type = "IntervalList">
+                <Interval Name = "Satellite-CLIMB-To-Place-FHWN AccessIntervals" StartTime = "6 Aug 2023 20:26:38.870" StopTime = "6 Aug 2023 20:27:59.354" />
+                <Interval Name = "Satellite-CLIMB-To-Place-FHWN AccessIntervals" StartTime = "7 Aug 2023 06:01:57.985" StopTime = "7 Aug 2023 06:09:23.077" />
+                <Interval Name = "Satellite-CLIMB-To-Place-FHWN AccessIntervals" StartTime = "7 Aug 2023 07:32:50.616" StopTime = "7 Aug 2023 07:43:07.407" />
+                <Interval Name = "Satellite-CLIMB-To-Place-FHWN AccessIntervals" StartTime = "7 Aug 2023 09:05:48.776" StopTime = "7 Aug 2023 09:12:30.574" />
+                <Interval Name = "Satellite-CLIMB-To-Place-FHWN AccessIntervals" StartTime = "7 Aug 2023 16:32:11.877" StopTime = "7 Aug 2023 16:37:39.389" />
+                <Interval Name = "Satellite-CLIMB-To-Place-FHWN AccessIntervals" StartTime = "7 Aug 2023 18:00:48.518" StopTime = "7 Aug 2023 18:11:03.402" />
+                <Interval Name = "Satellite-CLIMB-To-Place-FHWN AccessIntervals" StartTime = "7 Aug 2023 19:33:46.700" StopTime = "7 Aug 2023 19:42:21.849" />
+                <Interval Name = "Satellite-CLIMB-To-Place-FHWN AccessIntervals" StartTime = "8 Aug 2023 06:44:30.929" StopTime = "8 Aug 2023 06:54:15.499" />
+                <Interval Name = "Satellite-CLIMB-To-Place-FHWN AccessIntervals" StartTime = "8 Aug 2023 08:16:27.786" StopTime = "8 Aug 2023 08:25:53.511" />
+                <Interval Name = "Satellite-CLIMB-To-Place-FHWN AccessIntervals" StartTime = "8 Aug 2023 17:13:27.803" StopTime = "8 Aug 2023 17:22:13.563" />
+                <Interval Name = "Satellite-CLIMB-To-Place-FHWN AccessIntervals" StartTime = "8 Aug 2023 18:44:15.003" StopTime = "8 Aug 2023 18:54:33.390" />
+                <Interval Name = "Satellite-CLIMB-To-Place-FHWN AccessIntervals" StartTime = "8 Aug 2023 20:20:19.199" StopTime = "8 Aug 2023 20:23:54.434" />
+                <Interval Name = "Satellite-CLIMB-To-Place-FHWN AccessIntervals" StartTime = "9 Aug 2023 05:57:13.514" StopTime = "9 Aug 2023 06:04:10.580" />
+                <Interval Name = "Satellite-CLIMB-To-Place-FHWN AccessIntervals" StartTime = "9 Aug 2023 07:27:57.187" StopTime = "9 Aug 2023 07:38:15.486" />
+                <Interval Name = "Satellite-CLIMB-To-Place-FHWN AccessIntervals" StartTime = "9 Aug 2023 09:00:49.190" StopTime = "9 Aug 2023 09:07:56.233" />
+                <Interval Name = "Satellite-CLIMB-To-Place-FHWN AccessIntervals" StartTime = "9 Aug 2023 16:27:49.810" StopTime = "9 Aug 2023 16:32:47.165" />
+                <Interval Name = "Satellite-CLIMB-To-Place-FHWN AccessIntervals" StartTime = "9 Aug 2023 17:56:10.071" StopTime = "9 Aug 2023 18:06:23.753" />
+                <Interval Name = "Satellite-CLIMB-To-Place-FHWN AccessIntervals" StartTime = "9 Aug 2023 19:28:55.461" StopTime = "9 Aug 2023 19:37:51.532" />
+                <Interval Name = "Satellite-CLIMB-To-Place-FHWN AccessIntervals" StartTime = "10 Aug 2023 06:40:09.789" StopTime = "10 Aug 2023 06:49:45.439" />
+                <Interval Name = "Satellite-CLIMB-To-Place-FHWN AccessIntervals" StartTime = "10 Aug 2023 08:12:02.975" StopTime = "10 Aug 2023 08:21:37.742" />
+            </Row>
+            <Row ClassName = "Access" ComponentName = "AccessIntervals" DisplayName = "Place-FHWN-Sensor-Sensor-To-Satellite-CLIMB AccessIntervals" IsDefaultName = "True" IsExpanded = "False" IsGroup = "False" IsHidden = "False" Path = "Access:/Application/STK/Scenario/CLIMB_scenario1/Place/FHWN/Sensor/Sensor;/Application/STK/Scenario/CLIMB_scenario1/Satellite/CLIMB" Type = "IntervalList">
+                <Interval Name = "Place-FHWN-Sensor-Sensor-To-Satellite-CLIMB AccessIntervals" StartTime = "7 Aug 2023 06:03:58.692" StopTime = "7 Aug 2023 06:07:24.466" />
+                <Interval Name = "Place-FHWN-Sensor-Sensor-To-Satellite-CLIMB AccessIntervals" StartTime = "7 Aug 2023 07:33:59.132" StopTime = "7 Aug 2023 07:42:00.514" />
+                <Interval Name = "Place-FHWN-Sensor-Sensor-To-Satellite-CLIMB AccessIntervals" StartTime = "7 Aug 2023 09:08:15.125" StopTime = "7 Aug 2023 09:10:05.461" />
+                <Interval Name = "Place-FHWN-Sensor-Sensor-To-Satellite-CLIMB AccessIntervals" StartTime = "7 Aug 2023 18:01:56.934" StopTime = "7 Aug 2023 18:09:53.992" />
+                <Interval Name = "Place-FHWN-Sensor-Sensor-To-Satellite-CLIMB AccessIntervals" StartTime = "7 Aug 2023 19:35:18.510" StopTime = "7 Aug 2023 19:40:48.573" />
+                <Interval Name = "Place-FHWN-Sensor-Sensor-To-Satellite-CLIMB AccessIntervals" StartTime = "8 Aug 2023 06:45:46.056" StopTime = "8 Aug 2023 06:53:02.334" />
+                <Interval Name = "Place-FHWN-Sensor-Sensor-To-Satellite-CLIMB AccessIntervals" StartTime = "8 Aug 2023 08:17:44.209" StopTime = "8 Aug 2023 08:24:38.620" />
+                <Interval Name = "Place-FHWN-Sensor-Sensor-To-Satellite-CLIMB AccessIntervals" StartTime = "8 Aug 2023 17:14:53.278" StopTime = "8 Aug 2023 17:20:47.390" />
+                <Interval Name = "Place-FHWN-Sensor-Sensor-To-Satellite-CLIMB AccessIntervals" StartTime = "8 Aug 2023 18:45:24.025" StopTime = "8 Aug 2023 18:53:23.208" />
+                <Interval Name = "Place-FHWN-Sensor-Sensor-To-Satellite-CLIMB AccessIntervals" StartTime = "9 Aug 2023 05:59:37.246" StopTime = "9 Aug 2023 06:01:49.193" />
+                <Interval Name = "Place-FHWN-Sensor-Sensor-To-Satellite-CLIMB AccessIntervals" StartTime = "9 Aug 2023 07:29:05.749" StopTime = "9 Aug 2023 07:37:08.774" />
+                <Interval Name = "Place-FHWN-Sensor-Sensor-To-Satellite-CLIMB AccessIntervals" StartTime = "9 Aug 2023 09:02:52.462" StopTime = "9 Aug 2023 09:05:54.418" />
+                <Interval Name = "Place-FHWN-Sensor-Sensor-To-Satellite-CLIMB AccessIntervals" StartTime = "9 Aug 2023 17:57:19.287" StopTime = "9 Aug 2023 18:05:13.688" />
+                <Interval Name = "Place-FHWN-Sensor-Sensor-To-Satellite-CLIMB AccessIntervals" StartTime = "9 Aug 2023 19:30:22.383" StopTime = "9 Aug 2023 19:36:23.300" />
+                <Interval Name = "Place-FHWN-Sensor-Sensor-To-Satellite-CLIMB AccessIntervals" StartTime = "10 Aug 2023 06:41:26.779" StopTime = "10 Aug 2023 06:48:30.632" />
+                <Interval Name = "Place-FHWN-Sensor-Sensor-To-Satellite-CLIMB AccessIntervals" StartTime = "10 Aug 2023 08:13:17.898" StopTime = "10 Aug 2023 08:20:24.579" />
+            </Row>
+        </ContentView>
+    </Views>
+    <Views Type = "Time">
+        <TimeView FullViewRulerStartTime = "0.000000" FullViewRulerStopTime = "0.000000" GlobalIntervalComp = "AnalysisInterval" GlobalIntervalCompPath = "/Application/STK/Scenario/CLIMB_scenario1" GlobalStartOffset = "0.000000" GlobalStartTime = "6 Aug 2023 20:15:04.320" GlobalStopOffset = "0.000000" GlobalStopTime = "15 Aug 2023 20:15:04.320" MaxFullViewTime = "0.000000" MinFullViewTime = "0.000000" Name = "Scenario Analysis Period" ViewportStartTime = "0.000000" ViewportStopTime = "0.000000" />
+    </Views>
+</TimelineLine_Prefs>
