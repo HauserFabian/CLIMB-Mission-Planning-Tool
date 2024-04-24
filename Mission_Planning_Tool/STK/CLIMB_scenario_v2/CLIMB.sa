@@ -1709,7 +1709,7 @@ BEGIN Satellite
         ScenarioEpoch		 6 Aug 2023 20:15:04.320000
 
         BEGIN Profile
-            Name		 Sun Pointing 0
+            Name		 Sun
             UserNamed		 Yes
             StartTime		  0.0000000000000000e+00
             StartTimePtr		
@@ -1720,7 +1720,7 @@ BEGIN Satellite
 
             BEGIN AlignConstrain
 
-                BodyVectorA		  7.0710678118654791e-01  7.0710678118654757e-01 -1.1102230246251565e-16
+                BodyVectorA		  7.0710678118654779e-01  7.0710678118654746e-01 -1.1102230246251563e-16
 
                 UiSequenceA		 321
 
@@ -2130,12 +2130,6 @@ Place/FHWN 23122.26069351638908 23122.26994879104641
         END ObjectCoverage
 
         BEGIN Desc
-            BEGIN ShortText
-
-            END ShortText
-            BEGIN LongText
-
-            END LongText
         END Desc
 
         BEGIN RadarCrossSection
