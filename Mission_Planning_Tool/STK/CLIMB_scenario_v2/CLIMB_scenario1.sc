@@ -399,14 +399,14 @@ BEGIN Scenario
             BEGIN Class
                 Name		 Satellite
                 BEGIN Favorite
-                    Type		 Report
+                    Type		 Graph
                     BaseDir		 Install
-                    Style		 Attitude Schedule
+                    Style		 Yaw Pitch Roll
                 END Favorite
                 BEGIN Favorite
                     Type		 Report
                     BaseDir		 Install
-                    Style		 Attitude Segment
+                    Style		 Sun Vector Fixed
                 END Favorite
                 BEGIN Favorite
                     Type		 Report
@@ -416,12 +416,12 @@ BEGIN Scenario
                 BEGIN Favorite
                     Type		 Report
                     BaseDir		 Install
-                    Style		 Sun Vector Fixed
+                    Style		 Attitude Segment
                 END Favorite
                 BEGIN Favorite
-                    Type		 Graph
+                    Type		 Report
                     BaseDir		 Install
-                    Style		 Yaw Pitch Roll
+                    Style		 Attitude Schedule
                 END Favorite
             END Class
         END ReportFavorites
