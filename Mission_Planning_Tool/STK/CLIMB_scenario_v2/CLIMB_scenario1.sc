@@ -601,7 +601,8 @@ BEGIN Scenario
             STKPassword		 No
             ExcludeInstallFiles		 No
             VDFOverview		24
-Beginig of torque assesm
+
+Beginig of torque asses
 
             BEGIN ExternalFileList
                 BEGIN File
@@ -1806,7 +1807,7 @@ Beginig of torque assesm
                 EndTime		 7 Aug 2023 20:15:04.320000000
                 CurrentTime		 6 Aug 2023 20:15:04.320000000
                 Direction		 Forward
-                UpdateDelta		 180
+                UpdateDelta		 30
                 RefreshDelta		 0.010000
                 XRealTimeMult		 1
                 RealTimeOffset		 0

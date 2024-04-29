@@ -1,6 +1,6 @@
 VO_V120		
 InitializeSolarPanels		 Yes
-Modelfile		 CLIMB_Model_Solarpanels_FrontBack.dae
+Modelfile		 Space\satellite.mdl
 UseCatalogModelFile		 Yes
 ModelDefaultColorFromMarker		 No
 IsShowingModel		 Yes

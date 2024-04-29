@@ -12,7 +12,7 @@ CSV_scenario_time = CSV_fire = pd.read_csv('C:\\CLIMB Operation\\Scenario_time.c
 CSV_fire = pd.read_csv('C:\\CLIMB Operation\\Fire_schedule.csv')
 CSV_access = pd.read_csv('C:\\CLIMB Operation\\Access_schedule.csv')
 CSV_PowerGenerated = pd.read_csv('C:\\CLIMB Operation\\CLIMB_Solar_Panel_Power.csv')
-CSV_RPM_TorqueTool = pd.read_csv('C:\\CLIMB Operation\\RPM_overTime.csv')
+#CSV_RPM_TorqueTool = pd.read_csv('C:\\CLIMB Operation\\RPM_overTime.csv')
 #CSV_RPM_formatted = pd.read_csv('C:\\CLIMB Operation\\RPM_grafana_format.csv')
 workbook = openpyxl.load_workbook('C:\\CLIMB Operation\\CLIMB Power Budget V2.xlsx', data_only=True)
 sheet_power = workbook['Power Budget CLIMB']
@@ -25,28 +25,29 @@ CSV_powerTool = open('C:\\CLIMB Operation\\PowerTool.csv', "a")
 CSV_powerTool.write("Timestamp, Propulsion mode power consumption, Downlink mode power consumption, Total Power Consumed, Power Generated, Battery Power Output, Battery Capacity, SOC") #re-writing headers
 CSV_powerTool.close()
 
+
 ### Torque tool code ### used to convert date format from STK output to suitable input for Grafana
-RPM_timestamp = CSV_RPM_TorqueTool.at[0,'Time (UTCG)']
-RPM_timestamp_object = datetime.strptime(RPM_timestamp, "%d-%b-%Y %H:%M:%S")
-RPM_timestamp_grafana_format = RPM_timestamp_object.strftime("%d-%m-%Y %H:%M:%S")
-print(RPM_timestamp_grafana_format)
-CSV_RPM_Formatted = open('C:\\CLIMB Operation\\RPM_grafana_format.csv', "w").close()
-CSV_RPM_Formatted = open('C:\\CLIMB Operation\\RPM_grafana_format.csv', "a")
-CSV_RPM_Formatted.write("Timestamp, RPM_x, RPM_y, RPM_z")
-CSV_RPM_length = len(CSV_RPM_TorqueTool['Time (UTCG)'])-1
+#RPM_timestamp = CSV_RPM_TorqueTool.at[0,'Time (UTCG)']
+#RPM_timestamp_object = datetime.strptime(RPM_timestamp, "%d-%b-%Y %H:%M:%S")
+#RPM_timestamp_grafana_format = RPM_timestamp_object.strftime("%d-%m-%Y %H:%M:%S")
+#print(RPM_timestamp_grafana_format)
+#CSV_RPM_Formatted = open('C:\\CLIMB Operation\\RPM_grafana_format.csv', "w").close()
+#CSV_RPM_Formatted = open('C:\\CLIMB Operation\\RPM_grafana_format.csv', "a")
+#CSV_RPM_Formatted.write("Timestamp, RPM_x, RPM_y, RPM_z")
+#CSV_RPM_length = len(CSV_RPM_TorqueTool['Time (UTCG)'])-1
 
 
-for r in range(0,CSV_RPM_length):
+#for r in range(0,CSV_RPM_length):
 
-    RPM_timestamp = CSV_RPM_TorqueTool.at[r, 'Time (UTCG)']
-    RPM_timestamp_object = datetime.strptime(RPM_timestamp, "%d-%b-%Y %H:%M:%S")
-    RPM_timestamp_grafana_format = RPM_timestamp_object.strftime("%d-%m-%Y %H:%M:%S")
+#    RPM_timestamp = CSV_RPM_TorqueTool.at[r, 'Time (UTCG)']
+#    RPM_timestamp_object = datetime.strptime(RPM_timestamp, "%d-%b-%Y %H:%M:%S")
+#    RPM_timestamp_grafana_format = RPM_timestamp_object.strftime("%d-%m-%Y %H:%M:%S")
 
-    RPM_x = CSV_RPM_TorqueTool.at[r, 'RPM in X']
-    RPM_y = CSV_RPM_TorqueTool.at[r, 'RPM in Y']
-    RPM_z = CSV_RPM_TorqueTool.at[r, 'RPM in Z']
+#    RPM_x = CSV_RPM_TorqueTool.at[r, 'RPM in X']
+#    RPM_y = CSV_RPM_TorqueTool.at[r, 'RPM in Y']
+#    RPM_z = CSV_RPM_TorqueTool.at[r, 'RPM in Z']
 
-    CSV_RPM_Formatted.write("\n%s, %0.2f, %0.2f, %0.2f" % (RPM_timestamp_grafana_format, RPM_x, RPM_y, RPM_z))
+#    CSV_RPM_Formatted.write("\n%s, %0.2f, %0.2f, %0.2f" % (RPM_timestamp_grafana_format, RPM_x, RPM_y, RPM_z))
 
 #reading power consumptions from different modes from Power budget table
 propulsion_mode_consumption = sheet_power['AL35'].value #[W]

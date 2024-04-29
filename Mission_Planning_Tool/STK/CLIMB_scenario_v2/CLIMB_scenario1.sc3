@@ -109,7 +109,7 @@ BEGIN SceneWindow
         CentralBody		 Earth
         DisplayMode		 Normal
         StereoProjectionMode		 Automatic
-        ProjectionDistance		 6.075320369085557
+        ProjectionDistance		 2.957385221196391
         EyeSeparationFactor		 0.02
         WireframeMode		 No
         CameraLightAntiSun		 No
@@ -703,9 +703,9 @@ BEGIN SceneWindow
             UseLayer		 Yes
             FromName		 "Satellite/CLIMB"
             FromRegPosAttView		 "Point"
-            FromPosition		 -1.7036514044329436e+06 -6.5737358828922743e+06  1.8837290614798228e+04
-            FromOffset		 -1.2240855705458689e+00 -7.1901054959744226e-01 -5.9071275534370242e+00
-            FromOffsetLLR		  1.6313565381098094e-01  2.8507600238216315e+00  6.0753203690855591e+00
+            FromPosition		 -1.7036527833962061e+06 -6.5737338218614412e+06  1.8842786347555983e+04
+            FromOffset		 -2.6030488330470392e+00  1.3420202835164041e+00 -4.1139479568236248e-01
+            FromOffsetLLR		 -2.2063064384270012e-01  1.5907565373313033e+00  2.9573852211897478e+00
             ToName		 "Satellite/CLIMB"
             ToRegPosAttView		 "Point"
             ToPosition		 -1.7036501803473730e+06 -6.5737351638817247e+06  1.8843197742351666e+04
@@ -713,9 +713,9 @@ BEGIN SceneWindow
             ToOffsetLLR		  0.0000000000000000e+00  0.0000000000000000e+00  0.0000000000000000e+00
             ConstantDistanceType		 None
             ConstantDistanceValue		 1
-            UpVector		 -2.2108286223363549e-01 -9.6156177653761421e-01  1.6285367029456549e-01
-            ViewRad		  6.0753203690855573e+00
-            ViewQuat		  9.8615594578070342e-01  1.1806431871106518e-02  8.0617467853073374e-02 -1.4442258356918397e-01
+            UpVector		 -4.5451316879070641e-01 -8.9028857080808588e-01 -2.8355600581316687e-02
+            ViewRad		  2.9573852211963909e+00
+            ViewQuat		  7.0978757204121246e-01 -7.7065814611104261e-02 -7.8619623257781990e-02 -6.9575959758595640e-01
             ViewCoordSystem		 From
             ViewFromToMode		 FromTo
             ViewToCBIMtx		 -1.1755910554460369e-01  3.3311594098256792e-02  9.9250702486289044e-01 -9.6085558278730809e-01  2.4866532269692293e-01 -1.2215607358825048e-01 -2.5087129315650208e-01 -9.6801647454300510e-01  2.7747582446442376e-03
@@ -729,7 +729,7 @@ BEGIN SceneWindow
             MinAngleToUpAxis		  8.7266462599716477e-03
             InitUpAxisUp		 Yes
             TempUpAxisUp		 Yes
-            CrossAxis		  2.8674998826717946e-01  9.5800545104335000e-01 -0.0000000000000000e+00
+            CrossAxis		  9.9980080161137219e-01  1.9958885170709977e-02 -0.0000000000000000e+00
             DefaultOffset		  2.3422989994287491e+00
             BaseDefaultOffset		  1.8738391995429993e+00
         END View
