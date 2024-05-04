@@ -159,8 +159,14 @@ disp('App is running') % For progress track after button push
 %         catch
 %          %   break;
 %         end
-% driver.RunMCS;
+driver.RunMCS;
 
+%% Maneuver Data Report
+maneuver_output_report = CLIMB.DataProviders.Item('Maneuver Summary').Exec(Start_Time,End_Time);
+maneuver_start_time = datetime(maneuver_output_report.DataSets.GetDataSetByName('Start Time').GetValues, 'InputFormat', 'd MMM yyyy HH:mm:ss.SSSSSSSSS');
+maneuver_stop_time = datetime(maneuver_output_report.DataSets.GetDataSetByName('Stop Time').GetValues, 'InputFormat', 'd MMM yyyy HH:mm:ss.SSSSSSSSS');
+maneuver_duration = maneuver_output_report.DataSets.GetDataSetByName('Duration').GetValues;
+maneuver_dv = maneuver_output_report.DataSets.GetDataSetByName('Delta V').GetValues;
 
 %% Inputs for attitude
 disp ('Reading Schedule')
@@ -500,16 +506,16 @@ disp('Running the Scenario')
         SolarMatrix = [SolarTime,SolarPower,SolarIntensity];
         SolarTable = array2table(SolarMatrix);
         SolarTable.Properties.VariableNames(1:3) = {'Time (UTCG)','Power (W)','Solar Intensity'};
-        writetable(SolarTable,'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\Mission_Planning_Tool\test\CLIMB_Solar_Panel_Power.csv');
+        %writetable(SolarTable,'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\Mission_Planning_Tool\test\CLIMB_Solar_Panel_Power.csv');
 
 %% Creating Torque Report
         disp('Creating Torque report')
         %app.ConsoleLog("Creating Torque report");
 
         Torque=CLIMB.DataProviders.Item('Vectors(Body)').Group.Item('TotalTorque').Exec(Start_Time,End_Time,5);
-        TorqueX=Torque.DataSets.GetDataSetByName('x').GetValues;
-        TorqueY=Torque.DataSets.GetDataSetByName('y').GetValues;
-        TorqueZ=Torque.DataSets.GetDataSetByName('z').GetValues;
+        TorqueX=cell2mat(Torque.DataSets.GetDataSetByName('x').GetValues);
+        TorqueY=cell2mat(Torque.DataSets.GetDataSetByName('y').GetValues);
+        TorqueZ=cell2mat(Torque.DataSets.GetDataSetByName('z').GetValues);
         Torque_time=datetime(Torque.DataSets.GetDataSetByName('Time').GetValues, 'InputFormat', 'd MMM yyyy HH:mm:ss.SSSSSSSSS');
         % Torque_time= datestr(Torque_time, 'dd mmm yyyy HH:MM:SS');
         % Torque_time=cellstr(Torque_time);
@@ -522,11 +528,11 @@ disp('Running the Scenario')
         disp('Creating Angular Momentum report')
         %app.ConsoleLog("Creating Angular Momentum report");
 
-        AngMomentum =CLIMB.DataProviders.Item('Vectors(Body)').Group.Item('AngMomentum').Exec(Start_Time,End_Time,5);
-        MomentumX=AngMomentum.DataSets.GetDataSetByName('x').GetValues;
-        MomentumY=AngMomentum.DataSets.GetDataSetByName('y').GetValues;
-        MomentumZ=AngMomentum.DataSets.GetDataSetByName('z').GetValues;
-        Momentum_time=datetime(AngMomentum.DataSets.GetDataSetByName('Time').GetValues, 'InputFormat', 'd MMM yyyy HH:mm:ss.SSSSSSSSS');
+        AngMomentum = CLIMB.DataProviders.Item('Vectors(Body)').Group.Item('AngMomentum').Exec(Start_Time,End_Time,5);
+        AngMomentumX= cell2mat(AngMomentum.DataSets.GetDataSetByName('x').GetValues);
+        AngMomentumY=cell2mat(AngMomentum.DataSets.GetDataSetByName('y').GetValues);
+        AngMomentumZ=cell2mat(AngMomentum.DataSets.GetDataSetByName('z').GetValues);
+        AngMomentum_time=datetime(AngMomentum.DataSets.GetDataSetByName('Time').GetValues, 'InputFormat', 'd MMM yyyy HH:mm:ss.SSSSSSSSS');
         % Momentum_time= datestr(Momentum_time, 'dd mmm yyyy HH:MM:SS');
         % Momentum_time=cellstr(Momentum_time);
         % Momentum_table = [Momentum_time,MomentumX,MomentumY,MomentumZ];
@@ -542,9 +548,9 @@ disp('Running the Scenario')
         Yaw = cell2mat(YPR.DataSets.GetDataSetByName('Yaw').GetValues);
         Pitch = cell2mat(YPR.DataSets.GetDataSetByName('Pitch').GetValues);
         Roll = cell2mat(YPR.DataSets.GetDataSetByName('Roll').GetValues);
-        Yaw_rate = cell2mat(YPR.DataSets.GetDataSetByName('Yaw Rate').GetValues);
-        Pitch_rate = cell2mat(YPR.DataSets.GetDataSetByName('Pitch Rate').GetValues);
-        Roll_rate = cell2mat(YPR.DataSets.GetDataSetByName('Roll Rate').GetValues);
+        % Yaw_rate = cell2mat(YPR.DataSets.GetDataSetByName('Yaw Rate').GetValues);
+        % Pitch_rate = cell2mat(YPR.DataSets.GetDataSetByName('Pitch Rate').GetValues);
+        % Roll_rate = cell2mat(YPR.DataSets.GetDataSetByName('Roll Rate').GetValues);
         YPR_time = datetime(YPR.DataSets.GetDataSetByName('Time').GetValues, 'InputFormat', 'd MMM yyyy HH:mm:ss.SSSSSSSSS');
         % YPR_time= datestr(YPR_time, 'dd mmm yyyy HH:MM:SS');
         % YPR_time=cellstr(YPR_time);
@@ -671,171 +677,203 @@ Misalignment_angle=table2array(Torque_tool_data(17,2)); % deg
         % end
 % 
 % Fire schedule
-    Fire_data=readtable("C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\Mission_Planning_Tool\test\Fire_schedule.csv",'HeaderLines', 1);
-    Fire_times = table2array(Fire_data(:,1));
-    Fire_status = table2array(Fire_data(:,2));
+    % Fire_data=readtable("C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\Mission_Planning_Tool\test\Fire_schedule.csv",'HeaderLines', 1);
+    % Fire_times = table2array(Fire_data(:,1));
+    % Fire_status = table2array(Fire_data(:,2));
     Burn_time_status = zeros(size(YPR_time,1)-1,1); %  delta_L_x=zeros(size(L_x, 1), 1);
 
-        for i = 1:size(Fire_times)
-            if Fire_status(1) == 1
-                break
-            end
-            for j = 1:size(Burn_time_status)
-                if abs(seconds(YPR_time(j) - Fire_times(i))) < 300 && Fire_status(i) == 1
-                    Burn_time_status(j) = 1
-                end
 
+
+    for i = 1:height(maneuver_start_time)
+
+        for j = 1:size(Burn_time_status)
+            if YPR_time(j)>maneuver_start_time(i) && YPR_time(j)<maneuver_stop_time(i)
+
+                Burn_time_status(j) = 1;
             end
 
         end
+
+    end
+
+
+        % for i = 1:size(Fire_times)
+        %     if Fire_status(1) == 1
+        %         break
+        %     end
+        %     for j = 1:size(Burn_time_status)
+        %         if abs(seconds(YPR_time(j) - Fire_times(i))) < 300 && Fire_status(i) == 1
+        %             Burn_time_status(j) = 1;
+        %         end
+        % 
+        %     end
+        % 
+        % end
 % 
-% % Torque
-%     Torque_data= readtable("C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\Torque.csv", 'HeaderLines', 1);
-%     Torque_time=Torque_data(:,1);
-%     Torque_time = table2cell(Torque_time);
-%     Torque_time= datetime(Torque_time, 'InputFormat', 'd MMM yyyy HH:mm:ss');
-%     T_x=1000*table2array(Torque_data(:,2)); % mNm
-%     T_y=1000*table2array(Torque_data(:,3)); % mNm
-%     T_z=1000*table2array(Torque_data(:,4)); % mNm
-% 
-%     T=sqrt(T_x.^2+T_y.^2+T_z.^2); % Abs. Torque
-% 
-%     Max_Torque=max(T);% Max. Torque
-%     disp(['Maximum Instantenious Torque (mNm): ', num2str(Max_Torque)]);
-% 
-%     cum_T_x=sum(T_x);
-%     cum_T_y=sum(T_y);
-%     cum_T_z=sum(T_z);
-%     Total_torque=sqrt(cum_T_x^2+cum_T_y^2+cum_T_z^2);% Abs. Cum. Torque
-%     disp(['Total Torque (mNm): ', num2str(Max_Torque)]);
-% 
-% % Angular Momentum
-%     L_data= readtable("C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\AngularMomentum.csv", 'HeaderLines', 1);
-%     L_time=L_data(:,1);
-%     L_time = table2cell(L_time);
-%     L_time= datetime(L_time, 'InputFormat', 'd MMM yyyy HH:mm:ss');
-%     L_x=1000*table2array(L_data(:,2)); % 1000*kg*m^2/sec= mNms % + L_cm_x*      
-%     L_y=1000*table2array(L_data(:,3)); % 1000*kg*m^2/sec= mNms
-%     L_z=1000*table2array(L_data(:,4)); % 1000*kg*m^2/sec= mNms
-%     L=sqrt(L_x.^2+L_y.^2+L_z.^2);
-%     Max_L=max(L);
-%     disp(['Maximum instantaneous Angular Momentum (mNms) ', num2str(Max_L)]);
-% 
-%     delta_L_x=zeros(size(L_x, 1), 1);
-%     for i = 2:length(delta_L_x)
-%         delta_L_x_i = L_x(i);
-%         delta_L_x_iminus1 = L_x(i-1);
-%         delta_L_x(i) = L_x(i)-L_x(i-1);
-%     end
-%     L_x(1)=L_x_cubesat_initial+L_x(1);
-%     Cum_L_x=L_x(1)+cumsum(delta_L_x);
-% 
-% 
-%     delta_L_y=zeros(size(L_y, 1), 1);
-%     for i = 2:length(delta_L_y)
-%         delta_L_y_i = L_y(i);
-%         delta_L_y_iminus1 = L_y(i-1);
-%         delta_L_y(i) = L_y(i)-L_y(i-1);
-%     end
-%     L_y(1)=L_y_cubesat_initial+L_y(1);
-%     Cum_L_y=L(1)+cumsum(delta_L_y);
-% 
-%     delta_L_z=zeros(size(L_z, 1), 1);
-%     for i = 2:length(delta_L_z)
-%         delta_L_z_i = L_z(i);
-%         delta_L_z_iminus1 = L_z(i-1);
-%         delta_L_z(i) = L_z(i)-L_z(i-1);
-%     end
-%     L_z(1)=L_z_cubesat_initial+L_z(1);
-%     Cum_L_z=L(1)+cumsum(delta_L_z);
-% 
-%     L_limit_pos=ADCS_max_L*ones(size(L_time));
-%     L_limit_neg=-ADCS_max_L*ones(size(L_time));
-% 
-% %     time_L_limit_x =max( L_time(abs(Cum_L_x) <= L_limit_pos));
-% %     time_L_limit_y =max( L_time(abs(Cum_L_y) <= L_limit_pos));
-% %     time_L_limit_z =max( L_time(abs(Cum_L_z) <= L_limit_pos));
-% 
-% %%  Angular velcoity derivation
-%     time_step = seconds(Velo_time(2) - Velo_time(1)); % Calculate the time step in seconds
-% 
-%     Yaw_rate = diff(Yaw(:))./time_step; % deg/s
-%     Pitch_rate = diff(Pitch(:))./time_step;
-%     Roll_rate = diff(Roll(:))./time_step;
-% 
-% %% Angular momentum due to CM shift
-%     Angular_momentum_pitch_thrust_persecond = F*cm_x; % Nm
-%     Angular_momentum_roll_thrust_persecond = F*cm_y; % Nm
-%     Thrust_momentum_pitch = Angular_momentum_pitch_thrust_persecond*time_step*Burn_time_status; 
-%     Thrust_momentum_roll = Angular_momentum_roll_thrust_persecond*time_step*Burn_time_status;
-%     Thrust_momentum_pitch = cumtrapz(Thrust_momentum_pitch);
-%     Thrust_momentum_roll = cumtrapz(Thrust_momentum_roll);
-% 
-%  %% Angular mometum due to Thrust vector misallignment 
-%     Thrust_momentum_PR=F*Height_z*sind(5); % Either could be added to X or Y, roll or pitch, Nm
-%     Angular_momentum_misall_PR=cumtrapz(Thrust_momentum_PR*time_step*Burn_time_status);
-% 
-%  %% Total angular momentum   
-%     Angular_momentum_yaw_STK = (Yaw_rate*pi/180) * I_zz; % Nms
-%     Angular_momentum_pitch_STK = (Pitch_rate*pi/180) * I_yy;
-%     Angular_momentum_roll_STK = (Roll_rate*pi/180) * I_xx;
-% 
-%     Angular_momentum_yaw = Angular_momentum_yaw_STK ; % Nms
-%     Angular_momentum_pitch= Angular_momentum_pitch_STK + Thrust_momentum_pitch+Angular_momentum_misall_PR; 
-%     Angular_momentum_roll= Angular_momentum_roll_STK +Thrust_momentum_roll;
-% %     figure Name STK_L
-% %         hold on
-% %         plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_yaw_STK,  'Color', 'green')
-% %         plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_pitch_STK, 'Color', 'black')
-% %         plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_roll_STK,  'Color', 'red')
-% %         xlabel('Time') 
-% %         ylabel('Angular momentum (Nms)')
-% %         legend({'Angular momentum in yaw','Angular momentum in pitch','Angular momentum in roll', ...
-% %             },'Location','southeast')
-% %         hold off
-% % 
-% % 
-% %      figure Name VectorMis_L
-% %             hold on
-% %             plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_misall_PR, 'Color', 'black')
-% %             
-% %             xlabel('Time') 
-% %             ylabel('Angular momentum (Nms)')
-% %             legend({'Angular momentum due to thrust vector misalignment', ...
-% %                 },'Location','southeast')
-% %             hold off
-% % 
-% %       figure Name Total_L
-% %             hold on
-% %             plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_yaw,  'Color', 'green')
-% %             plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_pitch, 'Color', 'black')
-% %             plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_roll,  'Color', 'red')
-% %             xlabel('Time') 
-% %             ylabel('Angular momentum (Nms)')
-% %             legend({'Angular momentum in yaw','Angular momentum in pitch','Angular momentum in roll', ...
-% %                 },'Location','southeast')
-% %             hold off
-% 
-% %% RPM of the wheel
-%     RPM_x = Angular_momentum_roll/I_fw*30/pi+RPM_wheel_initial; 
-%     RPM_y = Angular_momentum_pitch/I_fw*30/pi+RPM_wheel_initial;
-%     RPM_z = Angular_momentum_yaw/I_fw*30/pi+RPM_wheel_initial;
-% 
-%     figure Name RPM
+%% Torque
+
+    % TorqueX=Torque.DataSets.GetDataSetByName('x').GetValues;
+    % TorqueY=Torque.DataSets.GetDataSetByName('y').GetValues;
+    % TorqueZ=Torque.DataSets.GetDataSetByName('z').GetValues;
+    % Torque_time=datetime
+    % 
+    % Torque_data= readtable("C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\Torque.csv", 'HeaderLines', 1);
+    % Torque_time=Torque_data(:,1);
+    % Torque_time = table2cell(Torque_time);
+    % Torque_time= datetime(Torque_time, 'InputFormat', 'd MMM yyyy HH:mm:ss');
+    TorqueX=1000*TorqueX; % mNm
+    TorqueY=1000*TorqueY; % mNm
+    TorqueZ=1000*TorqueZ; % mNm
+
+    T=sqrt(TorqueX.^2+TorqueY.^2+TorqueZ.^2); % Abs. Torque
+
+    Max_Torque=max(T);% Max. Torque
+    disp(['Maximum Instantenious Torque (mNm): ', num2str(Max_Torque)]);
+
+    cum_T_x=sum(TorqueX);
+    cum_T_y=sum(TorqueY);
+    cum_T_z=sum(TorqueZ);
+    Total_torque=sqrt(cum_T_x^2+cum_T_y^2+cum_T_z^2);% Abs. Cum. Torque
+    %disp(['Total Torque (mNm): ', num2str(Max_Torque)]);
+
+%% Angular Momentum
+
+
+    % AngMomentumX= cell2mat(AngMomentum.DataSets.GetDataSetByName('x').GetValues);
+    % AngMomentumY=cell2mat(AngMomentum.DataSets.GetDataSetByName('y').GetValues);
+    % AngMomentumZ=cell2mat(AngMomentum.DataSets.GetDataSetByName('z').GetValues);
+    % AngMomentum_time=datetime(AngMomentum.DataSets.GetDataSetByName('Time').GetValues, 'InputFormat', 'd MMM yyyy HH:mm:ss.SSSSSSSSS');
+
+
+
+    % L_data= readtable("C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\AngularMomentum.csv", 'HeaderLines', 1);
+    % L_time=L_data(:,1);
+    % L_time = table2cell(AngMomentum_time);
+    % L_time= datetime(AngMomentum_time, 'InputFormat', 'd MMM yyyy HH:mm:ss');
+    
+    AngMomentumX=1000*AngMomentumX; % 1000*kg*m^2/sec= mNms % + L_cm_x*      
+    AngMomentumY=1000*AngMomentumY; % 1000*kg*m^2/sec= mNms
+    AngMomentumZ=1000*AngMomentumZ; % 1000*kg*m^2/sec= mNms
+    L=sqrt(AngMomentumX.^2+AngMomentumY.^2+AngMomentumZ.^2);
+    Max_L=max(L);
+    disp(['Maximum instantaneous Angular Momentum (mNms) ', num2str(Max_L)]);
+
+    delta_L_x=zeros(size(AngMomentumX, 1), 1);
+    for i = 2:length(delta_L_x)
+        delta_L_x_i = AngMomentumX(i);
+        delta_L_x_iminus1 = AngMomentumX(i-1);
+        delta_L_x(i) = AngMomentumX(i)-AngMomentumX(i-1);
+    end
+    AngMomentumX(1)=L_x_cubesat_initial+AngMomentumX(1);
+    Cum_L_x=AngMomentumX(1)+cumsum(delta_L_x);
+
+
+    delta_L_y=zeros(size(AngMomentumY, 1), 1);
+    for i = 2:length(delta_L_y)
+        delta_L_y_i = AngMomentumY(i);
+        delta_L_y_iminus1 = AngMomentumY(i-1);
+        delta_L_y(i) = AngMomentumY(i)-AngMomentumY(i-1);
+    end
+    AngMomentumY(1)=L_y_cubesat_initial+AngMomentumY(1);
+    Cum_L_y=L(1)+cumsum(delta_L_y);
+
+    delta_L_z=zeros(size(AngMomentumZ, 1), 1);
+    for i = 2:length(delta_L_z)
+        delta_L_z_i = AngMomentumZ(i);
+        delta_L_z_iminus1 = AngMomentumZ(i-1);
+        delta_L_z(i) = AngMomentumZ(i)-AngMomentumZ(i-1);
+    end
+    AngMomentumZ(1)=L_z_cubesat_initial+AngMomentumZ(1);
+    Cum_L_z=L(1)+cumsum(delta_L_z);
+
+    L_limit_pos=ADCS_max_L*ones(size(AngMomentum_time));
+    L_limit_neg=-ADCS_max_L*ones(size(AngMomentum_time));
+
+%     time_L_limit_x =max( L_time(abs(Cum_L_x) <= L_limit_pos));
+%     time_L_limit_y =max( L_time(abs(Cum_L_y) <= L_limit_pos));
+%     time_L_limit_z =max( L_time(abs(Cum_L_z) <= L_limit_pos));
+
+%%  Angular velcoity derivation
+    time_step = seconds(YPR_time(2) - YPR_time(1)); % Calculate the time step in seconds
+    
+    % Why not using from STK ? 
+    Yaw_rate = diff(Yaw(:))./time_step; % deg/s
+    Pitch_rate = diff(Pitch(:))./time_step;
+    Roll_rate = diff(Roll(:))./time_step;
+
+%% Angular momentum due to CM shift
+    Angular_momentum_pitch_thrust_persecond = F*cm_x; % Nm
+    Angular_momentum_roll_thrust_persecond = F*cm_y; % Nm
+    Thrust_momentum_pitch = Angular_momentum_pitch_thrust_persecond*time_step*Burn_time_status; 
+    Thrust_momentum_roll = Angular_momentum_roll_thrust_persecond*time_step*Burn_time_status;
+    Thrust_momentum_pitch = cumtrapz(Thrust_momentum_pitch);
+    Thrust_momentum_roll = cumtrapz(Thrust_momentum_roll);
+
+ %% Angular mometum due to Thrust vector misallignment 
+    Thrust_momentum_PR=F*Height_z*sind(5); % Either could be added to X or Y, roll or pitch, Nm
+    Angular_momentum_misall_PR=cumtrapz(Thrust_momentum_PR*time_step*Burn_time_status);
+
+ %% Total angular momentum   
+    Angular_momentum_yaw_STK = (Yaw_rate*pi/180) * I_zz; % Nms
+    Angular_momentum_pitch_STK = (Pitch_rate*pi/180) * I_yy;
+    Angular_momentum_roll_STK = (Roll_rate*pi/180) * I_xx;
+
+    Angular_momentum_yaw = Angular_momentum_yaw_STK ; % Nms
+    Angular_momentum_pitch= Angular_momentum_pitch_STK + Thrust_momentum_pitch+Angular_momentum_misall_PR; 
+    Angular_momentum_roll= Angular_momentum_roll_STK +Thrust_momentum_roll;
+%     figure Name STK_L
 %         hold on
-%         plot(Velo_time(1:length(Yaw_rate)),RPM_x, 'Color', 'red','LineWidth',2)
-%         plot(Velo_time(1:length(Yaw_rate)),RPM_y, 'Color', 'black', 'LineWidth',2)
-%         plot(Velo_time(1:length(Yaw_rate)),RPM_z,'Color', 'green','LineWidth',2)
+%         plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_yaw_STK,  'Color', 'green')
+%         plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_pitch_STK, 'Color', 'black')
+%         plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_roll_STK,  'Color', 'red')
+%         xlabel('Time') 
+%         ylabel('Angular momentum (Nms)')
+%         legend({'Angular momentum in yaw','Angular momentum in pitch','Angular momentum in roll', ...
+%             },'Location','southeast')
+%         hold off
 % 
-%         yline(RPM_limit, '--', 'LineWidth',2, 'Color', 'red')
-%         yline(-RPM_limit, '--', 'LineWidth',2, 'Color', 'red')
-%         ylim([-8000 8000])
-%         xlabel('Time','FontSize',24,'FontWeight','bold') 
-%         ylabel('RPMs','FontSize',24,'FontWeight','bold') 
-%         legend({'RPM around x','RPM around y','RPM around z', ...
-%             'Upper Limit' ,'Lower Limit'},'Location','southeast','FontSize',24,'FontWeight','bold')
-%         set(gca,'FontSize', 24)
-%         hold off 
+% 
+%      figure Name VectorMis_L
+%             hold on
+%             plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_misall_PR, 'Color', 'black')
+%             
+%             xlabel('Time') 
+%             ylabel('Angular momentum (Nms)')
+%             legend({'Angular momentum due to thrust vector misalignment', ...
+%                 },'Location','southeast')
+%             hold off
+% 
+%       figure Name Total_L
+%             hold on
+%             plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_yaw,  'Color', 'green')
+%             plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_pitch, 'Color', 'black')
+%             plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_roll,  'Color', 'red')
+%             xlabel('Time') 
+%             ylabel('Angular momentum (Nms)')
+%             legend({'Angular momentum in yaw','Angular momentum in pitch','Angular momentum in roll', ...
+%                 },'Location','southeast')
+%             hold off
+
+%% RPM of the wheel
+    RPM_x = Angular_momentum_roll/I_fw*30/pi+RPM_wheel_initial; 
+    RPM_y = Angular_momentum_pitch/I_fw*30/pi+RPM_wheel_initial;
+    RPM_z = Angular_momentum_yaw/I_fw*30/pi+RPM_wheel_initial;
+
+    figure Name RPM
+        hold on
+        plot(YPR_time(1:length(Yaw_rate)),RPM_x, 'Color', 'red','LineWidth',2)
+        plot(YPR_time(1:length(Yaw_rate)),RPM_y, 'Color', 'black', 'LineWidth',2)
+        plot(YPR_time(1:length(Yaw_rate)),RPM_z,'Color', 'green','LineWidth',2)
+
+        yline(RPM_limit, '--', 'LineWidth',2, 'Color', 'red')
+        yline(-RPM_limit, '--', 'LineWidth',2, 'Color', 'red')
+        ylim([-8000 8000])
+        xlabel('Time','FontSize',24,'FontWeight','bold') 
+        ylabel('RPMs','FontSize',24,'FontWeight','bold') 
+        legend({'RPM around x','RPM around y','RPM around z', ...
+            'Upper Limit' ,'Lower Limit'},'Location','southeast','FontSize',24,'FontWeight','bold')
+        set(gca,'FontSize', 24)
+        hold off 
 % 
 %     Velo_time=cellstr(Velo_time(1:size(RPM_x)));
 %     RPM_over_time=[Velo_time,num2cell(RPM_x),num2cell(RPM_y),num2cell(RPM_z)];
@@ -856,7 +894,8 @@ Misalignment_angle=table2array(Torque_tool_data(17,2)); % deg
 % 
 
 
-
+ADCS_saturation_date = YPR_time(RPM_x>=6000 | RPM_y>=6000 | RPM_z>=6000);
+ADCS_saturation_date = ADCS_saturation_date(1);
 
 
 
