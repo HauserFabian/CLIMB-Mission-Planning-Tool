@@ -483,7 +483,7 @@ disp('Running the Scenario')
         
         % Set the Solar Panel Tool
         % https://help.agi.com/stkdevkit/11.4.0/#../Subsystems/connectCmds/Content/cmd_VOSolarPanel.htm?Highlight=Solar%20Panel%20Tool
-        stepsize = 600; % Step size 
+        stepsize = 60; % Step size 
         root.UnitPreferences.Item('Power').SetCurrentUnit('W'); % default would be dBW
 
         power_tool_command_addsolarpanels = "VO */Satellite/CLIMB SolarPanel Visualization Radius On 1 AddGroup Solar_Panels";

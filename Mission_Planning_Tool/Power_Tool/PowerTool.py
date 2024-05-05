@@ -8,20 +8,20 @@ firing_duration = 600   #seconds
 time_step = 60 #seconds *** ideally, choose the timestep so that (total_scenario_time/time_step) is an integer ***
 
 ### Reading external files ###
-CSV_scenario_time = CSV_fire = pd.read_csv('C:\\CLIMB Operation\\Scenario_time.csv')
-CSV_fire = pd.read_csv('C:\\CLIMB Operation\\Fire_schedule.csv')
-CSV_access = pd.read_csv('C:\\CLIMB Operation\\Access_schedule.csv')
-CSV_PowerGenerated = pd.read_csv('C:\\CLIMB Operation\\CLIMB_Solar_Panel_Power.csv')
+CSV_scenario_time = CSV_fire = pd.read_csv('C:\\Users\\120960\\FHWN\\Master Thesis_cloud - Dokumente\\10_MOS_Software\\Mission_Planning_Tool\\Output_CSV_files\\Scenario_time.csv')
+CSV_fire = pd.read_csv('C:\\Users\\120960\\FHWN\\Master Thesis_cloud - Dokumente\\10_MOS_Software\\Mission_Planning_Tool\\Output_CSV_files\\Fire_schedule.csv')
+CSV_access = pd.read_csv('C:\\Users\\120960\\FHWN\\Master Thesis_cloud - Dokumente\\10_MOS_Software\\Mission_Planning_Tool\\Output_CSV_files\\Access_schedule.csv')
+CSV_PowerGenerated = pd.read_csv('C:\\Users\\120960\\FHWN\\Master Thesis_cloud - Dokumente\\10_MOS_Software\\Mission_Planning_Tool\\Output_CSV_files\\CLIMB_Solar_Panel_Power.csv')
 #CSV_RPM_TorqueTool = pd.read_csv('C:\\CLIMB Operation\\RPM_overTime.csv')
 #CSV_RPM_formatted = pd.read_csv('C:\\CLIMB Operation\\RPM_grafana_format.csv')
-workbook = openpyxl.load_workbook('C:\\CLIMB Operation\\CLIMB Power Budget V2.xlsx', data_only=True)
+workbook = openpyxl.load_workbook('C:\\Users\\120960\\FHWN\\Master Thesis_cloud - Dokumente\\10_MOS_Software\\Mission_Planning_Tool\\Power_Tool\\CLIMB Power Budget V2.xlsx', data_only=True)
 sheet_power = workbook['Power Budget CLIMB']
 
-workbook = openpyxl.load_workbook('C:\\CLIMB Operation\\Battery_InitialStatus_Model_Parameters.xlsx', data_only=True)
+workbook = openpyxl.load_workbook('C:\\Users\\120960\\FHWN\\Master Thesis_cloud - Dokumente\\10_MOS_Software\\Mission_Planning_Tool\\Power_Tool\\Battery_InitialStatus_Model_Parameters.xlsx', data_only=True)
 sheet_battery = workbook['Sheet1']
 
-CSV_powerTool = open('C:\\CLIMB Operation\\PowerTool.csv', "w").close() #cleaning up CSV file before new 72h propagation
-CSV_powerTool = open('C:\\CLIMB Operation\\PowerTool.csv', "a")
+CSV_powerTool = open('C:\\Users\\120960\\FHWN\\Master Thesis_cloud - Dokumente\\10_MOS_Software\\Mission_Planning_Tool\\Power_Tool\\PowerTool.csv', "w").close() #cleaning up CSV file before new 72h propagation
+CSV_powerTool = open('C:\\Users\\120960\\FHWN\\Master Thesis_cloud - Dokumente\\10_MOS_Software\\Mission_Planning_Tool\\Power_Tool\\PowerTool.csv', "a")
 CSV_powerTool.write("Timestamp, Propulsion mode power consumption, Downlink mode power consumption, Total Power Consumed, Power Generated, Battery Power Output, Battery Capacity, SOC") #re-writing headers
 CSV_powerTool.close()
 
@@ -90,7 +90,7 @@ firing_window_used = [0]*firing_column_length
 
 
 
-for i in range(1,firing_column_length):
+for i in range(0,firing_column_length): 
     perigee_timestamps_raw[i] = CSV_fire.at[i, 'Perigee pass time']
     # Truncate the epSeq
     perigee_timestamps[i] = perigee_timestamps_raw[i]
@@ -122,8 +122,8 @@ for l in range(0,access_column_length):
     access_window_opens[l] = access_window_opens_raw[l]
     access_window_closes_raw[l] = CSV_access.at[l, 'Access window end']
     access_window_closes[l] = access_window_closes_raw[l]
-    access_window_opens_object[l] = datetime.strptime(access_window_opens[l], "%d %b %Y %H:%M:%S")
-    access_window_closes_object[l] = datetime.strptime(access_window_closes[l], "%d %b %Y %H:%M:%S")
+    access_window_opens_object[l] = datetime.strptime(access_window_opens[l], "%d-%b-%Y %H:%M:%S")
+    access_window_closes_object[l] = datetime.strptime(access_window_closes[l], "%d-%b-%Y %H:%M:%S")
 
     access_window_opens_times[l] = access_window_opens_object[l] - scenario_start_timestamp_object
     access_window_closes_times[l] = access_window_closes_object[l] - scenario_start_timestamp_object
@@ -281,7 +281,7 @@ for k in range(1,time_array_length):
     bat_SOC[k] = (bat_capacity[k]/total_capacity)*100
 
 
-    #CSV_powerTool = open('C:\\CLIMB Operation\\PowerTool.csv', "a")
-    #CSV_powerTool.write("\n%s, %0.4f, %0.4f, %0.4f, %0.4f, %0.4f, %0.4f, %0.2f"%(grafana_format_timestamps[k], propulsion_power[k], downlink_power[k], total_power_consumed[k], power_generated[k], power_from_battery[k], bat_capacity[k], bat_SOC[k])) ####note that k starts from 1! so i'm skipping the first time-step
-    #CSV_powerTool.close()
+    CSV_powerTool = open('C:\\Users\\120960\\FHWN\\Master Thesis_cloud - Dokumente\\10_MOS_Software\\Mission_Planning_Tool\\Power_Tool\\PowerTool.csv', "a")
+    CSV_powerTool.write("\n%s, %0.4f, %0.4f, %0.4f, %0.4f, %0.4f, %0.4f, %0.2f"%(grafana_format_timestamps[k], propulsion_power[k], downlink_power[k], total_power_consumed[k], power_generated[k], power_from_battery[k], bat_capacity[k], bat_SOC[k])) ####note that k starts from 1! so i'm skipping the first time-step
+    CSV_powerTool.close()
 
