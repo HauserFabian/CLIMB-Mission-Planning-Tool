@@ -2299,6 +2299,7 @@ Beginig of torque assesm
 
             CLIMB		
             CLIMB1		
+            CLIMB_LongTerm		
 
         END Class
 
@@ -2313,6 +2314,7 @@ Beginig of torque assesm
             Place/FHWN/Sensor/Sensor		
             Satellite/CLIMB		
             Satellite/CLIMB1		
+            Satellite/CLIMB_LongTerm		
         END Instance
         Instance Place/FHWN/Sensor/Sensor
             Place/FHWN/Sensor/Sensor		
@@ -2323,6 +2325,9 @@ Beginig of torque assesm
         END Instance
         Instance Satellite/CLIMB1
             Satellite/CLIMB1		
+        END Instance
+        Instance Satellite/CLIMB_LongTerm
+            Satellite/CLIMB_LongTerm		
         END Instance
     END References
 

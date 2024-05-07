@@ -12,7 +12,7 @@ ptn_Child1=MainFrame
 ptn_Child2=ChildFrames
 [WorkState_v1_2.Frames.MainFrame]
 WindowPlacement=MCAAAAAACAAAAAAADAAAAAAAAAAAAAAAAAAAAAAAPPPPPPPPPPPPPPPPOJEAAAAAHCAAAAAAOOJAAAAAMFDAAAAA
-Title=CLIMB_scenario1 - STK 12 - [3D Graphics 2 - Earth]
+Title=CLIMB_scenario1 - STK 12 - Component Browser - [Component Browser]
 [WorkState_v1_2.Frames.ChildFrames]
 ptn_Child1=Document-0
 ptn_Child2=Document-1
@@ -24,8 +24,8 @@ ptn_Child1=ViewFrame-0
 DocPathName=C:\windows\system32\AgUi3DGfxView12.AgUiPi3DGfxView.1
 DocumentString=AgUi3DGfxView.AgUiPi3DGfxView.1
 DocTemplateIndex=0
-WindowPlacement=MCAAAAAACAAAAAAADAAAAAAAPPPPPPPPPPPPPPPPGPPPPPPPPNPPPPPPKPCAAAAAAAAAAAAAEPFAAAAAMEEAAAAA
-IsActiveChildFrame=True
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPGPPPPPPPPNPPPPPPKPCAAAAAAAAAAAAAEPFAAAAAMEEAAAAA
+IsActiveChildFrame=False
 IsFrameVisible=True
 ptn_Child1=AGI Custom Node Data
 [WorkState_v1_2.Frames.ChildFrames.Document-0.ViewFrame-0.AGI Custom Node Data]
@@ -48,9 +48,10 @@ objectExpandedState1=/Application/STK/Scenario/CLIMB_scenario1/Place/FHWN:TRUE
 objectExpandedState2=/Application/STK/Scenario/CLIMB_scenario1/Place/FHWN/Sensor/Sensor:TRUE
 objectExpandedState3=/Application/STK/Scenario/CLIMB_scenario1/Satellite/CLIMB:TRUE
 objectExpandedState4=/Application/STK/Scenario/CLIMB_scenario1/Satellite/CLIMB1:TRUE
-[WorkState_v1_2.Frames.ChildFrames.Document-3]
+objectExpandedState5=/Application/STK/Scenario/CLIMB_scenario1/Satellite/CLIMB_LongTerm:TRUE
+[WorkState_v1_2.Frames.ChildFrames.Document-2]
 ptn_Child1=ViewFrame-0
-[WorkState_v1_2.Frames.ChildFrames.Document-3.ViewFrame-0]
+[WorkState_v1_2.Frames.ChildFrames.Document-2.ViewFrame-0]
 DocPathName=C:\windows\system32\AgUiTimelineView12.AgUiPiTimelineView.1
 DocumentString=AgUiTimelineView.AgUiPiTimelineView.1
 DocTemplateIndex=0
@@ -59,7 +60,7 @@ IsActiveChildFrame=False
 IsFrameVisible=True
 ProfUISBarID=63001
 ptn_Child1=AGI Custom Node Data
-[WorkState_v1_2.Frames.ChildFrames.Document-3.ViewFrame-0.AGI Custom Node Data]
+[WorkState_v1_2.Frames.ChildFrames.Document-2.ViewFrame-0.AGI Custom Node Data]
 ComponentWellWidth=200.000000000000
 CurrentContentView=Scenario Availability
 CurrentTimeView=Scenario Analysis Period

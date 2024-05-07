@@ -1,10 +1,10 @@
-clc, close all, clear all
+%clc, close all, clear all
 
 %% Scenario Time
 disp('STK_Climb_opensc.m')
 
-Start_Time = '1 Mar 2023 00:00:00.000';     % Must be the same as in the Scenario!
-End_Time = '1 Mar 2024 00:00:00.000';       % Must be the same as in the Scenario!
+Start_Time = '6 Aug 2023 20:15:04.320';     % Must be the same as in the Scenario!
+End_Time = '7 Aug 2023 20:15:04.320';       % Must be the same as in the Scenario!
 
 scenario_name = 'Test12.sc';
 %scenariofile_location = 'C:\Users\fabia\FHWN\Master Thesis_cloud - Documents\5_STK\Access_Analysis_V3\'; % must end with "\"
@@ -16,11 +16,6 @@ disp('Connect to STK')
 app = actxGetRunningServer('STK12.application');
 root = app.Personality2;
 
-
-% % Get reference to running STK instance
-% uiApplication = actxGetRunningServer('STK12.application');
-% % Get our IAgStkObjectRoot interface
-% root = uiApplication.Personality2;
 %% Open/Create Scenario
 disp('Open/Create Scenario')
 
@@ -31,9 +26,8 @@ disp('Open/Create Scenario')
 % root.ExecuteCommand('Animate * Reset');
 
 % Create Scenario
-% scenario = root.Children.New('eScenario','STK_Automation');
 scenario = root.CurrentScenario;
-
+%scenario = root.Children.New('eScenario','STK_Automation');
 %scenario.SetTimePeriod(Start_Time,End_Time);
 %scenario.StartTime = Start_Time;
 %scenario.StopTime = End_Time;
@@ -41,8 +35,8 @@ scenario = root.CurrentScenario;
 root.ExecuteCommand('Animate * Reset');
 %% Open/Add Objects
 disp('Open/Create Objects')
-satellite_climb = scenario.Children.Item('CLIMB');       % Open Satellite
-%satellite_climb = scenario.Children.New('eSatellite','satellite_climb');  % Create Satellite
+satellite_climb = scenario.Children.Item('CLIMB_LongTerm');       % Open Satellite
+%satellite_climb = scenario.Children.New('eSatellite','CLIMB_LongTerm');  % Create Satellite
 
 %% Set Astrogator
 disp('Set Astrogator')
@@ -89,23 +83,23 @@ mass_fuel_max = 0.25;                       % Maximum Fuel Mass - kg
 %% Create a new Component browser:
 disp('Create a new Component browser')
 
-% %Get the Engine Models Folder
-% engine = scenario.ComponentDirectory.GetComponents('eComponentAstrogator').GetFolder('Engine Models');
-% engine_model = engine.Item('Constant Thrust and Isp');
-% engine_model_clone = engine_model.CloneObject;
-% 
-% %Grab a handle of the new Engine Model and edit properties
-% newEngine = engine.Item('Constant Thrust and Isp1');
-% newEngine.Name = 'Enpulsion';
-% newEngine.Thrust = thrust;                         % Thrust - [N]
-% newEngine.Isp = Isp;                               % Specific Impulse - [s]
+%Get the Engine Models Folder
+engine = scenario.ComponentDirectory.GetComponents('eComponentAstrogator').GetFolder('Engine Models');
+engine_model = engine.Item('Constant Thrust and Isp');
+engine_model_clone = engine_model.CloneObject;
+
+%Grab a handle of the new Engine Model and edit properties
+newEngine = engine.Item('Constant Thrust and Isp1');
+newEngine.Name = 'Enpulsion_2';
+newEngine.Thrust = thrust;                         % Thrust - [N]
+newEngine.Isp = Isp;                               % Specific Impulse - [s]
 
 %% Create Sequence
 disp('Create Sequence')
-driver.MainSequence.RemoveAll();    %Clear all segments from the MCS
+
 %-------------------------Insert an initial state--------------------------
 initState1 = driver.MainSequence.Insert('eVASegmentTypeInitialState','Initail State','-');
-%initState1.OrbitEpoch = Start_Time;
+initState1.OrbitEpoch = Start_Time;
 
 % Elements:
 initState1.SetElementType('eVAElementTypeKeplerian');
@@ -117,91 +111,198 @@ kep.RAAN = RAAN;
 kep.ArgOfPeriapsis = ArgPeri;
 %kep.ArgOfLatitude = 262.3901; %kep.ArgOfLatitude = arg_lat_fcn(ra,ecc,thrust_time);
 
+% Spacecraft Parameters:
+sc = initState1.SpacecraftParameters;
+sc.DryMass = mass_dry;                                      % dry mass - kg
+sc.Cd = cd;                                                 % coefficient Cd
+sc.DragArea = DA;                                           % Drag-area - m^2
+sc.Cr = cr;                                                 % coefficient Cr
+sc.SolarRadiationPressureArea = SolarRadiationPressureArea; % Solar radiation pressure Pressure Area m^2
+sc.Ck= ck;                                                  % coefficient Cr
+sc.RadiationPressureArea = RadiationPressureArea;           % Radiation Pressure Area - m^2
+sc.K1 = k1; 
+sc.K2 = k2;
 
+% Fuel Tank:
+ft = initState1.FuelTank;
+ft.TankPressure = p_tank;               % Tank pressure - Pa
+ft.TankVolume = V_tank;                 % Tank Volume - m^2
+ft.TankTemperature = T_tank;            % Tank Temperature
+ft.FuelDensity = rho_tank;              % Fuel density - kg/m^3
+ft.FuelMass = mass_fuel;                % Fuel Mass - kg
+ft.MaximumFuelMass = mass_fuel_max;     % Maximum Fuel Mass - kg
+
+
+%----------------------------First_propagator_peri-------------------------------
+propagator3 = driver.MainSequence.Insert('eVASegmentTypePropagate','First_propagator_peri','-');
+propagator3.PropagatorName = 'Earth HPOP Default v10';
+propagator3.Properties.Color = 255; % red
+propagator3_stopcond = propagator3.StoppingConditions.Add('Periapsis');
+%propagator3_stopcond.Properties.Trip = 340.8281;   % 340.82809637266905 for thrust_time = 600 sec -> average between apo=500 and 1000
+%propagator3_stopcond.Properties.Trip = MeanAno_thursttime_fcn(ra,ecc,thrust_time) % uses function to determine mean anomaly
+propagator3_stopcond.Properties.RepeatCount = 1;
+propagator3.StoppingConditions.Remove('Duration');          
+%propagator3_stopcond.Properties.Criterion='eVACriterionCrossEither'; 
+skip_value = 2;
+
+%----------------------------Insert Maneuver-------------------------------
+%in_manu = driver.MainSequence.Insert('eVASegmentTypeManeuver','Maneuver','-');
+in_manu = driver.MainSequence.InsertByName('ManeuverClimbV1','-'); % Maneuver from component browser
+%in_manu.SetManeuverType('eVAManeuverTypeFinite');
+%in_manu.Properties.Color = 16711935;    % color magenta
+maneuver1=in_manu.Maneuver;
+
+% Attitude:
+%maneuver1.SetAttitudeControlType('eVAAttitudeControlVelocityVector');
+%alt_manu = maneuver1.AttitudeControl;
+
+% Engine:
+%maneuver1.ThrustEfficiency = 1;
+maneuver1.SetPropulsionMethod('eVAPropulsionMethodEngineModel', 'Enpulsion 2'); % select engine fromm browser
+
+% Maneuver Propagator:
+prop_manu = maneuver1.Propagator;
+trip = prop_manu.StoppingConditions.Add('Duration');
+trip.Properties.Trip = thrust_time;                 % Trip count in - [Sec]
+prop_manu.StoppingConditions.Remove('Duration');
+
+%----------------------------Insert Propagator-----------------------------
+% Three propagators are used to check if it has influence, usually only one
+% necessary
+% Proagator 1
+% propagator1 = driver.MainSequence.Insert('eVASegmentTypePropagate','Propage_1','-');
+% propagator1.PropagatorName = 'Earth HPOP Default v10';
+% propagator1.Properties.Color = 65280;     % green
+% propagator1_stopcond = propagator1.StoppingConditions.Add('True Anomaly');
+% propagator1_stopcond.Properties.Trip = 120; % Propagates to true anomaly 120 deg
+% propagator1_stopcond.Properties.RepeatCount = 1; % amount of circulation before increasing the orbit
+% propagator1.StoppingConditions.Remove('Duration');
+% propagator1_stopcond.Properties.Criterion='eVACriterionCrossEither';   %eVACriterionCrossIncreasing
+% 
+% % Proagator 2
+% propagator2 = driver.MainSequence.Insert('eVASegmentTypePropagate','Propage_1','-');
+% propagator2.PropagatorName = 'Earth HPOP Default v10';
+% propagator2.Properties.Color = 16777215; % white
+% propagator2_stopcond = propagator2.StoppingConditions.Add('True Anomaly');
+% propagator2_stopcond.Properties.Trip = 240; % Propagates to true anomaly 240 deg
+% propagator2_stopcond.Properties.RepeatCount = 1;                       % amount of circulation before increasing the orbit
+% propagator2.StoppingConditions.Remove('Duration');
+% propagator2_stopcond.Properties.Criterion='eVACriterionCrossEither'; 
+
+% Proagator 3
+propagator3 = driver.MainSequence.Insert('eVASegmentTypePropagate','Propage_1','-');
+propagator3.PropagatorName = 'Earth HPOP Default v10';
+propagator3.Properties.Color = 255; % red
+propagator3_stopcond = propagator3.StoppingConditions.Add('Periapsis');
+%propagator3_stopcond.Properties.Trip = 340.8281;   % 340.82809637266905 for thrust_time = 600 sec -> average between apo=500 and 1000
+%propagator3_stopcond.Properties.Trip = MeanAno_thursttime_fcn(ra,ecc,thrust_time) % uses function to determine mean anomaly
+propagator3_stopcond.Properties.RepeatCount = 1;
+propagator3.StoppingConditions.Remove('Duration');          
+%propagator3_stopcond.Properties.Criterion='eVACriterionCrossEither'; 
+skip_value = 2;
+x=skip_value;
 %%
-for i=1:2
-    %----------------------------Insert Propagator-----------------------------
-    % Three propagators are used to check if it has influence, usually only one
-    % necessary
-    % Proagator 1
-    propagator1 = driver.MainSequence.Insert('eVASegmentTypePropagate','Propage_1','-');
-    %propagator1.PropagatorName = 'Earth HPOP Default v10';
-    propagator1.Properties.Color = 65280;     % green
-    propagator1_stopcond = propagator1.StoppingConditions.Add('Periapsis');
-    %propagator1_stopcond.Properties.Trip = 120; % Propagates to true anomaly 120 deg
-    propagator1_stopcond.Properties.RepeatCount = 1; % amount of circulation before increasing the orbit
-    propagator1.StoppingConditions.Remove('Duration');
-    %propagator1_stopcond.Properties.Criterion='eVACriterionCrossEither';   %eVACriterionCrossIncreasing
+disp('Enter for-loop')
+for i=1:5000
     
-    %----------------------------Insert Maneuver-------------------------------
-    % in_manu = driver.MainSequence.Insert('eVASegmentTypeManeuver','Maneuver','-');
-    % in_manu.SetManeuverType('eVAManeuverTypeFinite');
-    % in_manu.Properties.Color = 16711935;    % color magenta
-    % maneuver1=in_manu.Maneuver;
-    % % Maneuver Propagator:
-    % prop_manu = maneuver1.Propagator;
-    % trip = prop_manu.StoppingConditions.Add('Duration');
-    % trip.Properties.Trip = thrust_time;                 % Trip count in - [Sec]
-    % prop_manu.StoppingConditions.Remove('Duration');
+    disp(['--- Iteration: ', num2str(i),' ---'])
+
+
+    
+    
+    if(i==x)
+        driver.MainSequence.Remove("ManeuverClimbV1");
+        % 
+        driver.RunMCS
+        % driver.MainSequence.Remove("Propage 1");
+        % %
+
+    else
+        driver.RunMCS
+        disp("Fire")
+    end
+    
+    if(i==1)
+    driver.MainSequence.Remove("First_propagator_peri");
+    end
+
+    %driver.RunMCS;  % IAgVADriverMCS driver: MCS driver interface
+
+    Epoch_new{i} = propagator3.GetResultValue('Epoch');             % get date from the last step
+    initState1.OrbitEpoch = Epoch_new{i};                           % geschwungene klammer sintax für cell array
+
+    ra_new(i) = propagator3.GetResultValue('Altitude_Of_Apoapsis'); % get altitude of the apoapsis from the last step;
+    kep.ApoapsisAltitudeSize = ra_new(i);
+
+    rp_new(i) = propagator3.GetResultValue('Altitude_Of_Periapsis');
+
+    Incl_new(i) = propagator3.GetResultValue('Inclination');
+    kep.Inclination = Incl_new(i);
+
+    RAAN_new(i) = propagator3.GetResultValue('RAAN');
+    kep.RAAN = RAAN_new(i);
+
+    ecc_new(i) = propagator3.GetResultValue('Eccentricity');        % get the value of the eccentritiy from the last step
+    kep.Eccentricity = ecc_new(i);                                  % update the value
+
+    ArgPeri_new(i) = propagator3.GetResultValue('Argument of Periapsis');
+    kep.ArgOfPeriapsis = ArgPeri_new(i);
+
+    TrueAno_new(i) = propagator3.GetResultValue('True_Anomaly');
+    kep.TrueAnomaly = TrueAno_new(i);                               % value of Propagator END; stays const.
+
+    % Propagator
+    % propagator3_stopcond.Properties.Trip = MeanAno_thrusttime_fcn(ra_new(i),ecc_new(i),thrust_time);
+    
+    if(i==x)
+    driver.MainSequence.Remove("Propage 1");
+        %
+
+    
+    in_manu = driver.MainSequence.InsertByName('ManeuverClimbV1','-'); % Maneuver from component browser
+    in_manu.Maneuver.SetPropulsionMethod('eVAPropulsionMethodEngineModel', 'Enpulsion 2'); % select engine fromm browser
+    prop_manu = in_manu.Maneuver.Propagator;
+    trip = prop_manu.StoppingConditions.Add('Duration');
+    trip.Properties.Trip = thrust_time;                 % Trip count in - [Sec]
+    prop_manu.StoppingConditions.Remove('Duration');
+    % 
+    propagator3 = driver.MainSequence.Insert('eVASegmentTypePropagate','Propage_1','-');
+    propagator3.PropagatorName = 'Earth HPOP Default v10';
+    propagator3.Properties.Color = 255; % red
+    propagator3_stopcond = propagator3.StoppingConditions.Add('Periapsis');
+    %propagator3_stopcond.Properties.Trip = 340.8281;   % 340.82809637266905 for thrust_time = 600 sec -> average between apo=500 and 1000
+    %propagator3_stopcond.Properties.Trip = MeanAno_thursttime_fcn(ra,ecc,thrust_time) % uses function to determine mean anomaly
+    propagator3_stopcond.Properties.RepeatCount = 1;
+    propagator3.StoppingConditions.Remove('Duration');
+
+    x=x+skip_value;
+    disp(["Skip ",num2str(x)])
+    end
+
+
+   
+    %disp(datetime(Epoch_new(i),'InputFormat','dd MMM uuuu HH:mm:ss.SSS'))
+    disp(['Apogee = ', num2str(ra_new(i))])
+    if ra_new(i) > 1000
+        break
+    end
 end
 
-driver.RunMCS;
-
-% %%
-% disp('Enter for-loop')
-% for i=1:2
-%     disp(['Iteration: ', num2str(i)])
-% 
-%     driver.RunMCS;  % IAgVADriverMCS driver: MCS driver interface
-% 
-%     Epoch_new{i} = propagator3.GetResultValue('Epoch');             % get date from the last step
-%     initState1.OrbitEpoch = Epoch_new{i};                           % geschwungene klammer sintax für cell array
-% 
-%     ra_new(i) = propagator3.GetResultValue('Altitude_Of_Apoapsis'); % get altitude of the apoapsis from the last step;
-%     kep.ApoapsisAltitudeSize = ra_new(i);
-% 
-%     rp_new(i) = propagator3.GetResultValue('Altitude_Of_Periapsis');
-% 
-%     Incl_new(i) = propagator3.GetResultValue('Inclination');
-%     kep.Inclination = Incl_new(i);
-% 
-%     RAAN_new(i) = propagator3.GetResultValue('RAAN');
-%     kep.RAAN = RAAN_new(i);
-% 
-%     ecc_new(i) = propagator3.GetResultValue('Eccentricity');        % get the value of the eccentritiy from the last step
-%     kep.Eccentricity = ecc_new(i);                                  % update the value
-% 
-%     ArgPeri_new(i) = propagator3.GetResultValue('Argument of Periapsis');
-%     kep.ArgOfPeriapsis = ArgPeri_new(i);
-% 
-%     TrueAno_new(i) = propagator3.GetResultValue('True_Anomaly');
-%     kep.TrueAnomaly = TrueAno_new(i);                               % value of Propagator END; stays const.
-% 
-%     % Propagator
-%     % propagator3_stopcond.Properties.Trip = MeanAno_thrusttime_fcn(ra_new(i),ecc_new(i),thrust_time);
-% 
-% 
-% 
-%     disp(['Apogee = ', num2str(ra_new(i))])
-%     if ra_new(i) > 1000
-%         break
-%     end
-% end
-% 
-% %%
-% epoch_datetime = datetime(Epoch_new,'InputFormat','dd MMM uuuu HH:mm:ss.SSS');
-% years = daysact(epoch_datetime(1),epoch_datetime(end))/365;
-% years_pl = linspace(0,years,length(ra_new));
-% %%
-% %x=1:i;
-% hold on 
-% plot(years_pl,ra_new)
-% plot(years_pl,rp_new)
-% xlabel('Time in years')
-% ylabel('Altitude in km')
-% legend('Apogee','Perigee')
-% title('Thrust time 10 min, Thrust = 0.350 mN, Isp = 1900 s, mass = 4.5 kg, drag coefficient = 2.2, drag area = 0.08 m², inclination = 97.4°')
-% grid minor
+%%
+epoch_datetime = datetime(Epoch_new,'InputFormat','dd MMM uuuu HH:mm:ss.SSS');
+years = daysact(epoch_datetime(1),epoch_datetime(end))/365;
+years_pl = linspace(0,years,length(ra_new));
+%%
+%x=1:i;
+figure(2)
+hold on 
+plot(years_pl,ra_new)
+plot(years_pl,rp_new)
+xlabel('Time in years')
+ylabel('Altitude in km')
+legend('Apogee','Perigee')
+title('Thrust time 10 min, Thrust = 0.350 mN, Isp = 1900 s, mass = 4.5 kg, drag coefficient = 2.2, drag area = 0.08 m², inclination = 97.4°')
+grid minor
 
 
 %% Functions

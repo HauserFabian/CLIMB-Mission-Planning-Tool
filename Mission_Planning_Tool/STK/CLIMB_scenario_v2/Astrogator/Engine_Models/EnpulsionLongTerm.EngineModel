@@ -1,0 +1,93 @@
+<?xml version = "1.0" standalone = "yes"?>
+<Component>
+    <Type>EngineModel</Type>
+    <SpecificType>EngineConstant</SpecificType>
+    <Data>
+        <VAR name = "EnpulsionLongTerm">
+            <SCOPE Class = "EngineModel">
+                <VAR name = "Version">
+                    <STRING>&quot;1.0.0 a&quot;</STRING>
+                </VAR>
+                <VAR name = "STKVersion">
+                    <INT>1260</INT>
+                </VAR>
+                <VAR name = "Description">
+                    <STRING>&quot;Engine that has a constant Thrust and Isp&quot;</STRING>
+                </VAR>
+                <VAR name = "Type">
+                    <STRING>&quot;EngineConstant&quot;</STRING>
+                </VAR>
+                <VAR name = "UserComment">
+                    <STRING>&quot;Engine that has a constant Thrust and Isp&quot;</STRING>
+                </VAR>
+                <VAR name = "ReadOnly">
+                    <BOOL>false</BOOL>
+                </VAR>
+                <VAR name = "Clonable">
+                    <BOOL>true</BOOL>
+                </VAR>
+                <VAR name = "Category">
+                    <STRING>&quot;@Top&quot;</STRING>
+                </VAR>
+                <VAR name = "IdentifierInformation">
+                    <SCOPE>
+                        <VAR name = "Identifier">
+                            <STRING>&quot;{00B1DDDE-9AB5-43EB-91A9-D72B1C37F0CA}&quot;</STRING>
+                        </VAR>
+                        <VAR name = "Version">
+                            <STRING>&quot;1&quot;</STRING>
+                        </VAR>
+                        <VAR name = "SdfInformation">
+                            <SCOPE>
+                                <VAR name = "Version">
+                                    <STRING>&quot;0.0&quot;</STRING>
+                                </VAR>
+                                <VAR name = "Url">
+                                    <STRING>&quot;&quot;</STRING>
+                                </VAR>
+                            </SCOPE>
+                        </VAR>
+                        <VAR name = "SourceIdentifierInformation">
+                            <SCOPE>
+                                <VAR name = "Identifier">
+                                    <STRING>&quot;{6574C5BC-FC2C-4CB9-8A3A-EB0C5D08DF8B}&quot;</STRING>
+                                </VAR>
+                                <VAR name = "Version">
+                                    <STRING>&quot;1&quot;</STRING>
+                                </VAR>
+                                <VAR name = "SdfInformation">
+                                    <SCOPE>
+                                        <VAR name = "Version">
+                                            <STRING>&quot;0.0&quot;</STRING>
+                                        </VAR>
+                                        <VAR name = "Url">
+                                            <STRING>&quot;&quot;</STRING>
+                                        </VAR>
+                                    </SCOPE>
+                                </VAR>
+                            </SCOPE>
+                        </VAR>
+                    </SCOPE>
+                </VAR>
+                <VAR name = "ShooterControls">
+                    <LIST />
+                </VAR>
+                <VAR name = "g">
+                    <QUANTITY Dimension = "Acceleration" Unit = "m*sec^-2">
+                        <REAL>9.806649999999999</REAL>
+                    </QUANTITY>
+                </VAR>
+                <VAR name = "Thrust">
+                    <QUANTITY Dimension = "ForceUnit" Unit = "N">
+                        <REAL>0.00035</REAL>
+                    </QUANTITY>
+                </VAR>
+                <VAR name = "Isp">
+                    <QUANTITY Dimension = "SpecificImpulseUnit" Unit = "s">
+                        <REAL>1900</REAL>
+                    </QUANTITY>
+                </VAR>
+            </SCOPE>
+        </VAR>
+    </Data>
+</Component>
