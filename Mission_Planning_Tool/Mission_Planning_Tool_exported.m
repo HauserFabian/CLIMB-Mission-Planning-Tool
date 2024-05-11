@@ -31,13 +31,11 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
         PropagateButton                 matlab.ui.control.Button
         LoadmostrecentTLEButton         matlab.ui.control.Button
         TLEInfoTable                    matlab.ui.control.Table
-        Panel                           matlab.ui.container.Panel
         ManeuverSelectionTab            matlab.ui.container.Tab
         ThrusterEfficiencyEditField     matlab.ui.control.NumericEditField
         ThrusterEfficiencyEditFieldLabel  matlab.ui.control.Label
         ActivityNameEditFieldLabel_5    matlab.ui.control.Label
         ActivityNameEditFieldLabel_4    matlab.ui.control.Label
-        SetforallManeuversButton        matlab.ui.control.Button
         ThrustNEditField                matlab.ui.control.NumericEditField
         ThrustNEditFieldLabel           matlab.ui.control.Label
         IspsEditField                   matlab.ui.control.NumericEditField
@@ -49,6 +47,7 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
         PropagateManeuversButton        matlab.ui.control.Button
         ManeuverInputTable              matlab.ui.control.Table
         AcitvitySchedulerTab            matlab.ui.container.Tab
+        PerigeePassDateTableInfo_2      matlab.ui.control.Table
         ActivityNameEditFieldLabel_3    matlab.ui.control.Label
         ActivityNameEditFieldLabel_2    matlab.ui.control.Label
         PowerWEditField                 matlab.ui.control.NumericEditField
@@ -59,36 +58,33 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
         ActivityStartTimeEditFieldLabel  matlab.ui.control.Label
         ActivityNameEditField           matlab.ui.control.EditField
         ActivityNameEditFieldLabel      matlab.ui.control.Label
-        PerigeePassDateTableInfo_2      matlab.ui.control.Table
         AddActivityButton               matlab.ui.control.Button
         ActivityOutputTable             matlab.ui.control.Table
         AccessTableInfo_2               matlab.ui.control.Table
         AttitudeProfileTab              matlab.ui.container.Tab
+        SlewLabel                       matlab.ui.control.Label
+        ThrustPointingLabel             matlab.ui.control.Label
+        TargetPointingLabel             matlab.ui.control.Label
+        DurationminutesEditField        matlab.ui.control.NumericEditField
         AttitudeGlobalOutputTable       matlab.ui.control.Table
         ClearAttitudeButton             matlab.ui.control.Button
         AttitudeOutputTable             matlab.ui.control.Table
         AddAttitudeProfileButton        matlab.ui.control.Button
-        SlewdurationminutesEditField    matlab.ui.control.NumericEditField
-        SlewdurationminutesEditFieldLabel  matlab.ui.control.Label
-        TargetPointingTrailTimeminutesEditField  matlab.ui.control.NumericEditField
-        TargetPointingTrailTimeminutesEditFieldLabel  matlab.ui.control.Label
-        TargetPointingLeadTimeminutesEditField  matlab.ui.control.NumericEditField
-        TargetPointingLeadTimeminutesEditFieldLabel  matlab.ui.control.Label
-        ThrustPointingTrailTimeminutesEditField  matlab.ui.control.NumericEditField
-        ThrustPointingTrailTimeminutesEditFieldLabel  matlab.ui.control.Label
-        ThrustPointingLeadTimeminutesEditField  matlab.ui.control.NumericEditField
-        ThrustPointingLeadTimeminutesEditFieldLabel  matlab.ui.control.Label
+        DurationminutesEditFieldLabel   matlab.ui.control.Label
+        TrailTimeminutesEditField_2     matlab.ui.control.NumericEditField
+        TrailTimeminutesEditField_2Label  matlab.ui.control.Label
+        LeadTimeminutesEditField_2      matlab.ui.control.NumericEditField
+        LeadTimeminutesEditField_2Label  matlab.ui.control.Label
+        TrailTimeminutesEditField       matlab.ui.control.NumericEditField
+        TrailTimeminutesEditFieldLabel  matlab.ui.control.Label
+        LeadTimeminutesEditField        matlab.ui.control.NumericEditField
+        LeadTimeminutesEditFieldLabel   matlab.ui.control.Label
         SequenceofEventsTab             matlab.ui.container.Tab
         ConflictOutputTable             matlab.ui.control.Table
         ConflictCheckButton             matlab.ui.control.Button
         CreateActivityScheduleButton    matlab.ui.control.Button
         SoETable                        matlab.ui.control.Table
         ConstraintAnalysisTab_2         matlab.ui.container.Tab
-        TabGroup3                       matlab.ui.container.TabGroup
-        ADCSTab                         matlab.ui.container.Tab
-        ConstraintTextArea              matlab.ui.control.TextArea
-        PowerConstraintAnalysisButton   matlab.ui.control.Button
-        ADCSConstraintAnalysisButton    matlab.ui.control.Button
         zEditField                      matlab.ui.control.NumericEditField
         zEditFieldLabel                 matlab.ui.control.Label
         yEditField                      matlab.ui.control.NumericEditField
@@ -98,28 +94,35 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
         InitialBatteryCapacityEditField  matlab.ui.control.NumericEditField
         InitialBatteryCapacityEditFieldLabel  matlab.ui.control.Label
         InitialAngularMomentumfromADCSinNmsLabel  matlab.ui.control.Label
+        ADCSConstraintAnalysisButton    matlab.ui.control.Button
+        PowerConstraintAnalysisButton   matlab.ui.control.Button
+        ConstraintTextArea              matlab.ui.control.TextArea
         SchedulePlot_14                 matlab.ui.control.UIAxes
         SchedulePlot_13                 matlab.ui.control.UIAxes
-        PowerTab                        matlab.ui.container.Tab
         PlotScheduleButton              matlab.ui.control.Button
         SchedulePlot_2                  matlab.ui.control.UIAxes
         ConstraintAnalysisTab           matlab.ui.container.Tab
         TabGroup4                       matlab.ui.container.TabGroup
-        ADCSTab_2                       matlab.ui.container.Tab
-        SchedulePlot_10                 matlab.ui.control.UIAxes
-        SchedulePlot_9                  matlab.ui.control.UIAxes
-        SchedulePlot_12                 matlab.ui.control.UIAxes
-        SchedulePlot_8                  matlab.ui.control.UIAxes
-        SchedulePlot_11                 matlab.ui.control.UIAxes
         PowerTab_2                      matlab.ui.container.Tab
         SchedulePlot_7                  matlab.ui.control.UIAxes
         SchedulePlot_6                  matlab.ui.control.UIAxes
         SchedulePlot_5                  matlab.ui.control.UIAxes
         SchedulePlot_4                  matlab.ui.control.UIAxes
         SchedulePlot_3                  matlab.ui.control.UIAxes
+        ADCSTab_2                       matlab.ui.container.Tab
+        SchedulePlot_10                 matlab.ui.control.UIAxes
+        SchedulePlot_9                  matlab.ui.control.UIAxes
+        SchedulePlot_12                 matlab.ui.control.UIAxes
+        SchedulePlot_8                  matlab.ui.control.UIAxes
+        SchedulePlot_11                 matlab.ui.control.UIAxes
         LongTermPropulsoinToolTab       matlab.ui.container.Tab
+        ManeuverSettingsLabel           matlab.ui.control.Label
+        ClearAstrogatorButton           matlab.ui.control.Button
+        ManueverGlobalLongTermTable     matlab.ui.control.Table
+        SkipeveryxmaneuverEditField     matlab.ui.control.NumericEditField
+        SkipeveryxmaneuverEditFieldLabel  matlab.ui.control.Label
         StoppingConditionLabel          matlab.ui.control.Label
-        PropagateButton_2               matlab.ui.control.Button
+        LongTermPropagateButton         matlab.ui.control.Button
         StartTimeEditField              matlab.ui.control.EditField
         StartTimeEditFieldLabel         matlab.ui.control.Label
         StopTimeEditField               matlab.ui.control.EditField
@@ -132,12 +135,11 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
         IspsEditField_2Label            matlab.ui.control.Label
         ManeuverDurationinminEditField_2  matlab.ui.control.NumericEditField
         ManeuverDurationinminEditField_2Label  matlab.ui.control.Label
-        UITable                         matlab.ui.control.Table
         MaxIterationsEditField          matlab.ui.control.NumericEditField
         MaxIterationsEditFieldLabel     matlab.ui.control.Label
         ApogeeAltitudekmEditField       matlab.ui.control.NumericEditField
         ApogeeAltitudekmEditFieldLabel  matlab.ui.control.Label
-        UIAxes                          matlab.ui.control.UIAxes
+        AltitudePlotLongTerm            matlab.ui.control.UIAxes
     end
 
 
@@ -148,6 +150,7 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
        % General
        STKApp
        CLIMB            % Climb satellite object from STK
+       CLIMB_longterm
        root
        TLE_Epoch        % TLE Epoch
        Orbit_data_array % TLE orbital elements from function TLE_processing_fcn
@@ -372,7 +375,7 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
             Db = app.Orbit_data_array(:,5); %ballistic coefficienbt
             Orbit_array_sorted = [ra rp a ecc Incl RAAN MeanAno ArgPeri MeanMotion Db];
 
-            Name={'Apogee (km)','Perigee (km)','Semi-Major Axis (km)','Eccentrictiy','Inclination (deg)','RAAN (deg)','Mean Anomaly (deg)','Argument of Perigee (deg)','Mean Motion','Ballsistic Coef'};
+            Name={'Apogee (km)','Perigee (km)','Semi-Major Axis (km)','Eccentrictiy','Inclination (deg)','RAAN (deg)','Mean Anomaly (deg)','Argument of Perigee (deg)','Mean Motion','Ballistic Coefficient'};
             app.TLEInfoTable.Data=table(["TLE Epoch",Name]',[{app.TLE_Epoch},num2cell(Orbit_array_sorted)]');
         end
 
@@ -401,7 +404,7 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
             % pyrunfile('C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\Mission_Planning_Tool\TLE_acquisition.py')
             % 
             % % Get TLE txt file and extract orbital elements with TLE_processing_fcn function. Could also be done directly in python script with ephem or other library
-            TLE_file = 'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\Mission_Planning_Tool\current_TLE.txt';  % TLE file path\name
+            TLE_file = 'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\Mission_Planning_Tool\current_TLE_2.txt';  % TLE file path\name
             [app.Orbit_data_array,app.TLE_Epoch] = TLE_processing_fcn(app,TLE_file); % function that extracts orbital elements from TLEs
             
             % Time----------------
@@ -560,9 +563,10 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
             % IMPORTANT: If no manuever is selected, error for access report in second propagation
             checkboxColumn2 = true(height(app.peri_pass_time_1), 1); % create logical array for checkbox
             %peri_pass_table = [{'Remove all burns (Overwrite)', false}; peri_pass_table];
+        
 
             % Visualize data in Tables: ManeuverInputTable, PerigeePassDateTableInfo
-            app.ManeuverInputTable.Data = table(app.peri_pass_time_1,checkboxColumn2);         % Table for maneuver input
+            app.ManeuverInputTable.Data = table([1:length(app.peri_pass_time_1)]',app.peri_pass_time_1,checkboxColumn2);         % Table for maneuver input
             app.PerigeePassDateTableInfo.Data = table([1:length(app.peri_pass_time_1)]',app.peri_pass_time_1);   % Table for perigee pass times
             
             %% Schedule Plot
@@ -598,6 +602,11 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
 %--------------------------------------------------------------------------------
 %----------------------------- Second Propagation Button Pushed -----------------
 %--------------------------------------------------------------------------------
+            %% User Input
+            thrust_duration = app.ManeuverDurationinminEditField.Value;
+            thrust = app.ThrustNEditField.Value;
+            Isp = app.IspsEditField.Value;
+            thruster_efficiency = app.ThrusterEfficiencyEditField.Value; 
 
             %% Get Scencario and Objects
             scenario = app.root.CurrentScenario;
@@ -615,16 +624,10 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
 
             % Get the Engine Models Folder
             engine = scenario.ComponentDirectory.GetComponents('eComponentAstrogator').GetFolder('Engine Models');
-            engine_model = engine.Item('Constant Thrust and Isp');
-            engine_model_clone = engine_model.CloneObject;
-
-            % Grab a handle of the new Engine Model and edit properties
-            Engine = engine.Item('Constant Thrust and Isp1');
-            %Engine.Name = 'Enpulsion';
-            Engine.Thrust = 0.00035;                         % Thrust - [N]
-            Engine.Isp = 1900;       
-
-            
+            engine_model = engine.Item('Enpulsion');
+            engine_model.Thrust = thrust;                         % Thrust - [N]
+            engine_model.Isp = Isp;       
+        
             %% Create Sequence
 
             %-------------------------Insert an initial state--------------------------
@@ -673,16 +676,14 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
 
             %   Manuever Input selection table
             %-------------------------------------------------------------------------------------------
-            
-            thrust_duration = 600/60; % in minutes, here still manually
-
+        
             % Manuever Selection
             % x = x(x{:, 2} ~= 0, :); delete rows where x(:,2)==0 ("~" not % operator)
             maneuver_table_input = app.ManeuverInputTable.Data; % table with manuever data imput
-            app.maneuver_select_logic = maneuver_table_input{:,2}; % maneuver selection (1 or 0)
-            maneuver_table_input = maneuver_table_input(maneuver_table_input{:,2} ~=0,:); % delete unselected maneuvers
+            app.maneuver_select_logic = maneuver_table_input{:,3}; % maneuver selection (1 or 0)
+            maneuver_table_input = maneuver_table_input(maneuver_table_input{:,3} ~=0,:); % delete unselected maneuvers
 
-            maneuver_date = maneuver_table_input{:,1};  % selected maneuver dates
+            maneuver_date = maneuver_table_input{:,2};  % selected maneuver dates
             maneuver_start_date = datetime(maneuver_date)-minutes(thrust_duration/2); % maneuver start date (perigee pass date - maneuver duration/2)
             maneuver_start_date = char(maneuver_start_date);    % Convert to char for STK input -> te get single elements maneuver_start_date(i,:)
 
@@ -739,7 +740,8 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
                     % astro_maneuver_segment = astrogator.MainSequence.Insert('eVASegmentTypeManeuver','Maneuver','-');  % Default maneuver
                     astro_maneuver_segment = astrogator.MainSequence.InsertByName('ManeuverClimbV1','-');  % Maneuver from component browser in STK
                     astro_maneuver_segment.Properties.Color = 16777215;    % color magenta
-                    
+                    astro_maneuver_segment.Maneuver.ThrustEfficiency = thruster_efficiency;
+
                     % Maneuver propagator
                     prop_manu = astro_maneuver_segment.Maneuver.Propagator;
                     stopcond = prop_manu.StoppingConditions.Add('Duration');         % in min, dont know why
@@ -886,11 +888,11 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
             app.access_stop_time_2_uhf = app.access_stop_time_2(index_uhf);
  
             %% Get input values from GUI
-            slew_duration = minutes(app.SlewdurationminutesEditField.Value);
-            leadtime_thrustpoint = minutes(app.ThrustPointingLeadTimeminutesEditField.Value);
-            trailtime_thrustpoint = minutes(app.ThrustPointingTrailTimeminutesEditField.Value);
-            leadtime_targetpoint = minutes(app.TargetPointingLeadTimeminutesEditField.Value);
-            trailtime_targetpoint = minutes(app.TargetPointingTrailTimeminutesEditField.Value);
+            slew_duration = minutes(app.DurationminutesEditField.Value);
+            leadtime_thrustpoint = minutes(app.LeadTimeminutesEditField.Value);
+            trailtime_thrustpoint = minutes(app.TrailTimeminutesEditField.Value);
+            leadtime_targetpoint = minutes(app.LeadTimeminutesEditField_2.Value);
+            trailtime_targetpoint = minutes(app.TrailTimeminutesEditField_2.Value);
 
             %% Define attiude pointing and slew times
 
@@ -972,13 +974,18 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
             attitude_duration = app.attitude_stop_time-app.attitude_start_time;
             attitude_id = 1:length(app.attitude_start_time); % Number attitude profiles
             
-            % Datetime array with [start time, stop time] for every attitude proflie
+            % Datetime array with [start time, stop time] for different type of attitude proflie
             % Used for global attitude statistics and for schedule graph.
             % This data is directly extracted from STK -> better than using the start and stop dates defined at beginning of chapter
             app.sunpointing_startstop_time = [app.attitude_start_time(attitude_name==sunpointing_name) app.attitude_stop_time(attitude_name==sunpointing_name)];
             app.thrustpointing_startstop_time = [app.attitude_start_time(attitude_name==thrustpointing_name) app.attitude_stop_time(attitude_name==thrustpointing_name)];
             app.targetpointing_startstop_time = [app.attitude_start_time(attitude_name==targetpointing_name) app.attitude_stop_time(attitude_name==targetpointing_name)];
             
+            % Totel time of attitude profiles
+            sunpointing_total_time = sum(app.sunpointing_startstop_time(:,2)-app.sunpointing_startstop_time(:,1));
+            thrustpointing_total_time = sum(app.thrustpointing_startstop_time(:,2)-app.thrustpointing_startstop_time(:,1));
+            targetpointing_total_time = sum(app.targetpointing_startstop_time(:,2)-app.targetpointing_startstop_time(:,1));
+
             %  Get slew start stop times for all slew maneuvers and seperately for slew maneuver types
             app.slew_startstop_time = [app.attitude_start_time(attitude_type=="Fixed Time Slew") app.attitude_stop_time(attitude_type=="Fixed Time Slew")];    % start and stop times for all slew maneuvers
             app.slew_startstop_s2th_time = [app.attitude_start_time(attitude_name==app.slew_name(1)) app.attitude_stop_time(attitude_name==app.slew_name(1))]; % start and stop times for slew sun to thrust pointing
@@ -990,13 +997,9 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
             app.AttitudeOutputTable.Data = table(attitude_id',attitude_name,app.attitude_start_time,app.attitude_stop_time,attitude_duration,attitude_type);
 
             % Data Visualization in Table: ManOutputGlobalTable 
-            varname = {'Total Number Attitude Profiles','Number Slew Maneuvers','Total Time Sun Pointing','Total Time Thrust Pointing','Total Time FHWN Pointing'};
-            % app.AttitudeGlobalOutputTable;
-
-            % total_dv = sum(cell2mat(maneuver_dv));
-            % total_thrust_time = sum(cell2mat(maneuver_duration));
-            % app.ManOutputGlobalTable.Data = table(varname',[string(maneuvers_count), total_dv, total_thrust_time]');    % maneuvers_count to get rid of decimals (int32() didnt work)
-
+            varname = {'Total Number Attitude Profiles','Number Slew Maneuvers','Total Time Sun Pointing','Total Time Thrust Pointing','Total Time Target (FHWN) Pointing'};
+            app.AttitudeGlobalOutputTable.Data = table(varname', [num2cell(length(attitude_name)),num2cell(height(app.slew_startstop_time)),{sunpointing_total_time},{thrustpointing_total_time},{targetpointing_total_time}]');
+            
         end
 
         % Button pushed function: ClearAttitudeButton
@@ -1031,91 +1034,86 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
         % Button pushed function: CreateActivityScheduleButton
         function CreateActivityScheduleButtonPushed(app, event)
             
-           % SoE Table Output
-           % Creates a list of all activities (manuevers, access times,
-           % custom activites) and sorts it chronoligical with start_time
-           % Every activity table needs same variable/column names -> VariableNames = ["Name","Start Time","Stop Time","Duration"];
-           
-           % ----manuevers----
-           % try -> skips part if error occurs -> skips if e.g. no maneuvers planned
-           try
-           maneuver_id = 1:length(app.maneuver_start_time);
-           manuever_name = append(string(maneuver_id'),"_Maneuver");    % Append maneuver number and "manuever" -> 1_maneuver, 2_...
-           manuever_duration = app.maneuver_stop_time-app.maneuver_start_time;
-           Maneuvers = table(manuever_name, app.maneuver_start_time, app.maneuver_stop_time,manuever_duration);
-           Maneuvers.Properties.VariableNames = ["Name","Start Time","Stop Time","Duration"];
-           end
-           
-           % ----Access Times----
-           try
-           % Selected access
-           access_table_2 = app.AccessTableInfo_2.Data;
-           access_table_2 = access_table_2(cell2mat(access_table_2(:,4)) ~= 0, :); % delete rows where x(:,2)==0 ("~" not operator)
-
-           access_start = datetime(access_table_2(:,1));
-           access_stop = datetime(access_table_2(:,2));
-           access_duration = access_stop - access_start;
-           access_mode = string(access_table_2(:,5));% string with "UHF" or "S-Band"
-           access_id = 1:length(access_start);
-           access_name = append(string(access_id'),"_Access_",access_mode); % Append access number, "access" and mode (UHF or S-Band) for name in SoE
-           
-           Access = table(access_name,access_start,access_stop,access_duration);
-           Access.Properties.VariableNames = ["Name","Start Time","Stop Time","Duration"];
-           end
-
-           % ----Activities----
-           try
-           app.ActivityOutputTable.Data;
-           Activities = app.ActivityOutputTable.Data;
-           Activities(:,'Var1') = [];   % Remove Access ID
-           Activities(:,'Var6') = [];   % Remove Power column
-           Activities.Properties.VariableNames = ["Name","Start Time","Stop Time","Duration"];
-           end
+            % SoE Table Output
+            % Creates a list of all activities (manuevers, access times,
+            % custom activites) and sorts it chronoligical with start_time
+            % Every activity table needs same variable/column names -> VariableNames = ["Name","Start Time","Stop Time","Duration"];
             
-           % ----Attitude Times----
-           %try
-           % Slew Sun to Thrust Pointing
-           slew_id = 1:length(app.slew_startstop_s2th_time);
-           slew_name_append = append(string(slew_id'),"_",app.slew_name(1));
-           slew_table_s2th = table(slew_name_append,app.slew_startstop_s2th_time(:,1),app.slew_startstop_s2th_time(:,2),app.slew_startstop_s2th_time(:,2)-app.slew_startstop_s2th_time(:,1));
-           slew_table_s2th.Properties.VariableNames = ["Name","Start Time","Stop Time","Duration"];
-
-           % Slew Thrust to Sun Pointing
-           slew_id = 1:length(app.slew_startstop_th2s_time);
-           slew_name_append = append(string(slew_id'),"_",app.slew_name(2));
-           slew_table_th2s = table(slew_name_append,app.slew_startstop_th2s_time(:,1),app.slew_startstop_th2s_time(:,2),app.slew_startstop_th2s_time(:,2)-app.slew_startstop_th2s_time(:,1));
-           slew_table_th2s.Properties.VariableNames = ["Name","Start Time","Stop Time","Duration"];
-          
-           % Slew Sun to Target Pointing
-           slew_id = 1:length(app.slew_startstop_s2ta_time);
-           slew_name_append = append(string(slew_id'),"_",app.slew_name(3));
-           slew_table_s2ta = table(slew_name_append,app.slew_startstop_s2ta_time(:,1),app.slew_startstop_s2ta_time(:,2),app.slew_startstop_s2ta_time(:,2)-app.slew_startstop_s2ta_time(:,1));
-           slew_table_s2ta.Properties.VariableNames = ["Name","Start Time","Stop Time","Duration"];
-       
-           % Slew Target to Sun Pointing
-           slew_id = 1:length(app.slew_startstop_ta2s_time);
-           disp(slew_id)
-           slew_name_append = append(string(slew_id'),"_",app.slew_name(4));
-           disp(slew_name_append)
-           slew_table_ta2s = table(slew_name_append,app.slew_startstop_ta2s_time(:,1),app.slew_startstop_ta2s_time(:,2),app.slew_startstop_ta2s_time(:,2)-app.slew_startstop_ta2s_time(:,1));
-           disp(slew_table_ta2s)
-           slew_table_ta2s.Properties.VariableNames = ["Name","Start Time","Stop Time","Duration"];
-          
-           
-           
-           
-           
-           %end
-
-           % ----Create and Sort SoE----
-           app.SoE = [Maneuvers;Activities;Access;slew_table_s2th;slew_table_th2s;slew_table_s2ta;slew_table_ta2s];
-           [~, idx] = sort(app.SoE{:,'Start Time'},'ascend');       % SoE{:,'Start Time'} -> datetime. Sort chronol with start time
-           app.SoE = app.SoE(idx,:);
-           SoE_activities_id = 1:height(app.SoE);
-           app.SoE = [table(SoE_activities_id'),app.SoE];
-           
-           % Activity Table 
-           app.SoETable.Data = app.SoE;
+            % ----manuevers----
+            % try -> skips part if error occurs -> skips if e.g. no maneuvers planned
+            try
+            maneuver_id = 1:length(app.maneuver_start_time);
+            manuever_name = append(string(maneuver_id'),"_Maneuver");    % Append maneuver number and "manuever" -> 1_maneuver, 2_...
+            manuever_duration = app.maneuver_stop_time-app.maneuver_start_time;
+            Maneuvers = table(manuever_name, app.maneuver_start_time, app.maneuver_stop_time,manuever_duration);
+            Maneuvers.Properties.VariableNames = ["Name","Start Time","Stop Time","Duration"];
+            end
+            
+            % ----Access Times----
+            try
+            % Selected access
+            access_table_2 = app.AccessTableInfo_2.Data;
+            access_table_2 = access_table_2(cell2mat(access_table_2(:,4)) ~= 0, :); % delete rows where x(:,2)==0 ("~" not operator)
+            
+            access_start = datetime(access_table_2(:,1));
+            access_stop = datetime(access_table_2(:,2));
+            access_duration = access_stop - access_start;
+            access_mode = string(access_table_2(:,5));% string with "UHF" or "S-Band"
+            access_id = 1:length(access_start);
+            access_name = append(string(access_id'),"_Access_",access_mode); % Append access number, "access" and mode (UHF or S-Band) for name in SoE
+            
+            Access = table(access_name,access_start,access_stop,access_duration);
+            Access.Properties.VariableNames = ["Name","Start Time","Stop Time","Duration"];
+            end
+            
+            % ----Activities----
+            try
+            app.ActivityOutputTable.Data;
+            Activities = app.ActivityOutputTable.Data;
+            Activities(:,'Var1') = [];   % Remove Access ID
+            Activities(:,'Var6') = [];   % Remove Power column
+            Activities.Properties.VariableNames = ["Name","Start Time","Stop Time","Duration"];
+            end
+            
+            % ----Attitude Times----
+            try
+            % Slew Sun to Thrust Pointing
+            slew_id = 1:length(app.slew_startstop_s2th_time);
+            slew_name_append = append(string(slew_id'),"_",app.slew_name(1));
+            slew_table_s2th = table(slew_name_append,app.slew_startstop_s2th_time(:,1),app.slew_startstop_s2th_time(:,2),app.slew_startstop_s2th_time(:,2)-app.slew_startstop_s2th_time(:,1));
+            slew_table_s2th.Properties.VariableNames = ["Name","Start Time","Stop Time","Duration"];
+            
+            % Slew Thrust to Sun Pointing
+            slew_id = 1:length(app.slew_startstop_th2s_time);
+            slew_name_append = append(string(slew_id'),"_",app.slew_name(2));
+            slew_table_th2s = table(slew_name_append,app.slew_startstop_th2s_time(:,1),app.slew_startstop_th2s_time(:,2),app.slew_startstop_th2s_time(:,2)-app.slew_startstop_th2s_time(:,1));
+            slew_table_th2s.Properties.VariableNames = ["Name","Start Time","Stop Time","Duration"];
+            
+            % Slew Sun to Target Pointing
+            slew_id = 1:length(app.slew_startstop_s2ta_time);
+            slew_name_append = append(string(slew_id'),"_",app.slew_name(3));
+            slew_table_s2ta = table(slew_name_append,app.slew_startstop_s2ta_time(:,1),app.slew_startstop_s2ta_time(:,2),app.slew_startstop_s2ta_time(:,2)-app.slew_startstop_s2ta_time(:,1));
+            slew_table_s2ta.Properties.VariableNames = ["Name","Start Time","Stop Time","Duration"];
+            
+            % Slew Target to Sun Pointing
+            slew_id = 1:length(app.slew_startstop_ta2s_time);
+            disp(slew_id)
+            slew_name_append = append(string(slew_id'),"_",app.slew_name(4));
+            disp(slew_name_append)
+            slew_table_ta2s = table(slew_name_append,app.slew_startstop_ta2s_time(:,1),app.slew_startstop_ta2s_time(:,2),app.slew_startstop_ta2s_time(:,2)-app.slew_startstop_ta2s_time(:,1));
+            disp(slew_table_ta2s)
+            slew_table_ta2s.Properties.VariableNames = ["Name","Start Time","Stop Time","Duration"];
+            end
+            
+            % ----Create and Sort SoE----
+            app.SoE = [Maneuvers;Activities;Access;slew_table_s2th;slew_table_th2s;slew_table_s2ta;slew_table_ta2s];
+            [~, idx] = sort(app.SoE{:,'Start Time'},'ascend');       % SoE{:,'Start Time'} -> datetime. Sort chronol with start time
+            app.SoE = app.SoE(idx,:);
+            SoE_activities_id = 1:height(app.SoE);
+            app.SoE = [table(SoE_activities_id'),app.SoE];
+            
+            % Activity Table 
+            app.SoETable.Data = app.SoE;
 
         end
 
@@ -1722,23 +1720,7 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
             xlim(ax, [datetime(app.scenario_start_time,'InputFormat', 'd MMM yyyy HH:mm:ss.SSSSSSSSS'),datetime(app.scenario_stop_time,'InputFormat', 'd MMM yyyy HH:mm:ss.SSSSSSSSS')])
     
     
-            %-------------------------------------------
-            % cla(app.SchedulePlot_12) % Delete all plots
-            % ax = app.SchedulePlot_12;
-            % 
-            % plot(ax,YPR_time(1:length(Yaw_rate)),RPM_x,'color','#D95319')%,'linewidth',1,'color','#D95319')
-            % plot(ax,YPR_time(1:length(Yaw_rate)),RPM_y,'color','#0072BD')
-            % plot(ax,YPR_time(1:length(Yaw_rate)),RPM_z,'color','#EDB120')
-            % 
-            % yline(ax,RPM_limit, '--', 'color','red')
-            % ylabel(ax,"RPM of Wheels")
-            % legend(ax,"Yaw","Pitch","Roll")
-            % xlim(ax, [datetime(app.scenario_start_time,'InputFormat', 'd MMM yyyy HH:mm:ss.SSSSSSSSS'),datetime(app.scenario_stop_time,'InputFormat', 'd MMM yyyy HH:mm:ss.SSSSSSSSS')])
-            % 
-
-
-
-
+            
 
             % Creates the schedule plot of all activities
         
@@ -1799,6 +1781,251 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
 
 
         end
+
+        % Button pushed function: LongTermPropagateButton
+        function LongTermPropagateButtonPushed(app, event)
+%--------------------------------------------------------------------------
+%---------------------- Long Term Propagation Tool ------------------------
+%--------------------------------------------------------------------------
+
+            % Description:
+            
+            
+            
+            %% Input
+            start_date = app.StartTimeEditField.Value;
+            %start_date = datetime(app.StartTimeEditField.Value,'InputFormat', 'd MMM yyyy HH:mm:ss.SSSSSSSSS');
+            skip_count = app.SkipeveryxmaneuverEditField.Value;
+            maxIter = app.MaxIterationsEditField.Value;
+            maxApoAlt = app.ApogeeAltitudekmEditField.Value;
+            maxDate = app.StopTimeEditField.Value;
+
+            thrust_duration = app.ManeuverDurationinminEditField_2.Value;
+            thrust = app.ThrustNEditField_2.Value;
+            Isp = app.IspsEditField_2.Value;
+            thruster_efficiency = app.ThrusterEfficiencyEditField_2.Value ;
+
+            % Get Scenario and Satellite
+            scenario = app.root.CurrentScenario;
+            app.CLIMB_longterm = scenario.Children.Item('CLIMB_LongTerm');       % Open Satellite CLIMB_LongTerm
+            
+            %% Set Engine Parameters
+
+            % Get the Engine Models Folder
+            engine = scenario.ComponentDirectory.GetComponents('eComponentAstrogator').GetFolder('Engine Models');
+            engine_model = engine.Item('EnpulsionLongTerm');
+
+            % Set Parameters
+            engine_model.Thrust = thrust;
+            engine_model.Isp = Isp;
+
+            %% Set Astrogator
+            disp('Set Astrogator')
+            app.CLIMB_longterm.SetPropagatorType('ePropagatorAstrogator');
+            astrogator = app.CLIMB_longterm.Propagator;
+            astrogator.MainSequence.RemoveAll();    %Clear all segments from the MCS
+
+
+            %% Create Sequence
+
+            %----------------- Insert an initial state ----------------
+            initState1 = astrogator.MainSequence.Insert('eVASegmentTypeInitialState','Initail State','-');
+            initState1.OrbitEpoch = start_date;
+            
+            % Initial State
+            ra = app.Orbit_data_array(:,4);
+            rp = app.Orbit_data_array(:,5);
+            ecc = app.Orbit_data_array(:,2);
+            Incl = app.Orbit_data_array(:,3);
+            RAAN = app.Orbit_data_array(:,6);
+            ArgPeri = app.Orbit_data_array(:,7);
+            MeanAno = app.Orbit_data_array(:,11);
+
+            % Elements:
+            initState1.SetElementType('eVAElementTypeKeplerian');
+            kep = initState1.Element;
+            kep.ApoapsisAltitudeSize = ra;
+            kep.Eccentricity = ecc;
+            kep.Inclination = Incl;
+            kep.RAAN = RAAN;
+            kep.ArgOfPeriapsis = ArgPeri;
+            kep.MeanAnomaly = MeanAno;
+            
+            % Spacecraft Parameters:
+            sc = initState1.SpacecraftParameters;
+            sc.DryMass = 4.5;                                      % dry mass - kg
+            sc.Cd = 2.2;                                                 % coefficient Cd
+            sc.DragArea = 0.08;                                           % Drag-area - m^2
+            sc.Cr = 2;                                                 % coefficient Cr
+            sc.SolarRadiationPressureArea = 0.07219; % Solar radiation pressure Pressure Area m^2
+            sc.Ck= 0;                                                  % coefficient Cr
+            sc.RadiationPressureArea = 0.079947;           % Radiation Pressure Area - m^2
+            sc.K1 = 1; 
+            sc.K2 = 1;
+            
+            % Fuel Tank:
+            ft = initState1.FuelTank;
+            ft.TankPressure = 5000;               % Tank pressure - Pa
+            ft.TankVolume = 0.0006;                 % Tank Volume - m^2
+            ft.TankTemperature = 429.75;            % Tank Temperature
+            ft.FuelDensity = 7310;              % Fuel density - kg/m^3
+            ft.FuelMass = 0.25;                % Fuel Mass - kg
+            ft.MaximumFuelMass = 0.25;     % Maximum Fuel Mass - kg
+            
+            %--------------------- First Propagator ------------------
+            astro_propagator1_segment = astrogator.MainSequence.Insert('eVASegmentTypePropagate','Propagate1','-');
+            astro_propagator1_segment.PropagatorName = 'Earth HPOP Default v10';
+            astro_propagator1_segment.Properties.Color = 65280;     % green
+            propagator1_stopcond = astro_propagator1_segment.StoppingConditions.Add('Periapsis');
+            propagator1_stopcond.Properties.RepeatCount = 1; % amount of circulation before proceeding
+            astro_propagator1_segment.StoppingConditions.Remove('Duration');
+            
+            %--------------------- Maneuver Segment -------------------
+            astro_maneuver_segment = astrogator.MainSequence.InsertByName('ManeuverClimbV1','-');  % Maneuver from component browser in STK
+            astro_maneuver_segment.Maneuver.ThrustEfficiency = thruster_efficiency;
+            prop_manu = astro_maneuver_segment.Maneuver.Propagator;
+            stopcond = prop_manu.StoppingConditions.Add('Duration');         % in min, dont know why
+            stopcond.Properties.Trip = thrust_duration;                 % in min, dont know why
+            prop_manu.StoppingConditions.Remove('Duration');
+     
+            %-------------------- Insert 2nd Propagator----------------
+            astro_propagator2_segment = astrogator.MainSequence.Insert('eVASegmentTypePropagate','Propagate2','-');
+            astro_propagator2_segment.PropagatorName = 'Earth HPOP Default v10';
+            astro_propagator2_segment.Properties.Color = 65280;     % green
+            propagator2_stopcond = astro_propagator2_segment.StoppingConditions.Add('Periapsis');
+            propagator2_stopcond.Properties.RepeatCount = 1; % amount of circulation before proceeding
+            astro_propagator2_segment.StoppingConditions.Remove('Duration');
+            
+            
+            %% Set maneuver skip settings
+            skip_maneuver = skip_count;
+            maneuver_count = 0;
+
+            %% ----------------------------Run Astrogator-----------------------------
+            
+            for i=1:maxIter
+
+                disp(['--- Iteration: ', num2str(i),' ---'])
+
+                % Delete Manuever segment if i==skipcount and run astrogator
+                if(i==skip_maneuver)
+                    astrogator.MainSequence.Remove("ManeuverClimbV1");
+                    astrogator.RunMCS
+                    disp(['Skip Maneuver',num2str(skip_maneuver)])
+                else
+                    astrogator.RunMCS
+                    maneuver_count = maneuver_count+1;
+                    maneuver_output_report = app.CLIMB_longterm.DataProviders.Item('Maneuver Summary').Exec(start_date,maxDate);
+                    dv_array(maneuver_count) = maneuver_output_report.DataSets.GetDataSetByName('Delta V').GetValues;
+                    disp("Fire")
+                end
+                
+                % Delete first propagator segment after frist astrogator run
+                if(i==1)
+                    astrogator.MainSequence.Remove("Propagate1");
+                end
+                
+                
+                % Get updated orbital elements and set them as initial state
+                Epoch_new{i} = astro_propagator2_segment.GetResultValue('Epoch');             % get date from the last step
+                initState1.OrbitEpoch = Epoch_new{i};                           % geschwungene klammer sintax für cell array
+            
+                ra_new(i) = astro_propagator2_segment.GetResultValue('Altitude_Of_Apoapsis'); % get altitude of the apoapsis from the last step;
+                kep.ApoapsisAltitudeSize = ra_new(i);
+            
+                rp_new(i) = astro_propagator2_segment.GetResultValue('Altitude_Of_Periapsis');
+            
+                Incl_new(i) = astro_propagator2_segment.GetResultValue('Inclination');
+                kep.Inclination = Incl_new(i);
+            
+                RAAN_new(i) = astro_propagator2_segment.GetResultValue('RAAN');
+                kep.RAAN = RAAN_new(i);
+            
+                ecc_new(i) = astro_propagator2_segment.GetResultValue('Eccentricity');        % get the value of the eccentritiy from the last step
+                kep.Eccentricity = ecc_new(i);                                  % update the value
+            
+                ArgPeri_new(i) = astro_propagator2_segment.GetResultValue('Argument of Periapsis');
+                kep.ArgOfPeriapsis = ArgPeri_new(i);
+            
+                TrueAno_new(i) = astro_propagator2_segment.GetResultValue('True_Anomaly');
+                kep.TrueAnomaly = TrueAno_new(i);                               % value of Propagator END; stays const.
+            
+                
+                if(i==skip_maneuver)
+                    % Remove propagagor to insert manuever again infont of 2end propagator (must keep the right order)
+                    astrogator.MainSequence.Remove("Propagate2");
+                    
+                    % Insert Manuever again
+                    astro_maneuver_segment = astrogator.MainSequence.InsertByName('ManeuverClimbV1','-');  % Maneuver from component browser in STK
+                    astro_maneuver_segment.Maneuver.ThrustEfficiency = thruster_efficiency;
+                    prop_manu = astro_maneuver_segment.Maneuver.Propagator;
+                    stopcond = prop_manu.StoppingConditions.Add('Duration');         % in min, dont know why
+                    stopcond.Properties.Trip = thrust_duration;                 % in min, dont know why
+                    prop_manu.StoppingConditions.Remove('Duration');
+                    
+                    % Insert 2end propagator again
+                    astro_propagator2_segment = astrogator.MainSequence.Insert('eVASegmentTypePropagate','Propagate2','-');
+                    astro_propagator2_segment.PropagatorName = 'Earth HPOP Default v10';
+                    astro_propagator2_segment.Properties.Color = 65280;     % green
+                    propagator2_stopcond = astro_propagator2_segment.StoppingConditions.Add('Periapsis');
+                    propagator2_stopcond.Properties.RepeatCount = 1; % amount of circulation before proceeding
+                    astro_propagator2_segment.StoppingConditions.Remove('Duration');
+                    
+                    % increase maneuver skip count
+                    skip_maneuver=skip_maneuver+skip_count;
+                    
+                end
+               
+                %disp(datetime(Epoch_new(i),'InputFormat','dd MMM uuuu HH:mm:ss.SSS'))          
+                disp(['Apogee = ', num2str(ra_new(i))])
+                if(ra_new(i) >= maxApoAlt || datetime(Epoch_new{i},'InputFormat','dd MMM uuuu HH:mm:ss.SSS')>=datetime(maxDate,'InputFormat', 'd MMM yyyy HH:mm:ss.SSSSSSSSS'))
+                    break
+                end
+            end
+
+            
+            %% Output
+            epoch_array = datetime(Epoch_new,'InputFormat','dd MMM uuuu HH:mm:ss.SSS');
+            epoch_days = daysact(epoch_array(1),epoch_array(end));
+            % years_pl = linspace(0,epoch_days,length(ra_new));
+            epoch_array(end);
+            Epoch_new(end);
+
+            % Data Visualization in Table: ManueverGlobalLongTermTable 
+            varname = {'Start Date', 'Stop Date', 'Total Time (days)', 'Total Apogee Rise (km)','Total Detla V (m/s)','Delta V per Maneuver', 'Total Number Maneuvers','Total Number Rotations'};
+            
+            total_time = days(epoch_array(end)-datetime(start_date,'InputFormat', 'd MMM yyyy HH:mm:ss.SSSSSSSSS'));
+            total_apo_rise = ra_new(end)-ra;
+            total_dv = sum(cell2mat(dv_array));
+
+            longterm_table = table(varname', [{start_date},Epoch_new(end),{total_time},num2cell(total_apo_rise),num2cell(total_dv),dv_array(end),num2cell(maneuver_count),num2cell(i)]');
+            app.ManueverGlobalLongTermTable.Data = longterm_table;
+            
+
+            %% Plot
+
+            cla(app.AltitudePlotLongTerm) % Delete all plots
+            ax = app.AltitudePlotLongTerm;
+
+            plot(ax,epoch_array,ra_new,'color','#0072BD')
+            plot(ax,epoch_array,rp_new,'color','#D95319')
+            
+            legend(ax,"Apogee","Perigee")
+            xlim(ax, [datetime(start_date,'InputFormat', 'd MMM yyyy HH:mm:ss.SSSSSSSSS'),datetime(epoch_array(end),'InputFormat', 'd MMM yyyy HH:mm:ss.SSSSSSSSS')])
+        
+
+
+        end
+
+        % Button pushed function: ClearAstrogatorButton
+        function ClearAstrogatorButtonPushed(app, event)
+            % Clears Atrogator MCS from satellite CLIMB_LongTerm
+            scenario = app.root.CurrentScenario;
+            app.CLIMB_longterm = scenario.Children.Item('CLIMB_LongTerm');       % Open Satellite CLIMB_LongTerm
+            astrogator = app.CLIMB_longterm.Propagator;
+            astrogator.MainSequence.RemoveAll();    %Clear all segments from the MCS
+            
+        end
     end
 
     % Component initialization
@@ -1851,7 +2078,7 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
 
             % Create SchedulePlot_2
             app.SchedulePlot_2 = uiaxes(app.SchedulerTab);
-            title(app.SchedulePlot_2, 'Schdedule Plot')
+            title(app.SchedulePlot_2, 'Schedule Plot')
             zlabel(app.SchedulePlot_2, 'Z')
             app.SchedulePlot_2.XGrid = 'on';
             app.SchedulePlot_2.YGrid = 'on';
@@ -1872,10 +2099,6 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
             app.InitialStateTab = uitab(app.TabGroup2);
             app.InitialStateTab.Title = 'Initial State';
 
-            % Create Panel
-            app.Panel = uipanel(app.InitialStateTab);
-            app.Panel.Position = [137 343 163 70];
-
             % Create TLEInfoTable
             app.TLEInfoTable = uitable(app.InitialStateTab);
             app.TLEInfoTable.ColumnName = {''; ''};
@@ -1885,7 +2108,7 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
             % Create LoadmostrecentTLEButton
             app.LoadmostrecentTLEButton = uibutton(app.InitialStateTab, 'push');
             app.LoadmostrecentTLEButton.ButtonPushedFcn = createCallbackFcn(app, @LoadmostrecentTLEButtonPushed, true);
-            app.LoadmostrecentTLEButton.Position = [145 385 147 23];
+            app.LoadmostrecentTLEButton.Position = [145 384 147 23];
             app.LoadmostrecentTLEButton.Text = 'Load most recent TLE';
 
             % Create PropagateButton
@@ -1919,35 +2142,40 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
             % Create AccessTableInfo_1
             app.AccessTableInfo_1 = uitable(app.InitialStateTab);
             app.AccessTableInfo_1.ColumnName = {'ID'; 'Access Window Start'; 'Access Window Start'; 'Accesss Duration (min)'; 'Max Elevation (deg)'};
+            app.AccessTableInfo_1.ColumnWidth = {30, 'auto'};
             app.AccessTableInfo_1.RowName = {};
             app.AccessTableInfo_1.Position = [319 17 584 322];
 
             % Create PerigeePassDateTableInfo
             app.PerigeePassDateTableInfo = uitable(app.InitialStateTab);
             app.PerigeePassDateTableInfo.ColumnName = {''; 'Perigee Pass Date'};
+            app.PerigeePassDateTableInfo.ColumnWidth = {30, 'auto'};
             app.PerigeePassDateTableInfo.RowName = {};
             app.PerigeePassDateTableInfo.Position = [919 17 251 322];
 
             % Create ConsoleLogTextAreaLabel
             app.ConsoleLogTextAreaLabel = uilabel(app.InitialStateTab);
             app.ConsoleLogTextAreaLabel.HorizontalAlignment = 'right';
-            app.ConsoleLogTextAreaLabel.Position = [577 450 76 22];
+            app.ConsoleLogTextAreaLabel.FontWeight = 'bold';
+            app.ConsoleLogTextAreaLabel.Position = [871 450 82 22];
             app.ConsoleLogTextAreaLabel.Text = 'Console Log:';
 
             % Create ConsoleLogTextArea
             app.ConsoleLogTextArea = uitextarea(app.InitialStateTab);
             app.ConsoleLogTextArea.Editable = 'off';
-            app.ConsoleLogTextArea.Position = [577 379 294 64];
+            app.ConsoleLogTextArea.Position = [877 379 294 64];
             app.ConsoleLogTextArea.Value = {'Logging'};
 
             % Create AccessDataLabel
             app.AccessDataLabel = uilabel(app.InitialStateTab);
-            app.AccessDataLabel.Position = [577 339 68 24];
+            app.AccessDataLabel.FontWeight = 'bold';
+            app.AccessDataLabel.Position = [577 339 76 24];
             app.AccessDataLabel.Text = 'Access Data';
 
             % Create PerigeePassesLabel
             app.PerigeePassesLabel = uilabel(app.InitialStateTab);
-            app.PerigeePassesLabel.Position = [1000 338 89 24];
+            app.PerigeePassesLabel.FontWeight = 'bold';
+            app.PerigeePassesLabel.Position = [1000 338 93 24];
             app.PerigeePassesLabel.Text = 'Perigee Passes';
 
             % Create NORADIDLabel
@@ -1980,9 +2208,10 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
             % Create ManeuverInputTable
             app.ManeuverInputTable = uitable(app.ManeuverSelectionTab);
             app.ManeuverInputTable.ColumnName = {''; 'Perigee Pass Time'; 'Maneuver Select'};
+            app.ManeuverInputTable.ColumnWidth = {30, 'auto', 70};
             app.ManeuverInputTable.RowName = {};
-            app.ManeuverInputTable.ColumnEditable = [false true true];
-            app.ManeuverInputTable.Position = [363 75 395 385];
+            app.ManeuverInputTable.ColumnEditable = [false false true];
+            app.ManeuverInputTable.Position = [390 74 337 385];
 
             % Create PropagateManeuversButton
             app.PropagateManeuversButton = uibutton(app.ManeuverSelectionTab, 'push');
@@ -1993,8 +2222,9 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
             % Create ManeuverOutputTable
             app.ManeuverOutputTable = uitable(app.ManeuverSelectionTab);
             app.ManeuverOutputTable.ColumnName = {'ID'; 'Start Time'; 'Stop Time'; 'Duration (min)'; 'Delta-V (m/s)'};
+            app.ManeuverOutputTable.ColumnWidth = {30, 'auto'};
             app.ManeuverOutputTable.RowName = {};
-            app.ManeuverOutputTable.Position = [786 74 359 386];
+            app.ManeuverOutputTable.Position = [757 74 388 386];
 
             % Create ManOutputGlobalTable
             app.ManOutputGlobalTable = uitable(app.ManeuverSelectionTab);
@@ -2005,62 +2235,57 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
             % Create ManeuverDurationinminEditFieldLabel
             app.ManeuverDurationinminEditFieldLabel = uilabel(app.ManeuverSelectionTab);
             app.ManeuverDurationinminEditFieldLabel.HorizontalAlignment = 'right';
-            app.ManeuverDurationinminEditFieldLabel.Position = [10 459 150 22];
+            app.ManeuverDurationinminEditFieldLabel.Position = [11 435 150 22];
             app.ManeuverDurationinminEditFieldLabel.Text = 'Maneuver Duration in (min)';
 
             % Create ManeuverDurationinminEditField
             app.ManeuverDurationinminEditField = uieditfield(app.ManeuverSelectionTab, 'numeric');
-            app.ManeuverDurationinminEditField.Position = [175 457 111 25];
+            app.ManeuverDurationinminEditField.Position = [176 433 111 25];
             app.ManeuverDurationinminEditField.Value = 10;
 
             % Create IspsEditFieldLabel
             app.IspsEditFieldLabel = uilabel(app.ManeuverSelectionTab);
             app.IspsEditFieldLabel.HorizontalAlignment = 'right';
-            app.IspsEditFieldLabel.Position = [122 430 38 22];
+            app.IspsEditFieldLabel.Position = [123 406 38 22];
             app.IspsEditFieldLabel.Text = 'Isp (s)';
 
             % Create IspsEditField
             app.IspsEditField = uieditfield(app.ManeuverSelectionTab, 'numeric');
-            app.IspsEditField.Position = [175 428 111 25];
+            app.IspsEditField.Position = [176 404 111 25];
             app.IspsEditField.Value = 1900;
 
             % Create ThrustNEditFieldLabel
             app.ThrustNEditFieldLabel = uilabel(app.ManeuverSelectionTab);
             app.ThrustNEditFieldLabel.HorizontalAlignment = 'right';
-            app.ThrustNEditFieldLabel.Position = [101 400 59 22];
+            app.ThrustNEditFieldLabel.Position = [102 376 59 22];
             app.ThrustNEditFieldLabel.Text = 'Thrust (N)';
 
             % Create ThrustNEditField
             app.ThrustNEditField = uieditfield(app.ManeuverSelectionTab, 'numeric');
-            app.ThrustNEditField.Position = [175 398 111 25];
+            app.ThrustNEditField.Position = [176 374 111 25];
             app.ThrustNEditField.Value = 0.00035;
-
-            % Create SetforallManeuversButton
-            app.SetforallManeuversButton = uibutton(app.ManeuverSelectionTab, 'push');
-            app.SetforallManeuversButton.Position = [167 322 128 23];
-            app.SetforallManeuversButton.Text = 'Set for all Maneuvers';
 
             % Create ActivityNameEditFieldLabel_4
             app.ActivityNameEditFieldLabel_4 = uilabel(app.ManeuverSelectionTab);
             app.ActivityNameEditFieldLabel_4.HorizontalAlignment = 'right';
-            app.ActivityNameEditFieldLabel_4.Position = [917 469 98 22];
+            app.ActivityNameEditFieldLabel_4.Position = [902 469 98 22];
             app.ActivityNameEditFieldLabel_4.Text = 'Maneuver Output';
 
             % Create ActivityNameEditFieldLabel_5
             app.ActivityNameEditFieldLabel_5 = uilabel(app.ManeuverSelectionTab);
             app.ActivityNameEditFieldLabel_5.HorizontalAlignment = 'right';
-            app.ActivityNameEditFieldLabel_5.Position = [505 469 111 22];
+            app.ActivityNameEditFieldLabel_5.Position = [495 469 111 22];
             app.ActivityNameEditFieldLabel_5.Text = 'Maneuver Selection';
 
             % Create ThrusterEfficiencyEditFieldLabel
             app.ThrusterEfficiencyEditFieldLabel = uilabel(app.ManeuverSelectionTab);
             app.ThrusterEfficiencyEditFieldLabel.HorizontalAlignment = 'right';
-            app.ThrusterEfficiencyEditFieldLabel.Position = [56 368 104 22];
+            app.ThrusterEfficiencyEditFieldLabel.Position = [57 344 104 22];
             app.ThrusterEfficiencyEditFieldLabel.Text = 'Thruster Efficiency';
 
             % Create ThrusterEfficiencyEditField
             app.ThrusterEfficiencyEditField = uieditfield(app.ManeuverSelectionTab, 'numeric');
-            app.ThrusterEfficiencyEditField.Position = [175 366 111 25];
+            app.ThrusterEfficiencyEditField.Position = [176 342 111 25];
             app.ThrusterEfficiencyEditField.Value = 1;
 
             % Create AcitvitySchedulerTab
@@ -2072,74 +2297,67 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
             app.AccessTableInfo_2.ColumnName = {'Access Start'; 'Access End'; 'Access duration'; 'Access Select'; 'Access Type'};
             app.AccessTableInfo_2.RowName = {};
             app.AccessTableInfo_2.ColumnEditable = [false false false true true];
-            app.AccessTableInfo_2.Position = [813 34 354 429];
+            app.AccessTableInfo_2.Position = [757 34 410 429];
 
             % Create ActivityOutputTable
             app.ActivityOutputTable = uitable(app.AcitvitySchedulerTab);
             app.ActivityOutputTable.ColumnName = {'Activity ID'; 'Activity Name'; 'Start Time'; 'Stop Time'; 'Duration (min)'; 'Power (W)'};
             app.ActivityOutputTable.RowName = {};
-            app.ActivityOutputTable.Position = [344 34 443 429];
+            app.ActivityOutputTable.Position = [329 34 398 429];
 
             % Create AddActivityButton
             app.AddActivityButton = uibutton(app.AcitvitySchedulerTab, 'push');
             app.AddActivityButton.ButtonPushedFcn = createCallbackFcn(app, @AddActivityButtonPushed, true);
-            app.AddActivityButton.Position = [29 339 96 24];
+            app.AddActivityButton.Position = [31 309 96 24];
             app.AddActivityButton.Text = 'Add Activity';
-
-            % Create PerigeePassDateTableInfo_2
-            app.PerigeePassDateTableInfo_2 = uitable(app.AcitvitySchedulerTab);
-            app.PerigeePassDateTableInfo_2.ColumnName = {''; 'Perigee Pass Time'};
-            app.PerigeePassDateTableInfo_2.RowName = {};
-            app.PerigeePassDateTableInfo_2.ColumnEditable = [true true true true];
-            app.PerigeePassDateTableInfo_2.Position = [33 37 211 256];
 
             % Create ActivityNameEditFieldLabel
             app.ActivityNameEditFieldLabel = uilabel(app.AcitvitySchedulerTab);
             app.ActivityNameEditFieldLabel.HorizontalAlignment = 'right';
-            app.ActivityNameEditFieldLabel.Position = [39 469 78 22];
+            app.ActivityNameEditFieldLabel.Position = [41 439 78 22];
             app.ActivityNameEditFieldLabel.Text = 'Activity Name';
 
             % Create ActivityNameEditField
             app.ActivityNameEditField = uieditfield(app.AcitvitySchedulerTab, 'text');
-            app.ActivityNameEditField.Position = [124 468 187 25];
+            app.ActivityNameEditField.Position = [126 438 187 25];
             app.ActivityNameEditField.Value = 'Science Activity';
 
             % Create ActivityStartTimeEditFieldLabel
             app.ActivityStartTimeEditFieldLabel = uilabel(app.AcitvitySchedulerTab);
             app.ActivityStartTimeEditFieldLabel.HorizontalAlignment = 'right';
-            app.ActivityStartTimeEditFieldLabel.Position = [9 439 104 22];
+            app.ActivityStartTimeEditFieldLabel.Position = [11 409 104 22];
             app.ActivityStartTimeEditFieldLabel.Text = 'Activity Start Time ';
 
             % Create ActivityStartTimeEditField
             app.ActivityStartTimeEditField = uieditfield(app.AcitvitySchedulerTab, 'text');
-            app.ActivityStartTimeEditField.Position = [124 438 187 25];
+            app.ActivityStartTimeEditField.Position = [126 408 187 25];
             app.ActivityStartTimeEditField.Value = '7 Aug 2023 02:15:00.000';
 
             % Create ActivityStopTimeEditFieldLabel
             app.ActivityStopTimeEditFieldLabel = uilabel(app.AcitvitySchedulerTab);
             app.ActivityStopTimeEditFieldLabel.HorizontalAlignment = 'right';
-            app.ActivityStopTimeEditFieldLabel.Position = [9 409 104 22];
+            app.ActivityStopTimeEditFieldLabel.Position = [11 379 104 22];
             app.ActivityStopTimeEditFieldLabel.Text = 'Activity Stop Time ';
 
             % Create ActivityStopTimeEditField
             app.ActivityStopTimeEditField = uieditfield(app.AcitvitySchedulerTab, 'text');
-            app.ActivityStopTimeEditField.Position = [124 408 187 25];
+            app.ActivityStopTimeEditField.Position = [126 378 187 25];
             app.ActivityStopTimeEditField.Value = '7 Aug 2023 03:00:00.000';
 
             % Create PowerWEditFieldLabel
             app.PowerWEditFieldLabel = uilabel(app.AcitvitySchedulerTab);
             app.PowerWEditFieldLabel.HorizontalAlignment = 'right';
-            app.PowerWEditFieldLabel.Position = [47 379 62 22];
+            app.PowerWEditFieldLabel.Position = [49 349 62 22];
             app.PowerWEditFieldLabel.Text = 'Power (W)';
 
             % Create PowerWEditField
             app.PowerWEditField = uieditfield(app.AcitvitySchedulerTab, 'numeric');
-            app.PowerWEditField.Position = [124 377 187 26];
+            app.PowerWEditField.Position = [126 347 187 26];
 
             % Create ActivityNameEditFieldLabel_2
             app.ActivityNameEditFieldLabel_2 = uilabel(app.AcitvitySchedulerTab);
             app.ActivityNameEditFieldLabel_2.HorizontalAlignment = 'right';
-            app.ActivityNameEditFieldLabel_2.Position = [514 469 96 22];
+            app.ActivityNameEditFieldLabel_2.Position = [481 469 96 22];
             app.ActivityNameEditFieldLabel_2.Text = 'Custom Activities';
 
             % Create ActivityNameEditFieldLabel_3
@@ -2148,81 +2366,85 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
             app.ActivityNameEditFieldLabel_3.Position = [919 471 142 22];
             app.ActivityNameEditFieldLabel_3.Text = 'Ground Contact Selection';
 
+            % Create PerigeePassDateTableInfo_2
+            app.PerigeePassDateTableInfo_2 = uitable(app.AcitvitySchedulerTab);
+            app.PerigeePassDateTableInfo_2.ColumnName = {''; 'New Perigee Pass Time'};
+            app.PerigeePassDateTableInfo_2.ColumnWidth = {30, 'auto'};
+            app.PerigeePassDateTableInfo_2.RowName = {};
+            app.PerigeePassDateTableInfo_2.ColumnEditable = [true true true true];
+            app.PerigeePassDateTableInfo_2.Position = [31 34 263 254];
+
             % Create AttitudeProfileTab
             app.AttitudeProfileTab = uitab(app.TabGroup2);
             app.AttitudeProfileTab.Title = 'Attitude Profile';
 
-            % Create ThrustPointingLeadTimeminutesEditFieldLabel
-            app.ThrustPointingLeadTimeminutesEditFieldLabel = uilabel(app.AttitudeProfileTab);
-            app.ThrustPointingLeadTimeminutesEditFieldLabel.HorizontalAlignment = 'right';
-            app.ThrustPointingLeadTimeminutesEditFieldLabel.Position = [11 389 199 22];
-            app.ThrustPointingLeadTimeminutesEditFieldLabel.Text = 'Thrust Pointing Lead Time (minutes)';
+            % Create LeadTimeminutesEditFieldLabel
+            app.LeadTimeminutesEditFieldLabel = uilabel(app.AttitudeProfileTab);
+            app.LeadTimeminutesEditFieldLabel.HorizontalAlignment = 'right';
+            app.LeadTimeminutesEditFieldLabel.Position = [32 312 114 22];
+            app.LeadTimeminutesEditFieldLabel.Text = 'Lead Time (minutes)';
 
-            % Create ThrustPointingLeadTimeminutesEditField
-            app.ThrustPointingLeadTimeminutesEditField = uieditfield(app.AttitudeProfileTab, 'numeric');
-            app.ThrustPointingLeadTimeminutesEditField.Position = [225 387 77 26];
-            app.ThrustPointingLeadTimeminutesEditField.Value = 5;
+            % Create LeadTimeminutesEditField
+            app.LeadTimeminutesEditField = uieditfield(app.AttitudeProfileTab, 'numeric');
+            app.LeadTimeminutesEditField.Position = [161 310 77 26];
+            app.LeadTimeminutesEditField.Value = 5;
 
-            % Create ThrustPointingTrailTimeminutesEditFieldLabel
-            app.ThrustPointingTrailTimeminutesEditFieldLabel = uilabel(app.AttitudeProfileTab);
-            app.ThrustPointingTrailTimeminutesEditFieldLabel.HorizontalAlignment = 'right';
-            app.ThrustPointingTrailTimeminutesEditFieldLabel.Position = [15 355 195 22];
-            app.ThrustPointingTrailTimeminutesEditFieldLabel.Text = 'Thrust Pointing Trail Time (minutes)';
+            % Create TrailTimeminutesEditFieldLabel
+            app.TrailTimeminutesEditFieldLabel = uilabel(app.AttitudeProfileTab);
+            app.TrailTimeminutesEditFieldLabel.HorizontalAlignment = 'right';
+            app.TrailTimeminutesEditFieldLabel.Position = [35 278 111 22];
+            app.TrailTimeminutesEditFieldLabel.Text = 'Trail Time (minutes)';
 
-            % Create ThrustPointingTrailTimeminutesEditField
-            app.ThrustPointingTrailTimeminutesEditField = uieditfield(app.AttitudeProfileTab, 'numeric');
-            app.ThrustPointingTrailTimeminutesEditField.Position = [225 353 77 26];
-            app.ThrustPointingTrailTimeminutesEditField.Value = 5;
+            % Create TrailTimeminutesEditField
+            app.TrailTimeminutesEditField = uieditfield(app.AttitudeProfileTab, 'numeric');
+            app.TrailTimeminutesEditField.Position = [161 276 77 26];
+            app.TrailTimeminutesEditField.Value = 5;
 
-            % Create TargetPointingLeadTimeminutesEditFieldLabel
-            app.TargetPointingLeadTimeminutesEditFieldLabel = uilabel(app.AttitudeProfileTab);
-            app.TargetPointingLeadTimeminutesEditFieldLabel.HorizontalAlignment = 'right';
-            app.TargetPointingLeadTimeminutesEditFieldLabel.Position = [11 320 199 22];
-            app.TargetPointingLeadTimeminutesEditFieldLabel.Text = 'Target Pointing Lead Time (minutes)';
+            % Create LeadTimeminutesEditField_2Label
+            app.LeadTimeminutesEditField_2Label = uilabel(app.AttitudeProfileTab);
+            app.LeadTimeminutesEditField_2Label.HorizontalAlignment = 'right';
+            app.LeadTimeminutesEditField_2Label.Position = [32 186 114 22];
+            app.LeadTimeminutesEditField_2Label.Text = 'Lead Time (minutes)';
 
-            % Create TargetPointingLeadTimeminutesEditField
-            app.TargetPointingLeadTimeminutesEditField = uieditfield(app.AttitudeProfileTab, 'numeric');
-            app.TargetPointingLeadTimeminutesEditField.Position = [225 318 77 26];
-            app.TargetPointingLeadTimeminutesEditField.Value = 5;
+            % Create LeadTimeminutesEditField_2
+            app.LeadTimeminutesEditField_2 = uieditfield(app.AttitudeProfileTab, 'numeric');
+            app.LeadTimeminutesEditField_2.Position = [161 184 77 26];
+            app.LeadTimeminutesEditField_2.Value = 5;
 
-            % Create TargetPointingTrailTimeminutesEditFieldLabel
-            app.TargetPointingTrailTimeminutesEditFieldLabel = uilabel(app.AttitudeProfileTab);
-            app.TargetPointingTrailTimeminutesEditFieldLabel.HorizontalAlignment = 'right';
-            app.TargetPointingTrailTimeminutesEditFieldLabel.Position = [15 286 195 22];
-            app.TargetPointingTrailTimeminutesEditFieldLabel.Text = 'Target Pointing Trail Time (minutes)';
+            % Create TrailTimeminutesEditField_2Label
+            app.TrailTimeminutesEditField_2Label = uilabel(app.AttitudeProfileTab);
+            app.TrailTimeminutesEditField_2Label.HorizontalAlignment = 'right';
+            app.TrailTimeminutesEditField_2Label.Position = [35 152 111 22];
+            app.TrailTimeminutesEditField_2Label.Text = 'Trail Time (minutes)';
 
-            % Create TargetPointingTrailTimeminutesEditField
-            app.TargetPointingTrailTimeminutesEditField = uieditfield(app.AttitudeProfileTab, 'numeric');
-            app.TargetPointingTrailTimeminutesEditField.Position = [225 284 77 26];
-            app.TargetPointingTrailTimeminutesEditField.Value = 5;
+            % Create TrailTimeminutesEditField_2
+            app.TrailTimeminutesEditField_2 = uieditfield(app.AttitudeProfileTab, 'numeric');
+            app.TrailTimeminutesEditField_2.Position = [161 150 77 26];
+            app.TrailTimeminutesEditField_2.Value = 5;
 
-            % Create SlewdurationminutesEditFieldLabel
-            app.SlewdurationminutesEditFieldLabel = uilabel(app.AttitudeProfileTab);
-            app.SlewdurationminutesEditFieldLabel.HorizontalAlignment = 'right';
-            app.SlewdurationminutesEditFieldLabel.Position = [79 440 131 22];
-            app.SlewdurationminutesEditFieldLabel.Text = 'Slew duration (minutes)';
-
-            % Create SlewdurationminutesEditField
-            app.SlewdurationminutesEditField = uieditfield(app.AttitudeProfileTab, 'numeric');
-            app.SlewdurationminutesEditField.Position = [225 438 77 26];
-            app.SlewdurationminutesEditField.Value = 5;
+            % Create DurationminutesEditFieldLabel
+            app.DurationminutesEditFieldLabel = uilabel(app.AttitudeProfileTab);
+            app.DurationminutesEditFieldLabel.HorizontalAlignment = 'right';
+            app.DurationminutesEditFieldLabel.Position = [41 411 104 22];
+            app.DurationminutesEditFieldLabel.Text = 'Duration (minutes)';
 
             % Create AddAttitudeProfileButton
             app.AddAttitudeProfileButton = uibutton(app.AttitudeProfileTab, 'push');
             app.AddAttitudeProfileButton.ButtonPushedFcn = createCallbackFcn(app, @AddAttitudeProfileButtonPushed, true);
-            app.AddAttitudeProfileButton.Position = [39 23 117 23];
+            app.AddAttitudeProfileButton.Position = [37 75 117 23];
             app.AddAttitudeProfileButton.Text = 'Add Attitude Profile';
 
             % Create AttitudeOutputTable
             app.AttitudeOutputTable = uitable(app.AttitudeProfileTab);
             app.AttitudeOutputTable.ColumnName = {''; 'Name'; 'Start Time'; 'Stop Time'; 'Duration'; 'Type'};
+            app.AttitudeOutputTable.ColumnWidth = {30, 'auto'};
             app.AttitudeOutputTable.RowName = {};
-            app.AttitudeOutputTable.Position = [323 46 583 418];
+            app.AttitudeOutputTable.Position = [277 46 629 418];
 
             % Create ClearAttitudeButton
             app.ClearAttitudeButton = uibutton(app.AttitudeProfileTab, 'push');
             app.ClearAttitudeButton.ButtonPushedFcn = createCallbackFcn(app, @ClearAttitudeButtonPushed, true);
-            app.ClearAttitudeButton.Position = [198 22 100 23];
+            app.ClearAttitudeButton.Position = [37 46 117 23];
             app.ClearAttitudeButton.Text = 'Clear Attitude';
 
             % Create AttitudeGlobalOutputTable
@@ -2231,6 +2453,29 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
             app.AttitudeGlobalOutputTable.RowName = {};
             app.AttitudeGlobalOutputTable.Position = [929 45 230 419];
 
+            % Create DurationminutesEditField
+            app.DurationminutesEditField = uieditfield(app.AttitudeProfileTab, 'numeric');
+            app.DurationminutesEditField.Position = [160 409 77 26];
+            app.DurationminutesEditField.Value = 5;
+
+            % Create TargetPointingLabel
+            app.TargetPointingLabel = uilabel(app.AttitudeProfileTab);
+            app.TargetPointingLabel.FontWeight = 'bold';
+            app.TargetPointingLabel.Position = [101 215 92 22];
+            app.TargetPointingLabel.Text = 'Target Pointing';
+
+            % Create ThrustPointingLabel
+            app.ThrustPointingLabel = uilabel(app.AttitudeProfileTab);
+            app.ThrustPointingLabel.FontWeight = 'bold';
+            app.ThrustPointingLabel.Position = [102 341 94 22];
+            app.ThrustPointingLabel.Text = 'Thrust Pointing';
+
+            % Create SlewLabel
+            app.SlewLabel = uilabel(app.AttitudeProfileTab);
+            app.SlewLabel.FontWeight = 'bold';
+            app.SlewLabel.Position = [131 439 32 22];
+            app.SlewLabel.Text = 'Slew';
+
             % Create SequenceofEventsTab
             app.SequenceofEventsTab = uitab(app.TabGroup2);
             app.SequenceofEventsTab.Title = 'Sequence of Events';
@@ -2238,6 +2483,7 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
             % Create SoETable
             app.SoETable = uitable(app.SequenceofEventsTab);
             app.SoETable.ColumnName = {'ID'; 'Name'; 'Start Time'; 'Stop Time'; 'Duration'; 'Time to next Activity'};
+            app.SoETable.ColumnWidth = {30, 'auto'};
             app.SoETable.RowName = {};
             app.SoETable.Position = [22 45 736 394];
 
@@ -2263,96 +2509,84 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
             app.ConstraintAnalysisTab_2 = uitab(app.TabGroup2);
             app.ConstraintAnalysisTab_2.Title = 'Constraint Analysis';
 
-            % Create TabGroup3
-            app.TabGroup3 = uitabgroup(app.ConstraintAnalysisTab_2);
-            app.TabGroup3.Position = [1 2 1191 498];
-
-            % Create ADCSTab
-            app.ADCSTab = uitab(app.TabGroup3);
-            app.ADCSTab.Title = 'ADCS';
-
             % Create SchedulePlot_13
-            app.SchedulePlot_13 = uiaxes(app.ADCSTab);
+            app.SchedulePlot_13 = uiaxes(app.ConstraintAnalysisTab_2);
             title(app.SchedulePlot_13, 'RPM')
             zlabel(app.SchedulePlot_13, 'Z')
             app.SchedulePlot_13.XGrid = 'on';
             app.SchedulePlot_13.YGrid = 'on';
             app.SchedulePlot_13.NextPlot = 'add';
-            app.SchedulePlot_13.Position = [10 167 1170 139];
+            app.SchedulePlot_13.Position = [15 175 1170 139];
 
             % Create SchedulePlot_14
-            app.SchedulePlot_14 = uiaxes(app.ADCSTab);
+            app.SchedulePlot_14 = uiaxes(app.ConstraintAnalysisTab_2);
             title(app.SchedulePlot_14, 'SoC')
             zlabel(app.SchedulePlot_14, 'Z')
             app.SchedulePlot_14.XGrid = 'on';
             app.SchedulePlot_14.YGrid = 'on';
             app.SchedulePlot_14.NextPlot = 'add';
-            app.SchedulePlot_14.Position = [9 16 1170 139];
+            app.SchedulePlot_14.Position = [14 24 1170 139];
+
+            % Create ConstraintTextArea
+            app.ConstraintTextArea = uitextarea(app.ConstraintAnalysisTab_2);
+            app.ConstraintTextArea.Position = [948 329 200 134];
+
+            % Create PowerConstraintAnalysisButton
+            app.PowerConstraintAnalysisButton = uibutton(app.ConstraintAnalysisTab_2, 'push');
+            app.PowerConstraintAnalysisButton.ButtonPushedFcn = createCallbackFcn(app, @PowerConstraintAnalysisButtonPushed, true);
+            app.PowerConstraintAnalysisButton.Position = [191 328 154 23];
+            app.PowerConstraintAnalysisButton.Text = 'Power Constraint Analysis';
+
+            % Create ADCSConstraintAnalysisButton
+            app.ADCSConstraintAnalysisButton = uibutton(app.ConstraintAnalysisTab_2, 'push');
+            app.ADCSConstraintAnalysisButton.ButtonPushedFcn = createCallbackFcn(app, @ADCSConstraintAnalysisButtonPushed, true);
+            app.ADCSConstraintAnalysisButton.Position = [21 328 154 23];
+            app.ADCSConstraintAnalysisButton.Text = 'ADCS Constraint Analysis';
 
             % Create InitialAngularMomentumfromADCSinNmsLabel
-            app.InitialAngularMomentumfromADCSinNmsLabel = uilabel(app.ADCSTab);
-            app.InitialAngularMomentumfromADCSinNmsLabel.Position = [21 437 246 22];
+            app.InitialAngularMomentumfromADCSinNmsLabel = uilabel(app.ConstraintAnalysisTab_2);
+            app.InitialAngularMomentumfromADCSinNmsLabel.Position = [26 445 246 22];
             app.InitialAngularMomentumfromADCSinNmsLabel.Text = 'Initial Angular Momentum from ADCS in Nms';
 
             % Create InitialBatteryCapacityEditFieldLabel
-            app.InitialBatteryCapacityEditFieldLabel = uilabel(app.ADCSTab);
+            app.InitialBatteryCapacityEditFieldLabel = uilabel(app.ConstraintAnalysisTab_2);
             app.InitialBatteryCapacityEditFieldLabel.HorizontalAlignment = 'right';
-            app.InitialBatteryCapacityEditFieldLabel.Position = [299 435 124 22];
+            app.InitialBatteryCapacityEditFieldLabel.Position = [304 443 124 22];
             app.InitialBatteryCapacityEditFieldLabel.Text = 'Initial Battery Capacity';
 
             % Create InitialBatteryCapacityEditField
-            app.InitialBatteryCapacityEditField = uieditfield(app.ADCSTab, 'numeric');
-            app.InitialBatteryCapacityEditField.Position = [431 435 100 22];
+            app.InitialBatteryCapacityEditField = uieditfield(app.ConstraintAnalysisTab_2, 'numeric');
+            app.InitialBatteryCapacityEditField.Position = [436 443 100 22];
 
             % Create xLabel
-            app.xLabel = uilabel(app.ADCSTab);
+            app.xLabel = uilabel(app.ConstraintAnalysisTab_2);
             app.xLabel.HorizontalAlignment = 'right';
-            app.xLabel.Position = [10 408 25 22];
+            app.xLabel.Position = [15 416 25 22];
             app.xLabel.Text = 'x ';
 
             % Create xEditField
-            app.xEditField = uieditfield(app.ADCSTab, 'numeric');
-            app.xEditField.Position = [47 408 100 22];
+            app.xEditField = uieditfield(app.ConstraintAnalysisTab_2, 'numeric');
+            app.xEditField.Position = [52 416 100 22];
 
             % Create yEditFieldLabel
-            app.yEditFieldLabel = uilabel(app.ADCSTab);
+            app.yEditFieldLabel = uilabel(app.ConstraintAnalysisTab_2);
             app.yEditFieldLabel.HorizontalAlignment = 'right';
-            app.yEditFieldLabel.Position = [7 381 25 22];
+            app.yEditFieldLabel.Position = [12 389 25 22];
             app.yEditFieldLabel.Text = 'y';
 
             % Create yEditField
-            app.yEditField = uieditfield(app.ADCSTab, 'numeric');
-            app.yEditField.Position = [47 381 100 22];
+            app.yEditField = uieditfield(app.ConstraintAnalysisTab_2, 'numeric');
+            app.yEditField.Position = [52 389 100 22];
 
             % Create zEditFieldLabel
-            app.zEditFieldLabel = uilabel(app.ADCSTab);
+            app.zEditFieldLabel = uilabel(app.ConstraintAnalysisTab_2);
             app.zEditFieldLabel.HorizontalAlignment = 'right';
-            app.zEditFieldLabel.Position = [7 353 25 22];
+            app.zEditFieldLabel.Position = [12 361 25 22];
             app.zEditFieldLabel.Text = 'z';
 
             % Create zEditField
-            app.zEditField = uieditfield(app.ADCSTab, 'numeric');
-            app.zEditField.Position = [47 353 100 22];
-
-            % Create ADCSConstraintAnalysisButton
-            app.ADCSConstraintAnalysisButton = uibutton(app.ADCSTab, 'push');
-            app.ADCSConstraintAnalysisButton.ButtonPushedFcn = createCallbackFcn(app, @ADCSConstraintAnalysisButtonPushed, true);
-            app.ADCSConstraintAnalysisButton.Position = [16 320 154 23];
-            app.ADCSConstraintAnalysisButton.Text = 'ADCS Constraint Analysis';
-
-            % Create PowerConstraintAnalysisButton
-            app.PowerConstraintAnalysisButton = uibutton(app.ADCSTab, 'push');
-            app.PowerConstraintAnalysisButton.ButtonPushedFcn = createCallbackFcn(app, @PowerConstraintAnalysisButtonPushed, true);
-            app.PowerConstraintAnalysisButton.Position = [186 320 154 23];
-            app.PowerConstraintAnalysisButton.Text = 'Power Constraint Analysis';
-
-            % Create ConstraintTextArea
-            app.ConstraintTextArea = uitextarea(app.ADCSTab);
-            app.ConstraintTextArea.Position = [943 321 200 134];
-
-            % Create PowerTab
-            app.PowerTab = uitab(app.TabGroup3);
-            app.PowerTab.Title = 'Power';
+            app.zEditField = uieditfield(app.ConstraintAnalysisTab_2, 'numeric');
+            app.zEditField.Position = [52 361 100 22];
 
             % Create ConstraintAnalysisTab
             app.ConstraintAnalysisTab = uitab(app.TabGroup);
@@ -2362,62 +2596,13 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
             app.TabGroup4 = uitabgroup(app.ConstraintAnalysisTab);
             app.TabGroup4.Position = [1 1 1194 740];
 
-            % Create ADCSTab_2
-            app.ADCSTab_2 = uitab(app.TabGroup4);
-            app.ADCSTab_2.Title = 'ADCS';
-
-            % Create SchedulePlot_11
-            app.SchedulePlot_11 = uiaxes(app.ADCSTab_2);
-            title(app.SchedulePlot_11, 'Total Angular Momentum')
-            zlabel(app.SchedulePlot_11, 'Z')
-            app.SchedulePlot_11.XGrid = 'on';
-            app.SchedulePlot_11.YGrid = 'on';
-            app.SchedulePlot_11.NextPlot = 'add';
-            app.SchedulePlot_11.Position = [61 147 1121 139];
-
-            % Create SchedulePlot_8
-            app.SchedulePlot_8 = uiaxes(app.ADCSTab_2);
-            title(app.SchedulePlot_8, 'Schdedule Plot')
-            zlabel(app.SchedulePlot_8, 'Z')
-            app.SchedulePlot_8.XGrid = 'on';
-            app.SchedulePlot_8.YGrid = 'on';
-            app.SchedulePlot_8.NextPlot = 'add';
-            app.SchedulePlot_8.Position = [12 567 1170 139];
-
-            % Create SchedulePlot_12
-            app.SchedulePlot_12 = uiaxes(app.ADCSTab_2);
-            title(app.SchedulePlot_12, 'RPM')
-            zlabel(app.SchedulePlot_12, 'Z')
-            app.SchedulePlot_12.XGrid = 'on';
-            app.SchedulePlot_12.YGrid = 'on';
-            app.SchedulePlot_12.NextPlot = 'add';
-            app.SchedulePlot_12.Position = [61 7 1121 139];
-
-            % Create SchedulePlot_9
-            app.SchedulePlot_9 = uiaxes(app.ADCSTab_2);
-            title(app.SchedulePlot_9, 'YPR')
-            zlabel(app.SchedulePlot_9, 'Z')
-            app.SchedulePlot_9.XGrid = 'on';
-            app.SchedulePlot_9.YGrid = 'on';
-            app.SchedulePlot_9.NextPlot = 'add';
-            app.SchedulePlot_9.Position = [61 427 1121 139];
-
-            % Create SchedulePlot_10
-            app.SchedulePlot_10 = uiaxes(app.ADCSTab_2);
-            title(app.SchedulePlot_10, 'YPR Rates')
-            zlabel(app.SchedulePlot_10, 'Z')
-            app.SchedulePlot_10.XGrid = 'on';
-            app.SchedulePlot_10.YGrid = 'on';
-            app.SchedulePlot_10.NextPlot = 'add';
-            app.SchedulePlot_10.Position = [61 287 1121 139];
-
             % Create PowerTab_2
             app.PowerTab_2 = uitab(app.TabGroup4);
             app.PowerTab_2.Title = 'Power';
 
             % Create SchedulePlot_3
             app.SchedulePlot_3 = uiaxes(app.PowerTab_2);
-            title(app.SchedulePlot_3, 'Schdedule Plot')
+            title(app.SchedulePlot_3, 'Schedule Plot')
             zlabel(app.SchedulePlot_3, 'Z')
             app.SchedulePlot_3.XGrid = 'on';
             app.SchedulePlot_3.YGrid = 'on';
@@ -2460,120 +2645,196 @@ classdef Mission_Planning_Tool_exported < matlab.apps.AppBase
             app.SchedulePlot_7.NextPlot = 'add';
             app.SchedulePlot_7.Position = [71 10 1110 139];
 
+            % Create ADCSTab_2
+            app.ADCSTab_2 = uitab(app.TabGroup4);
+            app.ADCSTab_2.Title = 'ADCS';
+
+            % Create SchedulePlot_11
+            app.SchedulePlot_11 = uiaxes(app.ADCSTab_2);
+            title(app.SchedulePlot_11, 'Total Angular Momentum')
+            zlabel(app.SchedulePlot_11, 'Z')
+            app.SchedulePlot_11.XGrid = 'on';
+            app.SchedulePlot_11.YGrid = 'on';
+            app.SchedulePlot_11.NextPlot = 'add';
+            app.SchedulePlot_11.Position = [61 147 1121 139];
+
+            % Create SchedulePlot_8
+            app.SchedulePlot_8 = uiaxes(app.ADCSTab_2);
+            title(app.SchedulePlot_8, 'Schedule Plot')
+            zlabel(app.SchedulePlot_8, 'Z')
+            app.SchedulePlot_8.XGrid = 'on';
+            app.SchedulePlot_8.YGrid = 'on';
+            app.SchedulePlot_8.NextPlot = 'add';
+            app.SchedulePlot_8.Position = [12 567 1170 139];
+
+            % Create SchedulePlot_12
+            app.SchedulePlot_12 = uiaxes(app.ADCSTab_2);
+            title(app.SchedulePlot_12, 'RPM')
+            zlabel(app.SchedulePlot_12, 'Z')
+            app.SchedulePlot_12.XGrid = 'on';
+            app.SchedulePlot_12.YGrid = 'on';
+            app.SchedulePlot_12.NextPlot = 'add';
+            app.SchedulePlot_12.Position = [61 7 1121 139];
+
+            % Create SchedulePlot_9
+            app.SchedulePlot_9 = uiaxes(app.ADCSTab_2);
+            title(app.SchedulePlot_9, 'YPR')
+            zlabel(app.SchedulePlot_9, 'Z')
+            app.SchedulePlot_9.XGrid = 'on';
+            app.SchedulePlot_9.YGrid = 'on';
+            app.SchedulePlot_9.NextPlot = 'add';
+            app.SchedulePlot_9.Position = [61 427 1121 139];
+
+            % Create SchedulePlot_10
+            app.SchedulePlot_10 = uiaxes(app.ADCSTab_2);
+            title(app.SchedulePlot_10, 'YPR Rates')
+            zlabel(app.SchedulePlot_10, 'Z')
+            app.SchedulePlot_10.XGrid = 'on';
+            app.SchedulePlot_10.YGrid = 'on';
+            app.SchedulePlot_10.NextPlot = 'add';
+            app.SchedulePlot_10.Position = [61 287 1121 139];
+
             % Create LongTermPropulsoinToolTab
             app.LongTermPropulsoinToolTab = uitab(app.TabGroup);
             app.LongTermPropulsoinToolTab.Title = 'Long-Term Propulsoin Tool';
 
-            % Create UIAxes
-            app.UIAxes = uiaxes(app.LongTermPropulsoinToolTab);
-            title(app.UIAxes, 'Title')
-            xlabel(app.UIAxes, 'X')
-            ylabel(app.UIAxes, 'Y')
-            zlabel(app.UIAxes, 'Z')
-            app.UIAxes.Position = [556 48 548 411];
+            % Create AltitudePlotLongTerm
+            app.AltitudePlotLongTerm = uiaxes(app.LongTermPropulsoinToolTab);
+            xlabel(app.AltitudePlotLongTerm, 'Days')
+            ylabel(app.AltitudePlotLongTerm, 'Altitude in km')
+            zlabel(app.AltitudePlotLongTerm, 'Z')
+            app.AltitudePlotLongTerm.XGrid = 'on';
+            app.AltitudePlotLongTerm.YGrid = 'on';
+            app.AltitudePlotLongTerm.NextPlot = 'add';
+            app.AltitudePlotLongTerm.Position = [427 45 703 571];
 
             % Create ApogeeAltitudekmEditFieldLabel
             app.ApogeeAltitudekmEditFieldLabel = uilabel(app.LongTermPropulsoinToolTab);
             app.ApogeeAltitudekmEditFieldLabel.HorizontalAlignment = 'right';
-            app.ApogeeAltitudekmEditFieldLabel.Position = [36 597 116 22];
+            app.ApogeeAltitudekmEditFieldLabel.Position = [60 590 116 22];
             app.ApogeeAltitudekmEditFieldLabel.Text = 'Apogee Altitude (km)';
 
             % Create ApogeeAltitudekmEditField
             app.ApogeeAltitudekmEditField = uieditfield(app.LongTermPropulsoinToolTab, 'numeric');
-            app.ApogeeAltitudekmEditField.Position = [167 597 126 22];
+            app.ApogeeAltitudekmEditField.Position = [191 590 112 22];
+            app.ApogeeAltitudekmEditField.Value = 600;
 
             % Create MaxIterationsEditFieldLabel
             app.MaxIterationsEditFieldLabel = uilabel(app.LongTermPropulsoinToolTab);
             app.MaxIterationsEditFieldLabel.HorizontalAlignment = 'right';
-            app.MaxIterationsEditFieldLabel.Position = [72 564 80 22];
+            app.MaxIterationsEditFieldLabel.Position = [96 557 80 22];
             app.MaxIterationsEditFieldLabel.Text = 'Max Iterations';
 
             % Create MaxIterationsEditField
             app.MaxIterationsEditField = uieditfield(app.LongTermPropulsoinToolTab, 'numeric');
-            app.MaxIterationsEditField.Position = [167 564 126 22];
-
-            % Create UITable
-            app.UITable = uitable(app.LongTermPropulsoinToolTab);
-            app.UITable.ColumnName = {'Time to reach orbit'; 'Apogee increase'; 'dv '; 'Column 4'};
-            app.UITable.RowName = {};
-            app.UITable.Position = [48 90 403 356];
+            app.MaxIterationsEditField.Position = [191 557 112 22];
+            app.MaxIterationsEditField.Value = 5000;
 
             % Create ManeuverDurationinminEditField_2Label
             app.ManeuverDurationinminEditField_2Label = uilabel(app.LongTermPropulsoinToolTab);
             app.ManeuverDurationinminEditField_2Label.HorizontalAlignment = 'right';
-            app.ManeuverDurationinminEditField_2Label.Position = [303 697 150 22];
+            app.ManeuverDurationinminEditField_2Label.Position = [27 450 150 22];
             app.ManeuverDurationinminEditField_2Label.Text = 'Maneuver Duration in (min)';
 
             % Create ManeuverDurationinminEditField_2
             app.ManeuverDurationinminEditField_2 = uieditfield(app.LongTermPropulsoinToolTab, 'numeric');
-            app.ManeuverDurationinminEditField_2.Position = [468 695 111 25];
+            app.ManeuverDurationinminEditField_2.Position = [192 448 111 25];
             app.ManeuverDurationinminEditField_2.Value = 10;
 
             % Create IspsEditField_2Label
             app.IspsEditField_2Label = uilabel(app.LongTermPropulsoinToolTab);
             app.IspsEditField_2Label.HorizontalAlignment = 'right';
-            app.IspsEditField_2Label.Position = [415 668 38 22];
+            app.IspsEditField_2Label.Position = [139 421 38 22];
             app.IspsEditField_2Label.Text = 'Isp (s)';
 
             % Create IspsEditField_2
             app.IspsEditField_2 = uieditfield(app.LongTermPropulsoinToolTab, 'numeric');
-            app.IspsEditField_2.Position = [468 666 111 25];
+            app.IspsEditField_2.Position = [192 419 111 25];
             app.IspsEditField_2.Value = 1900;
 
             % Create ThrustNEditField_2Label
             app.ThrustNEditField_2Label = uilabel(app.LongTermPropulsoinToolTab);
             app.ThrustNEditField_2Label.HorizontalAlignment = 'right';
-            app.ThrustNEditField_2Label.Position = [394 638 59 22];
+            app.ThrustNEditField_2Label.Position = [118 391 59 22];
             app.ThrustNEditField_2Label.Text = 'Thrust (N)';
 
             % Create ThrustNEditField_2
             app.ThrustNEditField_2 = uieditfield(app.LongTermPropulsoinToolTab, 'numeric');
-            app.ThrustNEditField_2.Position = [468 636 111 25];
+            app.ThrustNEditField_2.Position = [192 389 111 25];
             app.ThrustNEditField_2.Value = 0.00035;
 
             % Create ThrusterEfficiencyEditField_2Label
             app.ThrusterEfficiencyEditField_2Label = uilabel(app.LongTermPropulsoinToolTab);
             app.ThrusterEfficiencyEditField_2Label.HorizontalAlignment = 'right';
-            app.ThrusterEfficiencyEditField_2Label.Position = [349 606 104 22];
+            app.ThrusterEfficiencyEditField_2Label.Position = [73 359 104 22];
             app.ThrusterEfficiencyEditField_2Label.Text = 'Thruster Efficiency';
 
             % Create ThrusterEfficiencyEditField_2
             app.ThrusterEfficiencyEditField_2 = uieditfield(app.LongTermPropulsoinToolTab, 'numeric');
-            app.ThrusterEfficiencyEditField_2.Position = [468 604 111 25];
+            app.ThrusterEfficiencyEditField_2.Position = [192 357 111 25];
             app.ThrusterEfficiencyEditField_2.Value = 1;
 
             % Create StopTimeEditFieldLabel
             app.StopTimeEditFieldLabel = uilabel(app.LongTermPropulsoinToolTab);
             app.StopTimeEditFieldLabel.HorizontalAlignment = 'right';
-            app.StopTimeEditFieldLabel.Position = [93 629 59 22];
+            app.StopTimeEditFieldLabel.Position = [117 622 59 22];
             app.StopTimeEditFieldLabel.Text = 'Stop Time';
 
             % Create StopTimeEditField
             app.StopTimeEditField = uieditfield(app.LongTermPropulsoinToolTab, 'text');
-            app.StopTimeEditField.Position = [167 629 126 22];
+            app.StopTimeEditField.Position = [191 622 112 22];
             app.StopTimeEditField.Value = '6 Aug 2024 20:15:04.320';
 
             % Create StartTimeEditFieldLabel
             app.StartTimeEditFieldLabel = uilabel(app.LongTermPropulsoinToolTab);
             app.StartTimeEditFieldLabel.HorizontalAlignment = 'right';
-            app.StartTimeEditFieldLabel.Position = [90 698 60 22];
+            app.StartTimeEditFieldLabel.Position = [117 695 60 22];
             app.StartTimeEditFieldLabel.Text = 'Start Time';
 
             % Create StartTimeEditField
             app.StartTimeEditField = uieditfield(app.LongTermPropulsoinToolTab, 'text');
-            app.StartTimeEditField.Position = [165 698 100 22];
+            app.StartTimeEditField.Position = [192 695 111 22];
             app.StartTimeEditField.Value = '6 Aug 2023 20:15:04.320';
 
-            % Create PropagateButton_2
-            app.PropagateButton_2 = uibutton(app.LongTermPropulsoinToolTab, 'push');
-            app.PropagateButton_2.Position = [161 518 100 23];
-            app.PropagateButton_2.Text = 'Propagate';
+            % Create LongTermPropagateButton
+            app.LongTermPropagateButton = uibutton(app.LongTermPropulsoinToolTab, 'push');
+            app.LongTermPropagateButton.ButtonPushedFcn = createCallbackFcn(app, @LongTermPropagateButtonPushed, true);
+            app.LongTermPropagateButton.Position = [35 310 100 23];
+            app.LongTermPropagateButton.Text = 'Propagate';
 
             % Create StoppingConditionLabel
             app.StoppingConditionLabel = uilabel(app.LongTermPropulsoinToolTab);
             app.StoppingConditionLabel.FontWeight = 'bold';
-            app.StoppingConditionLabel.Position = [36 659 116 22];
+            app.StoppingConditionLabel.Position = [122 655 116 22];
             app.StoppingConditionLabel.Text = 'Stopping Condition';
+
+            % Create SkipeveryxmaneuverEditFieldLabel
+            app.SkipeveryxmaneuverEditFieldLabel = uilabel(app.LongTermPropulsoinToolTab);
+            app.SkipeveryxmaneuverEditFieldLabel.HorizontalAlignment = 'right';
+            app.SkipeveryxmaneuverEditFieldLabel.Position = [51 523 127 22];
+            app.SkipeveryxmaneuverEditFieldLabel.Text = 'Skip every x maneuver';
+
+            % Create SkipeveryxmaneuverEditField
+            app.SkipeveryxmaneuverEditField = uieditfield(app.LongTermPropulsoinToolTab, 'numeric');
+            app.SkipeveryxmaneuverEditField.Position = [190 523 113 22];
+
+            % Create ManueverGlobalLongTermTable
+            app.ManueverGlobalLongTermTable = uitable(app.LongTermPropulsoinToolTab);
+            app.ManueverGlobalLongTermTable.ColumnName = '';
+            app.ManueverGlobalLongTermTable.RowName = {};
+            app.ManueverGlobalLongTermTable.Position = [34 85 269 174];
+
+            % Create ClearAstrogatorButton
+            app.ClearAstrogatorButton = uibutton(app.LongTermPropulsoinToolTab, 'push');
+            app.ClearAstrogatorButton.ButtonPushedFcn = createCallbackFcn(app, @ClearAstrogatorButtonPushed, true);
+            app.ClearAstrogatorButton.Position = [36 277 102 23];
+            app.ClearAstrogatorButton.Text = 'Clear Astrogator';
+
+            % Create ManeuverSettingsLabel
+            app.ManeuverSettingsLabel = uilabel(app.LongTermPropulsoinToolTab);
+            app.ManeuverSettingsLabel.FontWeight = 'bold';
+            app.ManeuverSettingsLabel.Position = [126 480 112 22];
+            app.ManeuverSettingsLabel.Text = 'Maneuver Settings';
 
             % Show the figure after all components are created
             app.CLIMBPredictorUIFigure.Visible = 'on';

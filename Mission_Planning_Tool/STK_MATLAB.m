@@ -1,10 +1,10 @@
 % Test for github to check if version changed
-TLE_file = 'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\TLE_PEGASUS_07082023.txt';  % TLE file path\name
-[Orbit_data_array,epoch_tle,End_Time] = TLE_processing_fcn(TLE_file); % function that extracts orbital elements from TLEs
+%TLE_file = 'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\TLE_PEGASUS_07082023.txt';  % TLE file path\name
+%[Orbit_data_array,epoch_tle,End_Time] = TLE_processing_fcn(TLE_file); % function that extracts orbital elements from TLEs
 
 %Time
 
-Start_Time=epoch_tle;
+%Start_Time=epoch_tle;
 
 % For display and attitude input only
 Start_Time_period=datetime(epoch_tle, 'InputFormat', 'd MMM yyyy HH:mm:ss.SSSSSSSSS');
@@ -16,28 +16,29 @@ scenario_period = table(Start_Time_period, Stop_Time_period);
 % UITable3.Data=scenario_period;
 
 %% Connect to STK
-% Get reference to running STK instance
+% % Get reference to running STK instance
 uiApplication = actxGetRunningServer('STK12.application');
-
-% Get our IAgStkObjectRoot interface
-root = uiApplication.Personality2;
-
-% if isempty(STKApp) || ~iscom(STKApp)
-%         STKApp = actxserver('STK12.Application');
-%         %STKvisible = false;
-% end
 % 
-%     root = STKPersonality2;
+% % Get our IAgStkObjectRoot interface
+% root = uiApplication.Personality2;
+
+if isempty(STKApp) || ~iscom(STKApp)
+        STKApp = actxserver('STK12.Application');
+        %STKvisible = false;
+end
+
+    root = STKApp.Personality2;
     
 %% Open Scenario
 disp('Opening STK Scenario')
 %ConsoleLog("Opening STK Scenario");
 
-scenario_file = 'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\CLIMB_scenario1\CLIMB_scenario1.sc';
+scenario_file = 'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\Mission_Planning_Tool\STK\CLIMB_scenario_v2\CLIMB_scenario1.sc';
 
-%root.LoadScenario(scenario_file)
+root.LoadScenario(scenario_file)
+%%
 disp('Before root.CurrentScenario')
-scenario = root.CurrentScenario;
+%scenario = root.CurrentScenario;
 disp('OAfter root.CurrentScenario')
 scenario.SetTimePeriod(Start_Time,End_Time);
 scenario.StartTime = Start_Time;
@@ -66,7 +67,9 @@ ArgPeri = Orbit_data_array(:,7);
 MeanAno = Orbit_data_array(:,11);
 
 % Initial State definition
-driver = CLIMB.Propagator;
+driver = CLIMB.Propagator.InitialState.                   
+
+
 initState = driver.MainSequence.GetItemByName('Initial State');
 initState.OrbitEpoch = Start_Time;
 

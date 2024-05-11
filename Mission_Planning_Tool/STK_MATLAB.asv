@@ -1,10 +1,10 @@
-
-TLE_file = 'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\TLE_PEGASUS_07082023.txt';  % TLE file path\name
-[Orbit_data_array,epoch_tle,End_Time] = TLE_processing_fcn(TLE_file); % function that extracts orbital elements from TLEs
+% Test for github to check if version changed
+%TLE_file = 'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\TLE_PEGASUS_07082023.txt';  % TLE file path\name
+%[Orbit_data_array,epoch_tle,End_Time] = TLE_processing_fcn(TLE_file); % function that extracts orbital elements from TLEs
 
 %Time
 
-Start_Time=epoch_tle;
+%Start_Time=epoch_tle;
 
 % For display and attitude input only
 Start_Time_period=datetime(epoch_tle, 'InputFormat', 'd MMM yyyy HH:mm:ss.SSSSSSSSS');
@@ -16,27 +16,30 @@ scenario_period = table(Start_Time_period, Stop_Time_period);
 % UITable3.Data=scenario_period;
 
 %% Connect to STK
-% Get reference to running STK instance
+% % Get reference to running STK instance
 uiApplication = actxGetRunningServer('STK12.application');
-
-% Get our IAgStkObjectRoot interface
-root = uiApplication.Personality2;
-
-% if isempty(STKApp) || ~iscom(STKApp)
-%         STKApp = actxserver('STK12.Application');
-%         %STKvisible = false;
-% end
 % 
-%     root = STKPersonality2;
+% % Get our IAgStkObjectRoot interface
+% root = uiApplication.Personality2;
+
+if isempty(STKApp) || ~iscom(STKApp)
+        STKApp = actxserver('STK12.Application');
+        %STKvisible = false;
+end
+
+    root = STKApp.Personality2;
     
 %% Open Scenario
 disp('Opening STK Scenario')
 %ConsoleLog("Opening STK Scenario");
 
-scenario_file = 'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\CLIMB_scenario1\CLIMB_scenario1.sc';
+scenario_file = 'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\Mission_Planning_Tool\STK\CLIMB_scenario_v2\CLIMB_scenario1.sc';
 
 root.LoadScenario(scenario_file)
-scenario = root.CurrentScenario;
+%%
+disp('Before root.CurrentScenario')
+%scenario = root.CurrentScenario;
+disp('OAfter root.CurrentScenario')
 scenario.SetTimePeriod(Start_Time,End_Time);
 scenario.StartTime = Start_Time;
 scenario.StopTime = End_Time;
@@ -64,7 +67,9 @@ ArgPeri = Orbit_data_array(:,7);
 MeanAno = Orbit_data_array(:,11);
 
 % Initial State definition
-driver = CLIMB.Propagator;
+driver = CLIMB.Propagator.InitialState.                   
+
+
 initState = driver.MainSequence.GetItemByName('Initial State');
 initState.OrbitEpoch = Start_Time;
 
@@ -82,7 +87,7 @@ kep.MeanAnomaly = MeanAno;
 driver.RunMCS;
 %% Access report
 disp('Getting access windows')
-ConsoleLog("Getting access windows");
+% ConsoleLog("Getting access windows");
 
 access =CLIMB.GetAccessToObject(Sensor);
 access.ComputeAccess;
@@ -104,7 +109,7 @@ accessDuration = accessDP.DataSets.GetDataSetByName('Duration').GetValues;
 
 %% Perigee passes report
 disp('Getting pergiee passes')
-ConsoleLog("Getting perigee passes");
+% ConsoleLog("Getting perigee passes");
 
 passes_res = CLIMB.DataProviders.Item('Passes').Exec(Start_Time,End_Time);
 per_pass_time=datetime(passes_res.DataSets.GetDataSetByName('Time of Perigee').GetValues, 'InputFormat', 'd MMM yyyy HH:mm:ss.SSSSSSSSS');
@@ -231,584 +236,584 @@ slewindex=1;
 
 %% Defining time and length for each attitude profile
 
-        % Access=app.UITable.Data(:,4);
-        % Access = table2array(Access);
-        % Burn=app.UITable2.Data(:,2);
-        % Burn=table2array(Burn);
+% Access=app.UITable.Data(:,4);
+% Access = table2array(Access);
+% Burn=app.UITable2.Data(:,2);
+% Burn=table2array(Burn);
 
-        Access = 1+zeros(12,1);
-        Burn= 1+zeros(54,1);
-        
-        %{Starttime, Profile Name}
-        % TimeTable = {Start_Time_period};
-        % NameTable = {'Sun_t'};
-        TimeTable = {};
-        NameTable = {};
-        
-        % Create two tables for access and thrust maneuver related attitude maneuvers times
-        % j = 1; 
-        % Access
-        for i = 2:(length(Burn)) % extract selected thrust times
-            if Burn(i) == 1 && Burn(1) == 0 
-                TimeTable{end +1} = startTimes_thrust(i-1); % Stop time thrust pointing
-                NameTable{end +1} = profileNames(4);
-                TimeTable{end +1} = startTimes_sun_t(i-1); % Start time sun pointing
-                NameTable{end +1} = profileNames(6);
-                TimeTable{end +1} = startTimes_slew_t(i-1); % Start time slew to sun pointing
-                NameTable{end +1} = profileNames(5);
-                TimeTable{end +1} = startTimes_slew_t0(i-1); % Start time thrust pointing
-                NameTable{end +1} = profileNames(7);
-            end
-        end
-        disp(NameTable)
-        for i = 1:(length(Access)) % extract selected access times
-            if Access(i) == 1     
-                TimeTable{end +1} = startTimes_com(i); % Start time tartget pointing (end slew)
-                NameTable{end +1} = profileNames(2);
-                TimeTable{end +1} = startTimes_sun_c(i); % Start time sun pointing
-                NameTable{end +1} = profileNames(1);
-                TimeTable{end +1} = startTimes_slew_c(i); % Start time slew to sun pointing (end target pointing)
-                NameTable{end +1} = profileNames(3);
-                TimeTable{end +1} = startTimes_slew_c0(i); % Start time slew to target pointing to GS
-                NameTable{end +1} = profileNames(8);
-            end
-        end
+Access = 1+zeros(12,1);
+Burn= 1+zeros(54,1);
 
-        disp(NameTable)
+%{Starttime, Profile Name}
+% TimeTable = {Start_Time_period};
+% NameTable = {'Sun_t'};
+TimeTable = {};
+NameTable = {};
+
+% Create two tables for access and thrust maneuver related attitude maneuvers times
+% j = 1; 
+% Access
+for i = 2:(length(Burn)) % extract selected thrust times
+    if Burn(i) == 1 && Burn(1) == 0 
+        TimeTable{end +1} = startTimes_thrust(i-1); % Stop time thrust pointing
+        NameTable{end +1} = profileNames(4);
+        TimeTable{end +1} = startTimes_sun_t(i-1); % Start time sun pointing
+        NameTable{end +1} = profileNames(6);
+        TimeTable{end +1} = startTimes_slew_t(i-1); % Start time slew to sun pointing
+        NameTable{end +1} = profileNames(5);
+        TimeTable{end +1} = startTimes_slew_t0(i-1); % Start time thrust pointing
+        NameTable{end +1} = profileNames(7);
+    end
+end
+disp(NameTable)
+for i = 1:(length(Access)) % extract selected access times
+    if Access(i) == 1     
+        TimeTable{end +1} = startTimes_com(i); % Start time tartget pointing (end slew)
+        NameTable{end +1} = profileNames(2);
+        TimeTable{end +1} = startTimes_sun_c(i); % Start time sun pointing
+        NameTable{end +1} = profileNames(1);
+        TimeTable{end +1} = startTimes_slew_c(i); % Start time slew to sun pointing (end target pointing)
+        NameTable{end +1} = profileNames(3);
+        TimeTable{end +1} = startTimes_slew_c0(i); % Start time slew to target pointing to GS
+        NameTable{end +1} = profileNames(8);
+    end
+end
+
+disp(NameTable)
                     
 %% Add Attitude Profiles 
-        disp('Setting attitude schedule')
-        app.ConsoleLog("Setting attitude schedule");
-        
-        %nProfile = numel(profileNames);
-        %nProfile = int32(floor(numel(startTimes)/2));
-        for i = 1:numel(NameTable())
-        
-         profileName = string(NameTable{i});
-         startTime = TimeTable{i};
-        
-         switch profileName
-             case "Sun_c"
-                profileType = profileTypes{1}; 
-                index = 1;
-             case "Communication"
-                profileType = profileTypes{2}; 
-                index = 2;
-             case "Slew_c"
-                profileType = profileTypes{3}; 
-             case "Thrust"
-                profileType = profileTypes{4}; 
-                index = 3;
-             case "Slew_t"
-                profileType = profileTypes{5}; 
-             case "Sun_t"
-                profileType = profileTypes{6}; 
-                index = 4;
-             case "Slew_t0"
-                profileType = profileTypes{7}; 
-             case "Slew_c0"
-                profileType = profileTypes{8}; 
-         end
+disp('Setting attitude schedule')
+%app.ConsoleLog("Setting attitude schedule");
 
-         
+%nProfile = numel(profileNames);
+%nProfile = int32(floor(numel(startTimes)/2));
+for i = 1:numel(NameTable())
 
-            % Start building command string:
-            disp('profileName:')
-            disp(profileName)
-            disp('startTime:')
-            disp(startTime)
-            disp('profileType:')
-            disp(profileType)
+ profileName = string(NameTable{i});
+ startTime = TimeTable{i};
+
+ switch profileName
+     case "Sun_c"
+        profileType = profileTypes{1}; 
+        index = 1;
+     case "Communication"
+        profileType = profileTypes{2}; 
+        index = 2;
+     case "Slew_c"
+        profileType = profileTypes{3}; 
+     case "Thrust"
+        profileType = profileTypes{4}; 
+        index = 3;
+     case "Slew_t"
+        profileType = profileTypes{5}; 
+     case "Sun_t"
+        profileType = profileTypes{6}; 
+        index = 4;
+     case "Slew_t0"
+        profileType = profileTypes{7}; 
+     case "Slew_c0"
+        profileType = profileTypes{8}; 
+ end
+
+ 
+
+    % Start building command string:
+    disp('profileName:')
+    disp(profileName)
+    disp('startTime:')
+    disp(startTime)
+    disp('profileType:')
+    disp(profileType)
 
 
-            baseString = string(strjoin(['AddAttitude */Satellite/','CLIMB',' Profile ',profileName,' "',startTime,'" ',profileType],''));
-            
-            % Gather attitude data based on profile type:
-            switch profileType
-                
-                % Custom "Aligned and Constrained" profile type:
-                case 'AlignConstrain'
-                    
-                    % Set align/constrain index:
-                    %index = alignConstrainIndex;
+    baseString = string(strjoin(['AddAttitude */Satellite/','CLIMB',' Profile ',profileName,' "',startTime,'" ',profileType],''));
+    
+    % Gather attitude data based on profile type:
+    switch profileType
         
-                    % Aligned vector data:
-                      alignVector = alignVectors{index};
-                     alignRefType = alignRefTypes{index};
-                    alignRefValue = alignRefValues{index};
-                      alignString = strcat([alignRefType,' ',alignRefValue,' "',alignVector,'"']);
-                    
-                    % Constrained vector data:
-                      constrainVector = constrainVectors{index};
-                     constrainRefType = constrainRefTypes{index};
-                    constrainRefValue = constrainRefValues{index};
-                      constrainString = strcat([constrainRefType,' ',constrainRefValue,' "',constrainVector,'"']);
-                    
-                    % Build profile string:
-                    profileString = strcat([alignString,' ',constrainString]);
-                    
-                    % Increment align/constrain index by 1:
-                    %alignConstrainIndex = alignConstrainIndex + 1;
-                case 'FixedTimeSlew'
-        
-                    % Set slew index:
-                    index = slewindex;
-                    
-                    % Slew data:
-                    %slewtype=slewtype{index};
-        %                 slewString=strcat([slewtype]);
-                    
-                    % Build profile string:
-                    profileString = 'Smooth On'; %slewString;
-                    
-                    % Increment inertial index by 1:
-                    slewindex=slewindex+1;
-        
-                % One of the 'installed' "Aligned and Constrained" profiles:
-                otherwise
-        %             
-                    % Set installed index:
-                    index = installedIndex;
-                    
-                    % Get offset angle:
-                    offsetAngle = offsetAngles{index};
-                    offsetString = strcat(['Offset ',offsetAngle]);
-                    
-                    % Build profile string:
-                    profileString = offsetString;
-                    
-                    % Increment installed index by 1:
-                    installedIndex = installedIndex + 1;
-            end
+        % Custom "Aligned and Constrained" profile type:
+        case 'AlignConstrain'
             
-            
-            
-           disp('profileString')
-           disp(profileString)
+            % Set align/constrain index:
+            %index = alignConstrainIndex;
 
-            commandString = convertStringsToChars(strjoin([baseString,' ',profileString],''));
-            disp('commandString')
-            disp(commandString)
+            % Aligned vector data:
+              alignVector = alignVectors{index};
+             alignRefType = alignRefTypes{index};
+            alignRefValue = alignRefValues{index};
+              alignString = strcat([alignRefType,' ',alignRefValue,' "',alignVector,'"']);
             
-            app.root.ExecuteCommand(commandString);% Build command string and execute command:
-            %disp(commandString)
-        end    
+            % Constrained vector data:
+              constrainVector = constrainVectors{index};
+             constrainRefType = constrainRefTypes{index};
+            constrainRefValue = constrainRefValues{index};
+              constrainString = strcat([constrainRefType,' ',constrainRefValue,' "',constrainVector,'"']);
+            
+            % Build profile string:
+            profileString = strcat([alignString,' ',constrainString]);
+            
+            % Increment align/constrain index by 1:
+            %alignConstrainIndex = alignConstrainIndex + 1;
+        case 'FixedTimeSlew'
+
+            % Set slew index:
+            index = slewindex;
+            
+            % Slew data:
+            %slewtype=slewtype{index};
+%                 slewString=strcat([slewtype]);
+            
+            % Build profile string:
+            profileString = 'Smooth On'; %slewString;
+            
+            % Increment inertial index by 1:
+            slewindex=slewindex+1;
+
+        % One of the 'installed' "Aligned and Constrained" profiles:
+        otherwise
+%             
+            % Set installed index:
+            index = installedIndex;
+            
+            % Get offset angle:
+            offsetAngle = offsetAngles{index};
+            offsetString = strcat(['Offset ',offsetAngle]);
+            
+            % Build profile string:
+            profileString = offsetString;
+            
+            % Increment installed index by 1:
+            installedIndex = installedIndex + 1;
+    end
+    
+    
+    
+   disp('profileString')
+   disp(profileString)
+
+    commandString = convertStringsToChars(strjoin([baseString,' ',profileString],''));
+    disp('commandString')
+    disp(commandString)
+    
+    root.ExecuteCommand(commandString);% Build command string and execute command:
+    %disp(commandString)
+end    
     
 disp('Running the Scenario')
-app.ConsoleLog("Running Scenario");
-%% Checking for Communication-Thrust-Overlaps
-        disp('Checking for Communication-Thrust-Overlaps')
-        app.ConsoleLog("Checking for Communication-Thrust overlaps");
-        
-        AttitudeSchedule = app.CLIMB.DataProviders.Item('Attitude Segment Schedule').Exec(app.Start_Time,app.End_Time);
-        AttitudeNames = AttitudeSchedule.DataSets.GetDataSetByName('Name').GetValues;
-        %disp(AttitudeNames)
-        AttitudeNames = transpose(AttitudeNames);
-        
-        % standard schedule: {'Thrust'        }
-        %                    {'QuatData'      }
-        %                    {'Thrust'        }
-        %                    {'Slew_t'        }
-        %                    {'Sun_t'         }
-        %                    {'Slew_c0'       }
-        %                    {'Communication' }
-        %                    {'Slew_c'        }
-        %                    {'Sun_c'         }
-        %                    {'Slew_t0'       }
-        
-        
-            AttitudeNames = string(AttitudeNames);
-        
-        Error = false;
-        for i = 1:(numel(AttitudeNames)-1)
-                Name1 = AttitudeNames(i);
-                Name2 = AttitudeNames(i+1);
-        
-            if Name1 == "Thrust" && Name2 ~= "QuatData" && Name2 ~= "Slew_t"
-                Error = true;
-                disp('Error: Attitude Profile overlap (1)')
-                app.ConsoleLog("Error: Attitude Profile overlap (1)");
-                break
-            end
-            if Name1 == "Slew_t" && Name2 ~= "Sun_t"
-                Error = true;
-                disp('Error: Attitude Profile overlap (2)')
-                app.ConsoleLog("Error: Attitude Profile overlap (2)");
-                break
-            end
-            if Name1 == "Communication" && Name2 ~= "Slew_c"
-                Error = true;
-                disp('Error: Attitude Profile overlap (3)')
-                app.ConsoleLog("Error: Attitude Profile overlap (3)");
-                break
-            end
-            if Name1 == "Slew_c" && Name2 ~= "Sun_c"
-                Error = true;
-                disp('Error: Attitude Profile overlap (4)')
-                app.ConsoleLog("Error: Attitude Profile overlap (4)");
-                break
-            end
-        end
-        
-        if Error == false
-            disp('No overlaps detected. All profiles Nominal!')
-            app.ConsoleLog("No overlaps detected. All profiles Nominal!");
-        
-        else 
-            return
-        end
-
-%% Create schedule table output
-        newHeaderNames = {'Access window start', 'Access window end', 'Access duration', 'Access Status'};
-        app.UITable.Data.Properties.VariableNames = newHeaderNames;
-        writetable(app.UITable.Data, 'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\Access_schedule.csv');
-        newHeaderNames2 = {'Perigee pass time', 'Propulsion On/ Off'};
-        app.UITable2.Data.Properties.VariableNames = newHeaderNames2;
-        writetable(app.UITable2.Data, 'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\Fire_schedule.csv');
-        newHeaderNames3= {'Scenario start time','Scenario stop time'};
-        app.UITable3.Data.Properties.VariableNames = newHeaderNames3;
-        writetable(app.UITable3.Data, 'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\Scenario_time.csv');
-  
-%% Creating Solar Power Report
-        disp('Creating Solar Power report')
-        app.ConsoleLog("Creating Solar Power report");
-        
-        %Command = string(strjoin(['VO  */Satellite/CLIMB SolarPanel Compute ','" ',app.Start_Time,' "',' " ',app.Start_Time,' " 60'],''));
-        % 6 Aug 2023 20:15:04.320,9 Aug 2023 20:15:04.320
-        %Command = 'VO */Satellite/CLIMB SolarPanel Compute "6 Aug 2023 20:15:04.320" "9 Aug 2023 20:15:04.320" 600';
-        stepsize = 600;
-        app.root.UnitPreferences.Item('Power').SetCurrentUnit('W');
-        app.root.ExecuteCommand("VO */Satellite/CLIMB SolarPanel Visualization Radius On 1 AddGroup Solar_Panels");
-        Command = convertCharsToStrings('VO */Satellite/CLIMB SolarPanel Compute "') + app.Start_Time +convertCharsToStrings('" "')+ app.End_Time + convertCharsToStrings('" ') + string(stepsize);
-        app.root.ExecuteCommand(Command);
-        Solar = app.CLIMB.DataProviders.Item('Solar Panel Power').Exec(app.Start_Time,app.End_Time,stepsize);
-                
-        SolarTime = Solar.DataSets.GetDataSetByName('Time').GetValues;
-        SolarPower = Solar.DataSets.GetDataSetByName('Power').GetValues;
-        SolarIntensity = Solar.DataSets.GetDataSetByName('Solar Intensity').GetValues;
-        
-        SolarMatrix = [SolarTime,SolarPower,SolarIntensity];
-        SolarTable = array2table(SolarMatrix);
-        SolarTable.Properties.VariableNames(1:3) = {'Time (UTCG)','Power (W)','Solar Intensity'};
-        writetable(SolarTable,'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\CLIMB_Solar_Panel_Power.csv');
-
-%% Creating Torque Report
-        disp('Creating Torque report')
-        app.ConsoleLog("Creating Torque report");
-        
-        Torque=app.CLIMB.DataProviders.Item('Vectors(Body)').Group.Item('TotalTorque').Exec(app.Start_Time,app.End_Time,5);
-        TorqueX=Torque.DataSets.GetDataSetByName('x').GetValues;
-        TorqueY=Torque.DataSets.GetDataSetByName('y').GetValues;
-        TorqueZ=Torque.DataSets.GetDataSetByName('z').GetValues;
-        Torque_time=datetime(Torque.DataSets.GetDataSetByName('Time').GetValues, 'InputFormat', 'd MMM yyyy HH:mm:ss.SSSSSSSSS');
-        Torque_time= datestr(Torque_time, 'dd mmm yyyy HH:MM:SS');
-        Torque_time=cellstr(Torque_time);
-        Torque_table = [Torque_time,TorqueX,TorqueY,TorqueZ];
-        Torque_table= array2table(Torque_table);
-        Torque_table.Properties.VariableNames(1:4) = {'Time (UTCG)','Torque in X (Nm)','Torque in Y (Nm)','Torque in Z (Nm)'};
-        writetable(Torque_table,'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\Torque.csv');
-
-%% Creating Angular Momentum Report
-        disp('Creating Angular Momentum report')
-        app.ConsoleLog("Creating Angular Momentum report");
-        
-        AngMomentum =app.CLIMB.DataProviders.Item('Vectors(Body)').Group.Item('AngMomentum').Exec(app.Start_Time,app.End_Time,5);
-        MomentumX=AngMomentum.DataSets.GetDataSetByName('x').GetValues;
-        MomentumY=AngMomentum.DataSets.GetDataSetByName('y').GetValues;
-        MomentumZ=AngMomentum.DataSets.GetDataSetByName('z').GetValues;
-        Momentum_time=datetime(AngMomentum.DataSets.GetDataSetByName('Time').GetValues, 'InputFormat', 'd MMM yyyy HH:mm:ss.SSSSSSSSS');
-        Momentum_time= datestr(Momentum_time, 'dd mmm yyyy HH:MM:SS');
-        Momentum_time=cellstr(Momentum_time);
-        Momentum_table = [Momentum_time,MomentumX,MomentumY,MomentumZ];
-        Momentum_table= array2table(Momentum_table);
-        Momentum_table.Properties.VariableNames(1:4) = {'Time (UTCG)','AngMomentum in X (kg*m^2/sec)','AngMomentum in Y (kg*m^2/sec)', 'AngMomentum in Z (kg*m^2/sec)'};
-        writetable(Momentum_table,'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\AngularMomentum.csv');
-
-%% Creating angle change and angular velocity report
-        disp('Creating angle change and angular velocity report')
-        app.ConsoleLog("Creating angle change and angular velocity report");
-        
-        YPR =app.CLIMB.DataProviders.Item('Attitude YPR').Group.Item('Seq RPY').Exec(app.Start_Time,app.End_Time,1);
-        Yaw=YPR.DataSets.GetDataSetByName('Yaw').GetValues;
-        Pitch=YPR.DataSets.GetDataSetByName('Pitch').GetValues;
-        Roll=YPR.DataSets.GetDataSetByName('Roll').GetValues;
-        Yaw_rate=YPR.DataSets.GetDataSetByName('Yaw Rate').GetValues;
-        Pitch_rate=YPR.DataSets.GetDataSetByName('Pitch Rate').GetValues;
-        Roll_rate=YPR.DataSets.GetDataSetByName('Roll Rate').GetValues;
-        YPR_time=datetime(YPR.DataSets.GetDataSetByName('Time').GetValues, 'InputFormat', 'd MMM yyyy HH:mm:ss.SSSSSSSSS');
-        YPR_time= datestr(YPR_time, 'dd mmm yyyy HH:MM:SS');
-        YPR_time=cellstr(YPR_time);
-        YPR_table = [YPR_time,Yaw,Pitch,Roll,Yaw_rate,Pitch_rate,Roll_rate];
-        YPR_table= array2table(YPR_table);
-        YPR_table.Properties.VariableNames(1:7) = {'Time (UTCG)','Yaw','Pitch','Roll','Yaw rate','Pitch rate,','Roll rate'};
-        writetable(YPR_table,'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\YPR.csv');
-%% Runninng Torque tool
-        disp('Running Power and torque tool')
-        app.ConsoleLog("Running Power and torque tool");
-
-        %% Constants
-
-Torque_tool_data  = readtable('C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\Torque_tool_data.xlsx');
-
-% CubeSat CAD data
-I_xx = table2array(Torque_tool_data(2,2));% kg*m^2 (Roll)
-I_yy=table2array(Torque_tool_data(3,2)); % kg*m^2 (Pitch)
-I_zz=table2array(Torque_tool_data(4,2)); % kg*m^2 (Yaw)
-
-cm_x=table2array(Torque_tool_data(7,2));%m cm shifts
-cm_y=table2array(Torque_tool_data(8,2));%m cm shifts
-
-Height_z=table2array(Torque_tool_data(11,2)); % m
-
-% ADCS data sheet
-ADCS_max_L=table2array(Torque_tool_data(2,6)); % mNms
-ADCS_max_T=table2array(Torque_tool_data(1,6)); % mNm
-RPM_limit=table2array(Torque_tool_data(3,6));% 8000 for CW0017 and 10000 for CW0057for reaction 
-I_fw=table2array(Torque_tool_data(5,6)); %kg*m^2 2.4E-05 for CW0017 and 7E-05 for CW0057 and CS has 0.1432 kg*m^2 (need 3.2 E-05)
-
-% ADCS last status from downlink data
-RPM_wheel_initial=table2array(Torque_tool_data(15,6));
-L_x_cubesat_initial=table2array(Torque_tool_data(16,6));
-L_y_cubesat_initial=table2array(Torque_tool_data(17,6));
-L_z_cubesat_initial=table2array(Torque_tool_data(18,6));
-
-% Contributors to torque due to CM shift
-F=table2array(Torque_tool_data(15,2));% N
-t_thrust=table2array(Torque_tool_data(16,2));% s
-
-
-% Contributors to torque due to thrust vector misallignment 
-Misalignment_angle=table2array(Torque_tool_data(17,2)); % deg
-
-
-%
-% T_cm_x=cm_x*F; % Torque, Nm
-% T_cm_y=cm_y*F; % Torque, Nm
-% L_cm_x=T_cm_x*t_thrust;
-% L_cm_y=T_cm_x*t_thrust;
-
-%% Input reading
-
-% YPR 
-    Angular_velo_data=readtable("C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\YPR.csv",'HeaderLines', 1);
-    Velo_time=Angular_velo_data(:,1);
-    Velo_time=table2cell(Velo_time);
-    Velo_time=datetime(Velo_time, 'InputFormat', 'd MMM yyyy HH:mm:ss');
-    Yaw=table2array(Angular_velo_data(:,2));
-    Pitch=table2array(Angular_velo_data(:,3));
-    Roll=table2array(Angular_velo_data(:,4));
-    % Yaw_rate=table2array(Angular_velo_data(:,5));
-    % Pitch_rate=table2array(Angular_velo_data(:,6));
-    % Roll_rate=table2array(Angular_velo_data(:,7));
-
-        % Correction due to -180 to +180 limit
-        for i = 1:(length(Yaw)-1)
-         
-            while Yaw(i) < (Yaw(i+1)-90)
-                Yaw(i+1) = Yaw(i+1)-360;
-            end
-            while Yaw(i) > (Yaw(i+1)+90)
-                Yaw(i+1) = Yaw(i+1)+360;
-            end
-            while Pitch(i) < (Pitch(i+1)-90)
-                Pitch(i+1) = Pitch(i+1)-360;
-            end
-            while Pitch(i) > (Pitch(i+1)+90)
-                Pitch(i+1) = Pitch(i+1)+360;
-            end
-            while Roll(i) < (Roll(i+1)-90)
-                Roll(i+1) = Roll(i+1)-360;
-            end
-            while Roll(i) > (Roll(i+1)+90)
-                Roll(i+1) = Roll(i+1)+360;
-            end
-        
-        end
-
-% Fire schedule
-    Fire_data=readtable("C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\Fire_schedule.csv",'HeaderLines', 1);
-    Fire_times = table2array(Fire_data(:,1));
-    Fire_status = table2array(Fire_data(:,2));
-        Burn_time_status = zeros((size(Velo_time,1))-1,1); %  delta_L_x=zeros(size(L_x, 1), 1);
-        
-        for i = 1:size(Fire_times)
-            if Fire_status(1) == 1
-                break;
-            end
-            for j = 1:size(Burn_time_status)
-                if abs(seconds(Velo_time(j) - Fire_times(i))) < 300 && Fire_status(i) == 1
-                    Burn_time_status(j) = 1;
-                end
-            
-            end
-        
-        end
-
-% Torque
-    Torque_data= readtable("C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\Torque.csv", 'HeaderLines', 1);
-    Torque_time=Torque_data(:,1);
-    Torque_time = table2cell(Torque_time);
-    Torque_time= datetime(Torque_time, 'InputFormat', 'd MMM yyyy HH:mm:ss');
-    T_x=1000*table2array(Torque_data(:,2)); % mNm
-    T_y=1000*table2array(Torque_data(:,3)); % mNm
-    T_z=1000*table2array(Torque_data(:,4)); % mNm
-
-    T=sqrt(T_x.^2+T_y.^2+T_z.^2); % Abs. Torque
-
-    Max_Torque=max(T);% Max. Torque
-    disp(['Maximum Instantenious Torque (mNm): ', num2str(Max_Torque)]);
-
-    cum_T_x=sum(T_x);
-    cum_T_y=sum(T_y);
-    cum_T_z=sum(T_z);
-    Total_torque=sqrt(cum_T_x^2+cum_T_y^2+cum_T_z^2);% Abs. Cum. Torque
-    disp(['Total Torque (mNm): ', num2str(Max_Torque)]);
-
-% Angular Momentum
-    L_data= readtable("C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\AngularMomentum.csv", 'HeaderLines', 1);
-    L_time=L_data(:,1);
-    L_time = table2cell(L_time);
-    L_time= datetime(L_time, 'InputFormat', 'd MMM yyyy HH:mm:ss');
-    L_x=1000*table2array(L_data(:,2)); % 1000*kg*m^2/sec= mNms % + L_cm_x*      
-    L_y=1000*table2array(L_data(:,3)); % 1000*kg*m^2/sec= mNms
-    L_z=1000*table2array(L_data(:,4)); % 1000*kg*m^2/sec= mNms
-    L=sqrt(L_x.^2+L_y.^2+L_z.^2);
-    Max_L=max(L);
-    disp(['Maximum instantaneous Angular Momentum (mNms) ', num2str(Max_L)]);
-    
-    delta_L_x=zeros(size(L_x, 1), 1);
-    for i = 2:length(delta_L_x)
-        delta_L_x_i = L_x(i);
-        delta_L_x_iminus1 = L_x(i-1);
-        delta_L_x(i) = L_x(i)-L_x(i-1);
-    end
-    L_x(1)=L_x_cubesat_initial+L_x(1);
-    Cum_L_x=L_x(1)+cumsum(delta_L_x);
-
-
-    delta_L_y=zeros(size(L_y, 1), 1);
-    for i = 2:length(delta_L_y)
-        delta_L_y_i = L_y(i);
-        delta_L_y_iminus1 = L_y(i-1);
-        delta_L_y(i) = L_y(i)-L_y(i-1);
-    end
-    L_y(1)=L_y_cubesat_initial+L_y(1);
-    Cum_L_y=L(1)+cumsum(delta_L_y);
-
-    delta_L_z=zeros(size(L_z, 1), 1);
-    for i = 2:length(delta_L_z)
-        delta_L_z_i = L_z(i);
-        delta_L_z_iminus1 = L_z(i-1);
-        delta_L_z(i) = L_z(i)-L_z(i-1);
-    end
-    L_z(1)=L_z_cubesat_initial+L_z(1);
-    Cum_L_z=L(1)+cumsum(delta_L_z);
-
-    L_limit_pos=ADCS_max_L*ones(size(L_time));
-    L_limit_neg=-ADCS_max_L*ones(size(L_time));
-
-%     time_L_limit_x =max( L_time(abs(Cum_L_x) <= L_limit_pos));
-%     time_L_limit_y =max( L_time(abs(Cum_L_y) <= L_limit_pos));
-%     time_L_limit_z =max( L_time(abs(Cum_L_z) <= L_limit_pos));
-
-%%  Angular velcoity derivation
-    time_step = seconds(Velo_time(2) - Velo_time(1)); % Calculate the time step in seconds
-    
-    Yaw_rate = diff(Yaw(:))./time_step; % deg/s
-    Pitch_rate = diff(Pitch(:))./time_step;
-    Roll_rate = diff(Roll(:))./time_step;
-  
-%% Angular momentum due to CM shift
-    Angular_momentum_pitch_thrust_persecond = F*cm_x; % Nm
-    Angular_momentum_roll_thrust_persecond = F*cm_y; % Nm
-    Thrust_momentum_pitch = Angular_momentum_pitch_thrust_persecond*time_step*Burn_time_status; 
-    Thrust_momentum_roll = Angular_momentum_roll_thrust_persecond*time_step*Burn_time_status;
-    Thrust_momentum_pitch = cumtrapz(Thrust_momentum_pitch);
-    Thrust_momentum_roll = cumtrapz(Thrust_momentum_roll);
-
- %% Angular mometum due to Thrust vector misallignment 
-    Thrust_momentum_PR=F*Height_z*sind(5); % Either could be added to X or Y, roll or pitch, Nm
-    Angular_momentum_misall_PR=cumtrapz(Thrust_momentum_PR*time_step*Burn_time_status);
-
- %% Total angular momentum   
-    Angular_momentum_yaw_STK = (Yaw_rate*pi/180) * I_zz; % Nms
-    Angular_momentum_pitch_STK = (Pitch_rate*pi/180) * I_yy;
-    Angular_momentum_roll_STK = (Roll_rate*pi/180) * I_xx;
-
-    Angular_momentum_yaw = Angular_momentum_yaw_STK ; % Nms
-    Angular_momentum_pitch= Angular_momentum_pitch_STK + Thrust_momentum_pitch+Angular_momentum_misall_PR; 
-    Angular_momentum_roll= Angular_momentum_roll_STK +Thrust_momentum_roll;
-%     figure Name STK_L
+%app.ConsoleLog("Running Scenario");
+% %% Checking for Communication-Thrust-Overlaps
+%         disp('Checking for Communication-Thrust-Overlaps')
+%         app.ConsoleLog("Checking for Communication-Thrust overlaps");
+% 
+%         AttitudeSchedule = app.CLIMB.DataProviders.Item('Attitude Segment Schedule').Exec(app.Start_Time,app.End_Time);
+%         AttitudeNames = AttitudeSchedule.DataSets.GetDataSetByName('Name').GetValues;
+%         %disp(AttitudeNames)
+%         AttitudeNames = transpose(AttitudeNames);
+% 
+%         % standard schedule: {'Thrust'        }
+%         %                    {'QuatData'      }
+%         %                    {'Thrust'        }
+%         %                    {'Slew_t'        }
+%         %                    {'Sun_t'         }
+%         %                    {'Slew_c0'       }
+%         %                    {'Communication' }
+%         %                    {'Slew_c'        }
+%         %                    {'Sun_c'         }
+%         %                    {'Slew_t0'       }
+% 
+% 
+%             AttitudeNames = string(AttitudeNames);
+% 
+%         Error = false;
+%         for i = 1:(numel(AttitudeNames)-1)
+%                 Name1 = AttitudeNames(i);
+%                 Name2 = AttitudeNames(i+1);
+% 
+%             if Name1 == "Thrust" && Name2 ~= "QuatData" && Name2 ~= "Slew_t"
+%                 Error = true;
+%                 disp('Error: Attitude Profile overlap (1)')
+%                 app.ConsoleLog("Error: Attitude Profile overlap (1)");
+%                 break
+%             end
+%             if Name1 == "Slew_t" && Name2 ~= "Sun_t"
+%                 Error = true;
+%                 disp('Error: Attitude Profile overlap (2)')
+%                 app.ConsoleLog("Error: Attitude Profile overlap (2)");
+%                 break
+%             end
+%             if Name1 == "Communication" && Name2 ~= "Slew_c"
+%                 Error = true;
+%                 disp('Error: Attitude Profile overlap (3)')
+%                 app.ConsoleLog("Error: Attitude Profile overlap (3)");
+%                 break
+%             end
+%             if Name1 == "Slew_c" && Name2 ~= "Sun_c"
+%                 Error = true;
+%                 disp('Error: Attitude Profile overlap (4)')
+%                 app.ConsoleLog("Error: Attitude Profile overlap (4)");
+%                 break
+%             end
+%         end
+% 
+%         if Error == false
+%             disp('No overlaps detected. All profiles Nominal!')
+%             app.ConsoleLog("No overlaps detected. All profiles Nominal!");
+% 
+%         else 
+%             return
+%         end
+% 
+% %% Create schedule table output
+%         newHeaderNames = {'Access window start', 'Access window end', 'Access duration', 'Access Status'};
+%         app.UITable.Data.Properties.VariableNames = newHeaderNames;
+%         writetable(app.UITable.Data, 'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\Access_schedule.csv');
+%         newHeaderNames2 = {'Perigee pass time', 'Propulsion On/ Off'};
+%         app.UITable2.Data.Properties.VariableNames = newHeaderNames2;
+%         writetable(app.UITable2.Data, 'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\Fire_schedule.csv');
+%         newHeaderNames3= {'Scenario start time','Scenario stop time'};
+%         app.UITable3.Data.Properties.VariableNames = newHeaderNames3;
+%         writetable(app.UITable3.Data, 'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\Scenario_time.csv');
+% 
+% %% Creating Solar Power Report
+%         disp('Creating Solar Power report')
+%         app.ConsoleLog("Creating Solar Power report");
+% 
+%         %Command = string(strjoin(['VO  */Satellite/CLIMB SolarPanel Compute ','" ',app.Start_Time,' "',' " ',app.Start_Time,' " 60'],''));
+%         % 6 Aug 2023 20:15:04.320,9 Aug 2023 20:15:04.320
+%         %Command = 'VO */Satellite/CLIMB SolarPanel Compute "6 Aug 2023 20:15:04.320" "9 Aug 2023 20:15:04.320" 600';
+%         stepsize = 600;
+%         app.root.UnitPreferences.Item('Power').SetCurrentUnit('W');
+%         app.root.ExecuteCommand("VO */Satellite/CLIMB SolarPanel Visualization Radius On 1 AddGroup Solar_Panels");
+%         Command = convertCharsToStrings('VO */Satellite/CLIMB SolarPanel Compute "') + app.Start_Time +convertCharsToStrings('" "')+ app.End_Time + convertCharsToStrings('" ') + string(stepsize);
+%         app.root.ExecuteCommand(Command);
+%         Solar = app.CLIMB.DataProviders.Item('Solar Panel Power').Exec(app.Start_Time,app.End_Time,stepsize);
+% 
+%         SolarTime = Solar.DataSets.GetDataSetByName('Time').GetValues;
+%         SolarPower = Solar.DataSets.GetDataSetByName('Power').GetValues;
+%         SolarIntensity = Solar.DataSets.GetDataSetByName('Solar Intensity').GetValues;
+% 
+%         SolarMatrix = [SolarTime,SolarPower,SolarIntensity];
+%         SolarTable = array2table(SolarMatrix);
+%         SolarTable.Properties.VariableNames(1:3) = {'Time (UTCG)','Power (W)','Solar Intensity'};
+%         writetable(SolarTable,'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\CLIMB_Solar_Panel_Power.csv');
+% 
+% %% Creating Torque Report
+%         disp('Creating Torque report')
+%         app.ConsoleLog("Creating Torque report");
+% 
+%         Torque=app.CLIMB.DataProviders.Item('Vectors(Body)').Group.Item('TotalTorque').Exec(app.Start_Time,app.End_Time,5);
+%         TorqueX=Torque.DataSets.GetDataSetByName('x').GetValues;
+%         TorqueY=Torque.DataSets.GetDataSetByName('y').GetValues;
+%         TorqueZ=Torque.DataSets.GetDataSetByName('z').GetValues;
+%         Torque_time=datetime(Torque.DataSets.GetDataSetByName('Time').GetValues, 'InputFormat', 'd MMM yyyy HH:mm:ss.SSSSSSSSS');
+%         Torque_time= datestr(Torque_time, 'dd mmm yyyy HH:MM:SS');
+%         Torque_time=cellstr(Torque_time);
+%         Torque_table = [Torque_time,TorqueX,TorqueY,TorqueZ];
+%         Torque_table= array2table(Torque_table);
+%         Torque_table.Properties.VariableNames(1:4) = {'Time (UTCG)','Torque in X (Nm)','Torque in Y (Nm)','Torque in Z (Nm)'};
+%         writetable(Torque_table,'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\Torque.csv');
+% 
+% %% Creating Angular Momentum Report
+%         disp('Creating Angular Momentum report')
+%         app.ConsoleLog("Creating Angular Momentum report");
+% 
+%         AngMomentum =app.CLIMB.DataProviders.Item('Vectors(Body)').Group.Item('AngMomentum').Exec(app.Start_Time,app.End_Time,5);
+%         MomentumX=AngMomentum.DataSets.GetDataSetByName('x').GetValues;
+%         MomentumY=AngMomentum.DataSets.GetDataSetByName('y').GetValues;
+%         MomentumZ=AngMomentum.DataSets.GetDataSetByName('z').GetValues;
+%         Momentum_time=datetime(AngMomentum.DataSets.GetDataSetByName('Time').GetValues, 'InputFormat', 'd MMM yyyy HH:mm:ss.SSSSSSSSS');
+%         Momentum_time= datestr(Momentum_time, 'dd mmm yyyy HH:MM:SS');
+%         Momentum_time=cellstr(Momentum_time);
+%         Momentum_table = [Momentum_time,MomentumX,MomentumY,MomentumZ];
+%         Momentum_table= array2table(Momentum_table);
+%         Momentum_table.Properties.VariableNames(1:4) = {'Time (UTCG)','AngMomentum in X (kg*m^2/sec)','AngMomentum in Y (kg*m^2/sec)', 'AngMomentum in Z (kg*m^2/sec)'};
+%         writetable(Momentum_table,'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\AngularMomentum.csv');
+% 
+% %% Creating angle change and angular velocity report
+%         disp('Creating angle change and angular velocity report')
+%         app.ConsoleLog("Creating angle change and angular velocity report");
+% 
+%         YPR =app.CLIMB.DataProviders.Item('Attitude YPR').Group.Item('Seq RPY').Exec(app.Start_Time,app.End_Time,1);
+%         Yaw=YPR.DataSets.GetDataSetByName('Yaw').GetValues;
+%         Pitch=YPR.DataSets.GetDataSetByName('Pitch').GetValues;
+%         Roll=YPR.DataSets.GetDataSetByName('Roll').GetValues;
+%         Yaw_rate=YPR.DataSets.GetDataSetByName('Yaw Rate').GetValues;
+%         Pitch_rate=YPR.DataSets.GetDataSetByName('Pitch Rate').GetValues;
+%         Roll_rate=YPR.DataSets.GetDataSetByName('Roll Rate').GetValues;
+%         YPR_time=datetime(YPR.DataSets.GetDataSetByName('Time').GetValues, 'InputFormat', 'd MMM yyyy HH:mm:ss.SSSSSSSSS');
+%         YPR_time= datestr(YPR_time, 'dd mmm yyyy HH:MM:SS');
+%         YPR_time=cellstr(YPR_time);
+%         YPR_table = [YPR_time,Yaw,Pitch,Roll,Yaw_rate,Pitch_rate,Roll_rate];
+%         YPR_table= array2table(YPR_table);
+%         YPR_table.Properties.VariableNames(1:7) = {'Time (UTCG)','Yaw','Pitch','Roll','Yaw rate','Pitch rate,','Roll rate'};
+%         writetable(YPR_table,'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\YPR.csv');
+% %% Runninng Torque tool
+%         disp('Running Power and torque tool')
+%         app.ConsoleLog("Running Power and torque tool");
+% 
+%         %% Constants
+% 
+% Torque_tool_data  = readtable('C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\Torque_tool_data.xlsx');
+% 
+% % CubeSat CAD data
+% I_xx = table2array(Torque_tool_data(2,2));% kg*m^2 (Roll)
+% I_yy=table2array(Torque_tool_data(3,2)); % kg*m^2 (Pitch)
+% I_zz=table2array(Torque_tool_data(4,2)); % kg*m^2 (Yaw)
+% 
+% cm_x=table2array(Torque_tool_data(7,2));%m cm shifts
+% cm_y=table2array(Torque_tool_data(8,2));%m cm shifts
+% 
+% Height_z=table2array(Torque_tool_data(11,2)); % m
+% 
+% % ADCS data sheet
+% ADCS_max_L=table2array(Torque_tool_data(2,6)); % mNms
+% ADCS_max_T=table2array(Torque_tool_data(1,6)); % mNm
+% RPM_limit=table2array(Torque_tool_data(3,6));% 8000 for CW0017 and 10000 for CW0057for reaction 
+% I_fw=table2array(Torque_tool_data(5,6)); %kg*m^2 2.4E-05 for CW0017 and 7E-05 for CW0057 and CS has 0.1432 kg*m^2 (need 3.2 E-05)
+% 
+% % ADCS last status from downlink data
+% RPM_wheel_initial=table2array(Torque_tool_data(15,6));
+% L_x_cubesat_initial=table2array(Torque_tool_data(16,6));
+% L_y_cubesat_initial=table2array(Torque_tool_data(17,6));
+% L_z_cubesat_initial=table2array(Torque_tool_data(18,6));
+% 
+% % Contributors to torque due to CM shift
+% F=table2array(Torque_tool_data(15,2));% N
+% t_thrust=table2array(Torque_tool_data(16,2));% s
+% 
+% 
+% % Contributors to torque due to thrust vector misallignment 
+% Misalignment_angle=table2array(Torque_tool_data(17,2)); % deg
+% 
+% 
+% %
+% % T_cm_x=cm_x*F; % Torque, Nm
+% % T_cm_y=cm_y*F; % Torque, Nm
+% % L_cm_x=T_cm_x*t_thrust;
+% % L_cm_y=T_cm_x*t_thrust;
+% 
+% %% Input reading
+% 
+% % YPR 
+%     Angular_velo_data=readtable("C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\YPR.csv",'HeaderLines', 1);
+%     Velo_time=Angular_velo_data(:,1);
+%     Velo_time=table2cell(Velo_time);
+%     Velo_time=datetime(Velo_time, 'InputFormat', 'd MMM yyyy HH:mm:ss');
+%     Yaw=table2array(Angular_velo_data(:,2));
+%     Pitch=table2array(Angular_velo_data(:,3));
+%     Roll=table2array(Angular_velo_data(:,4));
+%     % Yaw_rate=table2array(Angular_velo_data(:,5));
+%     % Pitch_rate=table2array(Angular_velo_data(:,6));
+%     % Roll_rate=table2array(Angular_velo_data(:,7));
+% 
+%         % Correction due to -180 to +180 limit
+%         for i = 1:(length(Yaw)-1)
+% 
+%             while Yaw(i) < (Yaw(i+1)-90)
+%                 Yaw(i+1) = Yaw(i+1)-360;
+%             end
+%             while Yaw(i) > (Yaw(i+1)+90)
+%                 Yaw(i+1) = Yaw(i+1)+360;
+%             end
+%             while Pitch(i) < (Pitch(i+1)-90)
+%                 Pitch(i+1) = Pitch(i+1)-360;
+%             end
+%             while Pitch(i) > (Pitch(i+1)+90)
+%                 Pitch(i+1) = Pitch(i+1)+360;
+%             end
+%             while Roll(i) < (Roll(i+1)-90)
+%                 Roll(i+1) = Roll(i+1)-360;
+%             end
+%             while Roll(i) > (Roll(i+1)+90)
+%                 Roll(i+1) = Roll(i+1)+360;
+%             end
+% 
+%         end
+% 
+% % Fire schedule
+%     Fire_data=readtable("C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\Fire_schedule.csv",'HeaderLines', 1);
+%     Fire_times = table2array(Fire_data(:,1));
+%     Fire_status = table2array(Fire_data(:,2));
+%         Burn_time_status = zeros((size(Velo_time,1))-1,1); %  delta_L_x=zeros(size(L_x, 1), 1);
+% 
+%         for i = 1:size(Fire_times)
+%             if Fire_status(1) == 1
+%                 break;
+%             end
+%             for j = 1:size(Burn_time_status)
+%                 if abs(seconds(Velo_time(j) - Fire_times(i))) < 300 && Fire_status(i) == 1
+%                     Burn_time_status(j) = 1;
+%                 end
+% 
+%             end
+% 
+%         end
+% 
+% % Torque
+%     Torque_data= readtable("C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\Torque.csv", 'HeaderLines', 1);
+%     Torque_time=Torque_data(:,1);
+%     Torque_time = table2cell(Torque_time);
+%     Torque_time= datetime(Torque_time, 'InputFormat', 'd MMM yyyy HH:mm:ss');
+%     T_x=1000*table2array(Torque_data(:,2)); % mNm
+%     T_y=1000*table2array(Torque_data(:,3)); % mNm
+%     T_z=1000*table2array(Torque_data(:,4)); % mNm
+% 
+%     T=sqrt(T_x.^2+T_y.^2+T_z.^2); % Abs. Torque
+% 
+%     Max_Torque=max(T);% Max. Torque
+%     disp(['Maximum Instantenious Torque (mNm): ', num2str(Max_Torque)]);
+% 
+%     cum_T_x=sum(T_x);
+%     cum_T_y=sum(T_y);
+%     cum_T_z=sum(T_z);
+%     Total_torque=sqrt(cum_T_x^2+cum_T_y^2+cum_T_z^2);% Abs. Cum. Torque
+%     disp(['Total Torque (mNm): ', num2str(Max_Torque)]);
+% 
+% % Angular Momentum
+%     L_data= readtable("C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\AngularMomentum.csv", 'HeaderLines', 1);
+%     L_time=L_data(:,1);
+%     L_time = table2cell(L_time);
+%     L_time= datetime(L_time, 'InputFormat', 'd MMM yyyy HH:mm:ss');
+%     L_x=1000*table2array(L_data(:,2)); % 1000*kg*m^2/sec= mNms % + L_cm_x*      
+%     L_y=1000*table2array(L_data(:,3)); % 1000*kg*m^2/sec= mNms
+%     L_z=1000*table2array(L_data(:,4)); % 1000*kg*m^2/sec= mNms
+%     L=sqrt(L_x.^2+L_y.^2+L_z.^2);
+%     Max_L=max(L);
+%     disp(['Maximum instantaneous Angular Momentum (mNms) ', num2str(Max_L)]);
+% 
+%     delta_L_x=zeros(size(L_x, 1), 1);
+%     for i = 2:length(delta_L_x)
+%         delta_L_x_i = L_x(i);
+%         delta_L_x_iminus1 = L_x(i-1);
+%         delta_L_x(i) = L_x(i)-L_x(i-1);
+%     end
+%     L_x(1)=L_x_cubesat_initial+L_x(1);
+%     Cum_L_x=L_x(1)+cumsum(delta_L_x);
+% 
+% 
+%     delta_L_y=zeros(size(L_y, 1), 1);
+%     for i = 2:length(delta_L_y)
+%         delta_L_y_i = L_y(i);
+%         delta_L_y_iminus1 = L_y(i-1);
+%         delta_L_y(i) = L_y(i)-L_y(i-1);
+%     end
+%     L_y(1)=L_y_cubesat_initial+L_y(1);
+%     Cum_L_y=L(1)+cumsum(delta_L_y);
+% 
+%     delta_L_z=zeros(size(L_z, 1), 1);
+%     for i = 2:length(delta_L_z)
+%         delta_L_z_i = L_z(i);
+%         delta_L_z_iminus1 = L_z(i-1);
+%         delta_L_z(i) = L_z(i)-L_z(i-1);
+%     end
+%     L_z(1)=L_z_cubesat_initial+L_z(1);
+%     Cum_L_z=L(1)+cumsum(delta_L_z);
+% 
+%     L_limit_pos=ADCS_max_L*ones(size(L_time));
+%     L_limit_neg=-ADCS_max_L*ones(size(L_time));
+% 
+% %     time_L_limit_x =max( L_time(abs(Cum_L_x) <= L_limit_pos));
+% %     time_L_limit_y =max( L_time(abs(Cum_L_y) <= L_limit_pos));
+% %     time_L_limit_z =max( L_time(abs(Cum_L_z) <= L_limit_pos));
+% 
+% %%  Angular velcoity derivation
+%     time_step = seconds(Velo_time(2) - Velo_time(1)); % Calculate the time step in seconds
+% 
+%     Yaw_rate = diff(Yaw(:))./time_step; % deg/s
+%     Pitch_rate = diff(Pitch(:))./time_step;
+%     Roll_rate = diff(Roll(:))./time_step;
+% 
+% %% Angular momentum due to CM shift
+%     Angular_momentum_pitch_thrust_persecond = F*cm_x; % Nm
+%     Angular_momentum_roll_thrust_persecond = F*cm_y; % Nm
+%     Thrust_momentum_pitch = Angular_momentum_pitch_thrust_persecond*time_step*Burn_time_status; 
+%     Thrust_momentum_roll = Angular_momentum_roll_thrust_persecond*time_step*Burn_time_status;
+%     Thrust_momentum_pitch = cumtrapz(Thrust_momentum_pitch);
+%     Thrust_momentum_roll = cumtrapz(Thrust_momentum_roll);
+% 
+%  %% Angular mometum due to Thrust vector misallignment 
+%     Thrust_momentum_PR=F*Height_z*sind(5); % Either could be added to X or Y, roll or pitch, Nm
+%     Angular_momentum_misall_PR=cumtrapz(Thrust_momentum_PR*time_step*Burn_time_status);
+% 
+%  %% Total angular momentum   
+%     Angular_momentum_yaw_STK = (Yaw_rate*pi/180) * I_zz; % Nms
+%     Angular_momentum_pitch_STK = (Pitch_rate*pi/180) * I_yy;
+%     Angular_momentum_roll_STK = (Roll_rate*pi/180) * I_xx;
+% 
+%     Angular_momentum_yaw = Angular_momentum_yaw_STK ; % Nms
+%     Angular_momentum_pitch= Angular_momentum_pitch_STK + Thrust_momentum_pitch+Angular_momentum_misall_PR; 
+%     Angular_momentum_roll= Angular_momentum_roll_STK +Thrust_momentum_roll;
+% %     figure Name STK_L
+% %         hold on
+% %         plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_yaw_STK,  'Color', 'green')
+% %         plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_pitch_STK, 'Color', 'black')
+% %         plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_roll_STK,  'Color', 'red')
+% %         xlabel('Time') 
+% %         ylabel('Angular momentum (Nms)')
+% %         legend({'Angular momentum in yaw','Angular momentum in pitch','Angular momentum in roll', ...
+% %             },'Location','southeast')
+% %         hold off
+% % 
+% % 
+% %      figure Name VectorMis_L
+% %             hold on
+% %             plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_misall_PR, 'Color', 'black')
+% %             
+% %             xlabel('Time') 
+% %             ylabel('Angular momentum (Nms)')
+% %             legend({'Angular momentum due to thrust vector misalignment', ...
+% %                 },'Location','southeast')
+% %             hold off
+% % 
+% %       figure Name Total_L
+% %             hold on
+% %             plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_yaw,  'Color', 'green')
+% %             plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_pitch, 'Color', 'black')
+% %             plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_roll,  'Color', 'red')
+% %             xlabel('Time') 
+% %             ylabel('Angular momentum (Nms)')
+% %             legend({'Angular momentum in yaw','Angular momentum in pitch','Angular momentum in roll', ...
+% %                 },'Location','southeast')
+% %             hold off
+% 
+% %% RPM of the wheel
+%     RPM_x = Angular_momentum_roll/I_fw*30/pi+RPM_wheel_initial; 
+%     RPM_y = Angular_momentum_pitch/I_fw*30/pi+RPM_wheel_initial;
+%     RPM_z = Angular_momentum_yaw/I_fw*30/pi+RPM_wheel_initial;
+% 
+%     figure Name RPM
 %         hold on
-%         plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_yaw_STK,  'Color', 'green')
-%         plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_pitch_STK, 'Color', 'black')
-%         plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_roll_STK,  'Color', 'red')
-%         xlabel('Time') 
-%         ylabel('Angular momentum (Nms)')
-%         legend({'Angular momentum in yaw','Angular momentum in pitch','Angular momentum in roll', ...
-%             },'Location','southeast')
-%         hold off
+%         plot(Velo_time(1:length(Yaw_rate)),RPM_x, 'Color', 'red','LineWidth',2)
+%         plot(Velo_time(1:length(Yaw_rate)),RPM_y, 'Color', 'black', 'LineWidth',2)
+%         plot(Velo_time(1:length(Yaw_rate)),RPM_z,'Color', 'green','LineWidth',2)
 % 
+%         yline(RPM_limit, '--', 'LineWidth',2, 'Color', 'red')
+%         yline(-RPM_limit, '--', 'LineWidth',2, 'Color', 'red')
+%         ylim([-8000 8000])
+%         xlabel('Time','FontSize',24,'FontWeight','bold') 
+%         ylabel('RPMs','FontSize',24,'FontWeight','bold') 
+%         legend({'RPM around x','RPM around y','RPM around z', ...
+%             'Upper Limit' ,'Lower Limit'},'Location','southeast','FontSize',24,'FontWeight','bold')
+%         set(gca,'FontSize', 24)
+%         hold off 
 % 
-%      figure Name VectorMis_L
-%             hold on
-%             plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_misall_PR, 'Color', 'black')
-%             
-%             xlabel('Time') 
-%             ylabel('Angular momentum (Nms)')
-%             legend({'Angular momentum due to thrust vector misalignment', ...
-%                 },'Location','southeast')
-%             hold off
+%     Velo_time=cellstr(Velo_time(1:size(RPM_x)));
+%     RPM_over_time=[Velo_time,num2cell(RPM_x),num2cell(RPM_y),num2cell(RPM_z)];
+%     RPM_over_time=array2table(RPM_over_time);
+%     RPM_over_time.Properties.VariableNames(1:4) = {'Time (UTCG)','RPM in X','RPM in Y','RPM in Z'};
+%     writetable(RPM_over_time,'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\RPM_overTime.csv');
+%     disp('RPM report is generated')
+%     app.ConsoleLog("RPM report is generated");
 % 
-%       figure Name Total_L
-%             hold on
-%             plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_yaw,  'Color', 'green')
-%             plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_pitch, 'Color', 'black')
-%             plot(Velo_time(1:length(Yaw_rate)),Angular_momentum_roll,  'Color', 'red')
-%             xlabel('Time') 
-%             ylabel('Angular momentum (Nms)')
-%             legend({'Angular momentum in yaw','Angular momentum in pitch','Angular momentum in roll', ...
-%                 },'Location','southeast')
-%             hold off
-
-%% RPM of the wheel
-    RPM_x = Angular_momentum_roll/I_fw*30/pi+RPM_wheel_initial; 
-    RPM_y = Angular_momentum_pitch/I_fw*30/pi+RPM_wheel_initial;
-    RPM_z = Angular_momentum_yaw/I_fw*30/pi+RPM_wheel_initial;
-    
-    figure Name RPM
-        hold on
-        plot(Velo_time(1:length(Yaw_rate)),RPM_x, 'Color', 'red','LineWidth',2)
-        plot(Velo_time(1:length(Yaw_rate)),RPM_y, 'Color', 'black', 'LineWidth',2)
-        plot(Velo_time(1:length(Yaw_rate)),RPM_z,'Color', 'green','LineWidth',2)
-    
-        yline(RPM_limit, '--', 'LineWidth',2, 'Color', 'red')
-        yline(-RPM_limit, '--', 'LineWidth',2, 'Color', 'red')
-        ylim([-8000 8000])
-        xlabel('Time','FontSize',24,'FontWeight','bold') 
-        ylabel('RPMs','FontSize',24,'FontWeight','bold') 
-        legend({'RPM around x','RPM around y','RPM around z', ...
-            'Upper Limit' ,'Lower Limit'},'Location','southeast','FontSize',24,'FontWeight','bold')
-        set(gca,'FontSize', 24)
-        hold off 
-    
-    Velo_time=cellstr(Velo_time(1:size(RPM_x)));
-    RPM_over_time=[Velo_time,num2cell(RPM_x),num2cell(RPM_y),num2cell(RPM_z)];
-    RPM_over_time=array2table(RPM_over_time);
-    RPM_over_time.Properties.VariableNames(1:4) = {'Time (UTCG)','RPM in X','RPM in Y','RPM in Z'};
-    writetable(RPM_over_time,'C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\RPM_overTime.csv');
-    disp('RPM report is generated')
-    app.ConsoleLog("RPM report is generated");
-
-%% Runninng Power tool
-pyrunfile('C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\PowerTool.py')
-
-disp('Power tool report is generated')
-app.ConsoleLog("Power tool report is genrated");
-
-disp('Completed')
-app.ConsoleLog("Completed");
-
+% %% Runninng Power tool
+% pyrunfile('C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CLIMB Operation\PowerTool.py')
+% 
+% disp('Power tool report is generated')
+% app.ConsoleLog("Power tool report is genrated");
+% 
+% disp('Completed')
+% app.ConsoleLog("Completed");
+% 
 
 
 
