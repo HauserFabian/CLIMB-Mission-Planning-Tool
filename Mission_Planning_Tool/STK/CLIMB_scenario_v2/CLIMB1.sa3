@@ -558,6 +558,11 @@ SolarToolBoundRadius		 1
 UseLabelOffset		 Yes
 LabelOffsetInPixels		 Yes
 LabelXYZ		 5 -4 10
+BEGIN PointingArticTargets
+    BEGIN PointingArtic
+        Name		 SolarArrays-000000 Sun
+    END
+END
 BEGIN DynamicDataText
     Name		 "Attitude Quaternions"
     Show		 No

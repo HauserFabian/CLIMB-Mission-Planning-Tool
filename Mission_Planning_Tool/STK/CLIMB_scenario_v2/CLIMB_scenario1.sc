@@ -5,10 +5,10 @@ BEGIN Scenario
 
     BEGIN Epoch
 
-        Epoch		 6 Aug 2023 20:15:04.320000000
+        Epoch		 6 May 2024 20:15:04.320000000
         SmartEpoch		
         BEGIN EVENT
-            Epoch		 6 Aug 2023 20:15:04.320000000
+            Epoch		 6 May 2024 20:15:04.320000000
             EventEpoch		
             BEGIN EVENT
                 Type		 EVENT_LINKTO
@@ -22,18 +22,18 @@ BEGIN Scenario
 
     BEGIN Interval
 
-        Start		 6 Aug 2023 20:15:04.320000000
-        Stop		 7 Aug 2023 20:15:04.320000000
+        Start		 6 May 2024 20:15:04.320000000
+        Stop		 7 May 2024 20:15:04.320000000
         SmartInterval		
         BEGIN EVENTINTERVAL
             StartEvent		
             BEGIN EVENT
-                Epoch		 6 Aug 2023 20:15:04.320000000
+                Epoch		 6 May 2024 20:15:04.320000000
                 EpochState		 Explicit
             END EVENT
             StopEvent		
             BEGIN EVENT
-                Epoch		 7 Aug 2023 20:15:04.320000000
+                Epoch		 7 May 2024 20:15:04.320000000
                 EpochState		 Explicit
             END EVENT
             IntervalState		 StartStop
@@ -117,7 +117,7 @@ BEGIN Scenario
 
                         BEGIN Intervals
 
-"6 Aug 2023 20:15:04.320000000" "7 Aug 2023 20:15:04.320000000"
+"6 May 2024 20:15:04.320000000" "7 May 2024 20:15:04.320000000"
                         END Intervals
 
                     END IntervalList
@@ -156,7 +156,7 @@ BEGIN Scenario
 
                         BEGIN Intervals
 
-"6 Aug 2023 20:15:04.320000000" "7 Aug 2023 20:15:04.320000000"
+"6 May 2024 20:15:04.320000000" "7 May 2024 20:15:04.320000000"
                         END Intervals
 
                     END IntervalList
@@ -399,14 +399,14 @@ BEGIN Scenario
             BEGIN Class
                 Name		 Satellite
                 BEGIN Favorite
-                    Type		 Report
+                    Type		 Graph
                     BaseDir		 Install
-                    Style		 Attitude Schedule
+                    Style		 Yaw Pitch Roll
                 END Favorite
                 BEGIN Favorite
                     Type		 Report
                     BaseDir		 Install
-                    Style		 Attitude Segment
+                    Style		 Sun Vector Fixed
                 END Favorite
                 BEGIN Favorite
                     Type		 Report
@@ -416,12 +416,12 @@ BEGIN Scenario
                 BEGIN Favorite
                     Type		 Report
                     BaseDir		 Install
-                    Style		 Sun Vector Fixed
+                    Style		 Attitude Segment
                 END Favorite
                 BEGIN Favorite
-                    Type		 Graph
+                    Type		 Report
                     BaseDir		 Install
-                    Style		 Yaw Pitch Roll
+                    Style		 Attitude Schedule
                 END Favorite
             END Class
         END ReportFavorites
@@ -1803,9 +1803,9 @@ Beginig of torque assesm
 
             BEGIN Animation
 
-                StartTime		 6 Aug 2023 20:15:04.320000000
-                EndTime		 7 Aug 2023 20:15:04.320000000
-                CurrentTime		 6 Aug 2023 20:15:04.320000000
+                StartTime		 6 May 2024 20:15:04.320000000
+                EndTime		 7 May 2024 20:15:04.320000000
+                CurrentTime		 6 May 2024 20:30:12.731000000
                 Direction		 Forward
                 UpdateDelta		 30
                 RefreshDelta		 0.010000
@@ -1888,7 +1888,7 @@ Beginig of torque assesm
 
                     BEGIN Style
                         Name		 DefaultWithBing
-                        Time		 -8417704.32
+                        Time		 -32091304.32
                         UpdateDelta		 10
 
                         BEGIN MapAttributes
@@ -2076,7 +2076,7 @@ Beginig of torque assesm
 
                     BEGIN Style
                         Name		 DefaultWithoutBing
-                        Time		 -8417704.32
+                        Time		 -32091304.32
                         UpdateDelta		 10
 
                         BEGIN MapAttributes
@@ -2320,7 +2320,6 @@ Beginig of torque assesm
             Place/FHWN/Sensor/Sensor		
         END Instance
         Instance Satellite/CLIMB
-            *		
             Satellite/CLIMB		
         END Instance
         Instance Satellite/CLIMB1
