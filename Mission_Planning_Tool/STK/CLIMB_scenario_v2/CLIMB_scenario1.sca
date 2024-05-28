@@ -1,101 +1,7 @@
 stk.v.12.0
 WrittenBy    STK_v12.7.1
 BEGIN Access
-    Scenario/CLIMB_scenario1/Satellite/CLIMB
-    Scenario/CLIMB_scenario1/Place/FHWN
-
-    IsComputed		 Yes
-    SaveComputedData		 Yes
-    ComputationMode		 1
-    UpdateOnReference		 Yes
-    DupIsDifferent		 No
-    UIOrderReversed		 No
-    UITimePeriod		 Object
-    UseLightTimeDelay		 Yes
-    ClockHost		 Base
-    TimeSense		 Transmit
-    AberrationType		 Annual
-    TimeDelayConvergence		 0.0005
-    SetMaxStepFromInsts		 Yes
-    MaxTimeStep		 360
-    MinTimeStep		 0.01
-    TimeConvergence		 0.005
-    AbsValueConvergence		 1e-14
-    RelValueConvergence		 1e-07
-    DetectEventsUsingSamplesOnly		 No
-
-    BEGIN ConsideredIntervals
-
-        2024-05-06T20:15:04.320000000 2024-05-07T20:15:04.320000000
-
-    END ConsideredIntervals
-
-    BEGIN AccessIntervals
-
-        2024-05-07T06:52:36.892150730 2024-05-07T07:01:49.913155057
-        2024-05-07T08:23:48.118029662 2024-05-07T08:32:29.989938528
-        2024-05-07T17:16:09.184732282 2024-05-07T17:24:03.450945958
-        2024-05-07T18:46:02.047973133 2024-05-07T18:55:35.797126923
-
-    END AccessIntervals
-
-    BEGIN StageList
-
-        BEGIN Stage
-
-            MaxRelMotion		 0.34
-
-            BEGIN ConstraintList
-
-                BEGIN Constraint
-
-                    Name		 LineOfSight
-                    Instance		 Object2
-                    Action		 IncludeIntervals
-                    Type		 ZeroBound
-                    ComputationID		 1
-
-                    BEGIN ConstraintInputTimes
-
-                        2024-05-06T20:15:04.320000000 2024-05-07T20:15:04.320000000
-
-                    END ConstraintInputTimes
-
-                    StartConstrainedByAvailability		 No
-                    StopConstrainedByAvailability		 No
-
-                    BEGIN ConstraintSatisfaction
-
-                        2024-05-07T06:52:36.892150730 2024-05-07T07:01:49.913155057
-                        2024-05-07T08:23:48.118029662 2024-05-07T08:32:29.989938528
-                        2024-05-07T17:16:09.184732282 2024-05-07T17:24:03.450945958
-                        2024-05-07T18:46:02.047973133 2024-05-07T18:55:35.797126923
-
-                    END ConstraintSatisfaction
-
-                END Constraint
-
-            END ConstraintList
-
-        END Stage
-
-
-    END StageList
-
-    Show		 Yes
-    Inherit		 Yes
-    ShowIV		 Yes
-    ShowLineGfx		 Yes
-    ShowHiliteGfx		 Yes
-    LineWidth		 1
-
-    BEGIN Crdn
-    END Crdn
-
-END Access
-
-BEGIN Access
-    Scenario/CLIMB_scenario1/Place/FHWN/Sensor/Sensor
+    Scenario/CLIMB_scenario1/Place/FHWN_place/Sensor/Sensor
     Scenario/CLIMB_scenario1/Satellite/CLIMB
 
     IsComputed		 Yes
@@ -103,7 +9,7 @@ BEGIN Access
     ComputationMode		 1
     UpdateOnReference		 Yes
     DupIsDifferent		 No
-    UIOrderReversed		 No
+    UIOrderReversed		 Yes
     UITimePeriod		 Object
     UseLightTimeDelay		 Yes
     ClockHost		 Base
@@ -206,6 +112,194 @@ BEGIN Access
                         2024-05-07T08:25:05.253441882 2024-05-07T08:31:13.675409849
                         2024-05-07T17:17:37.306979207 2024-05-07T17:22:34.523191793
                         2024-05-07T18:47:09.719048252 2024-05-07T18:54:26.951003608
+
+                    END ConstraintSatisfaction
+
+                END Constraint
+
+            END ConstraintList
+
+        END Stage
+
+
+    END StageList
+
+    Show		 Yes
+    Inherit		 Yes
+    ShowIV		 Yes
+    ShowLineGfx		 Yes
+    ShowHiliteGfx		 Yes
+    LineWidth		 1
+
+    BEGIN Crdn
+    END Crdn
+
+END Access
+
+BEGIN Access
+    Scenario/CLIMB_scenario1/Satellite/CLIMB
+    Scenario/CLIMB_scenario1/Place/FHWN_place
+
+    IsComputed		 Yes
+    SaveComputedData		 Yes
+    ComputationMode		 1
+    UpdateOnReference		 Yes
+    DupIsDifferent		 No
+    UIOrderReversed		 No
+    UITimePeriod		 Object
+    UseLightTimeDelay		 Yes
+    ClockHost		 Base
+    TimeSense		 Transmit
+    AberrationType		 Annual
+    TimeDelayConvergence		 0.0005
+    SetMaxStepFromInsts		 Yes
+    MaxTimeStep		 360
+    MinTimeStep		 0.01
+    TimeConvergence		 0.005
+    AbsValueConvergence		 1e-14
+    RelValueConvergence		 1e-07
+    DetectEventsUsingSamplesOnly		 No
+
+    BEGIN ConsideredIntervals
+
+        2024-05-06T20:15:04.320000000 2024-05-07T20:15:04.320000000
+
+    END ConsideredIntervals
+
+    BEGIN AccessIntervals
+
+        2024-05-07T06:52:36.892150730 2024-05-07T07:01:49.913155057
+        2024-05-07T08:23:48.118029662 2024-05-07T08:32:29.989938528
+        2024-05-07T17:16:09.184732282 2024-05-07T17:24:03.450945958
+        2024-05-07T18:46:02.047973133 2024-05-07T18:55:35.797126923
+
+    END AccessIntervals
+
+    BEGIN StageList
+
+        BEGIN Stage
+
+            MaxRelMotion		 0.34
+
+            BEGIN ConstraintList
+
+                BEGIN Constraint
+
+                    Name		 LineOfSight
+                    Instance		 Object2
+                    Action		 IncludeIntervals
+                    Type		 ZeroBound
+                    ComputationID		 1
+
+                    BEGIN ConstraintInputTimes
+
+                        2024-05-06T20:15:04.320000000 2024-05-07T20:15:04.320000000
+
+                    END ConstraintInputTimes
+
+                    StartConstrainedByAvailability		 No
+                    StopConstrainedByAvailability		 No
+
+                    BEGIN ConstraintSatisfaction
+
+                        2024-05-07T06:52:36.892150730 2024-05-07T07:01:49.913155057
+                        2024-05-07T08:23:48.118029662 2024-05-07T08:32:29.989938528
+                        2024-05-07T17:16:09.184732282 2024-05-07T17:24:03.450945958
+                        2024-05-07T18:46:02.047973133 2024-05-07T18:55:35.797126923
+
+                    END ConstraintSatisfaction
+
+                END Constraint
+
+            END ConstraintList
+
+        END Stage
+
+
+    END StageList
+
+    Show		 Yes
+    Inherit		 Yes
+    ShowIV		 Yes
+    ShowLineGfx		 Yes
+    ShowHiliteGfx		 Yes
+    LineWidth		 1
+
+    BEGIN Crdn
+    END Crdn
+
+END Access
+
+BEGIN Access
+    Scenario/CLIMB_scenario1/Facility/FHWN
+    Scenario/CLIMB_scenario1/Satellite/CLIMB
+
+    IsComputed		 Yes
+    SaveComputedData		 Yes
+    ComputationMode		 1
+    UpdateOnReference		 Yes
+    DupIsDifferent		 No
+    UIOrderReversed		 No
+    UITimePeriod		 Object
+    UseLightTimeDelay		 Yes
+    ClockHost		 Base
+    TimeSense		 Transmit
+    AberrationType		 Annual
+    TimeDelayConvergence		 5e-05
+    SetMaxStepFromInsts		 Yes
+    MaxTimeStep		 360
+    MinTimeStep		 0.01
+    TimeConvergence		 0.005
+    AbsValueConvergence		 1e-14
+    RelValueConvergence		 1e-08
+    DetectEventsUsingSamplesOnly		 No
+
+    BEGIN ConsideredIntervals
+
+        2024-05-06T20:15:04.320000000 2024-05-07T20:15:04.320000000
+
+    END ConsideredIntervals
+
+    BEGIN AccessIntervals
+
+        2024-05-07T06:52:35.711629765 2024-05-07T07:01:51.060414562
+        2024-05-07T08:23:46.895360354 2024-05-07T08:32:31.185455156
+        2024-05-07T17:16:07.855916325 2024-05-07T17:24:04.778712123
+        2024-05-07T18:46:00.937517726 2024-05-07T18:55:36.911296867
+
+    END AccessIntervals
+
+    BEGIN StageList
+
+        BEGIN Stage
+
+            MaxRelMotion		 0.34
+
+            BEGIN ConstraintList
+
+                BEGIN Constraint
+
+                    Name		 LineOfSight
+                    Instance		 Object1
+                    Action		 IncludeIntervals
+                    Type		 ZeroBound
+                    ComputationID		 1
+
+                    BEGIN ConstraintInputTimes
+
+                        2024-05-06T20:15:04.320000000 2024-05-07T20:15:04.320000000
+
+                    END ConstraintInputTimes
+
+                    StartConstrainedByAvailability		 No
+                    StopConstrainedByAvailability		 No
+
+                    BEGIN ConstraintSatisfaction
+
+                        2024-05-07T06:52:35.711629765 2024-05-07T07:01:51.060414562
+                        2024-05-07T08:23:46.895360354 2024-05-07T08:32:31.185455156
+                        2024-05-07T17:16:07.855916325 2024-05-07T17:24:04.778712123
+                        2024-05-07T18:46:00.937517726 2024-05-07T18:55:36.911296867
 
                     END ConstraintSatisfaction
 

@@ -471,7 +471,7 @@ VaporOutputRate		  5.0000000000000000e-01
 VaporRadius		 1000
 VaporExpansionRate		 0.01
 VaporStartTime		 0
-VaporEndTime		 86400
+VaporEndTime		 0
 VaporIntervalPtr		
 BEGIN EVENTINTERVAL
     EventInterval		

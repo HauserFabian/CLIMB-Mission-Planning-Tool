@@ -5,10 +5,10 @@ BEGIN Scenario
 
     BEGIN Epoch
 
-        Epoch		 6 May 2024 20:15:04.320000000
+        Epoch		 22 May 2024 20:15:04.320000000
         SmartEpoch		
         BEGIN EVENT
-            Epoch		 6 May 2024 20:15:04.320000000
+            Epoch		 22 May 2024 20:15:04.320000000
             EventEpoch		
             BEGIN EVENT
                 Type		 EVENT_LINKTO
@@ -22,18 +22,18 @@ BEGIN Scenario
 
     BEGIN Interval
 
-        Start		 6 May 2024 20:15:04.320000000
-        Stop		 7 May 2024 20:15:04.320000000
+        Start		 22 May 2024 20:15:04.320000000
+        Stop		 22 May 2024 20:15:04.320000000
         SmartInterval		
         BEGIN EVENTINTERVAL
             StartEvent		
             BEGIN EVENT
-                Epoch		 6 May 2024 20:15:04.320000000
+                Epoch		 22 May 2024 20:15:04.320000000
                 EpochState		 Explicit
             END EVENT
             StopEvent		
             BEGIN EVENT
-                Epoch		 7 May 2024 20:15:04.320000000
+                Epoch		 22 May 2024 20:15:04.320000000
                 EpochState		 Explicit
             END EVENT
             IntervalState		 StartStop
@@ -117,7 +117,7 @@ BEGIN Scenario
 
                         BEGIN Intervals
 
-"6 May 2024 20:15:04.320000000" "7 May 2024 20:15:04.320000000"
+"22 May 2024 20:15:04.320000000" "23 May 2024 20:15:04.320000000"
                         END Intervals
 
                     END IntervalList
@@ -156,7 +156,7 @@ BEGIN Scenario
 
                         BEGIN Intervals
 
-"6 May 2024 20:15:04.320000000" "7 May 2024 20:15:04.320000000"
+"22 May 2024 20:15:04.320000000" "23 May 2024 20:15:04.320000000"
                         END Intervals
 
                     END IntervalList
@@ -233,8 +233,8 @@ BEGIN Scenario
             LaunchWindowUseEntireTraj		 Yes
             LaunchWindowTrajMETStart		 0
             LaunchWindowTrajMETStop		 900
-            LaunchWindowStart		 -8417704.32
-            LaunchWindowStop		 -8331304.32
+            LaunchWindowStart		 -32091304.32
+            LaunchWindowStop		 -32004904.32
             LaunchMETOffset		 0
             LaunchWindowUseSecEphem		 No 
             LaunchWindowUseScenFolderForSecEphem		 Yes
@@ -399,19 +399,9 @@ BEGIN Scenario
             BEGIN Class
                 Name		 Satellite
                 BEGIN Favorite
-                    Type		 Graph
-                    BaseDir		 Install
-                    Style		 Yaw Pitch Roll
-                END Favorite
-                BEGIN Favorite
                     Type		 Report
                     BaseDir		 Install
-                    Style		 Sun Vector Fixed
-                END Favorite
-                BEGIN Favorite
-                    Type		 Report
-                    BaseDir		 Install
-                    Style		 Accel File
+                    Style		 Attitude Schedule
                 END Favorite
                 BEGIN Favorite
                     Type		 Report
@@ -421,7 +411,17 @@ BEGIN Scenario
                 BEGIN Favorite
                     Type		 Report
                     BaseDir		 Install
-                    Style		 Attitude Schedule
+                    Style		 Accel File
+                END Favorite
+                BEGIN Favorite
+                    Type		 Report
+                    BaseDir		 Install
+                    Style		 Sun Vector Fixed
+                END Favorite
+                BEGIN Favorite
+                    Type		 Graph
+                    BaseDir		 Install
+                    Style		 Yaw Pitch Roll
                 END Favorite
             END Class
         END ReportFavorites
@@ -602,7 +602,8 @@ BEGIN Scenario
             ExcludeInstallFiles		 No
             VDFOverview		24
 
-Beginig of torque asses
+
+Beginig of torque ass
 
             BEGIN ExternalFileList
                 BEGIN File
@@ -1803,9 +1804,9 @@ Beginig of torque assesm
 
             BEGIN Animation
 
-                StartTime		 6 May 2024 20:15:04.320000000
-                EndTime		 7 May 2024 20:15:04.320000000
-                CurrentTime		 6 May 2024 20:30:12.731000000
+                StartTime		 22 May 2024 20:15:04.320000000
+                EndTime		 22 May 2024 20:15:04.320000000
+                CurrentTime		 22 May 2024 20:15:04.320000000
                 Direction		 Forward
                 UpdateDelta		 30
                 RefreshDelta		 0.010000
@@ -1888,7 +1889,7 @@ Beginig of torque assesm
 
                     BEGIN Style
                         Name		 DefaultWithBing
-                        Time		 -32091304.32
+                        Time		 -33473704.32
                         UpdateDelta		 10
 
                         BEGIN MapAttributes
@@ -2076,7 +2077,7 @@ Beginig of torque assesm
 
                     BEGIN Style
                         Name		 DefaultWithoutBing
-                        Time		 -32091304.32
+                        Time		 -33473704.32
                         UpdateDelta		 10
 
                         BEGIN MapAttributes
@@ -2289,9 +2290,15 @@ Beginig of torque assesm
 
     BEGIN SubObjects
 
-        Class Place
+        Class Facility
 
             FHWN		
+
+        END Class
+
+        Class Place
+
+            FHWN_place		
 
         END Class
 
@@ -2309,15 +2316,18 @@ Beginig of torque assesm
         Instance *
             *		
         END Instance
-        Instance Place/FHWN
-            Place/FHWN		
-            Place/FHWN/Sensor/Sensor		
+        Instance Facility/FHWN
+            Facility/FHWN		
+        END Instance
+        Instance Place/FHWN_place
+            Place/FHWN_place		
+            Place/FHWN_place/Sensor/Sensor		
             Satellite/CLIMB		
             Satellite/CLIMB1		
             Satellite/CLIMB_LongTerm		
         END Instance
-        Instance Place/FHWN/Sensor/Sensor
-            Place/FHWN/Sensor/Sensor		
+        Instance Place/FHWN_place/Sensor/Sensor
+            Place/FHWN_place/Sensor/Sensor		
         END Instance
         Instance Satellite/CLIMB
             Satellite/CLIMB		
