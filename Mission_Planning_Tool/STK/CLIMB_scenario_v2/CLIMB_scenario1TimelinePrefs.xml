@@ -3,29 +3,23 @@
     <Views Type = "Content">
         <ContentView Name = "Scenario Availability">
             <Row ClassName = "Scenario" ComponentName = "AvailabilityIntervals" DisplayName = "CLIMB_scenario1 AvailabilityIntervals" IsDefaultName = "True" IsExpanded = "False" IsGroup = "False" IsHidden = "False" Path = "/Application/STK/Scenario/CLIMB_scenario1" Type = "IntervalList">
-                <Interval Name = "CLIMB_scenario1 AvailabilityIntervals" StartTime = "22 May 2024 20:15:04.320" StopTime = "22 May 2024 20:15:04.320" />
+                <Interval Name = "CLIMB_scenario1 AvailabilityIntervals" StartTime = "22 May 2024 20:15:04.320" StopTime = "23 May 2024 20:15:04.320" />
             </Row>
-            <Row ClassName = "Access" ComponentName = "AccessIntervals" DisplayName = "Satellite-CLIMB-To-Place-FHWN_place AccessIntervals" IsDefaultName = "True" IsExpanded = "False" IsGroup = "False" IsHidden = "False" Path = "Access:/Application/STK/Scenario/CLIMB_scenario1/Satellite/CLIMB;/Application/STK/Scenario/CLIMB_scenario1/Place/FHWN_place" Type = "IntervalList">
-                <Interval Name = "Satellite-CLIMB-To-Place-FHWN_place AccessIntervals" StartTime = "7 May 2024 06:52:36.892" StopTime = "7 May 2024 07:01:49.913" />
-                <Interval Name = "Satellite-CLIMB-To-Place-FHWN_place AccessIntervals" StartTime = "7 May 2024 08:23:48.118" StopTime = "7 May 2024 08:32:29.990" />
-                <Interval Name = "Satellite-CLIMB-To-Place-FHWN_place AccessIntervals" StartTime = "7 May 2024 17:16:09.185" StopTime = "7 May 2024 17:24:03.451" />
-                <Interval Name = "Satellite-CLIMB-To-Place-FHWN_place AccessIntervals" StartTime = "7 May 2024 18:46:02.048" StopTime = "7 May 2024 18:55:35.797" />
+            <Row ClassName = "Access" ComponentName = "AccessIntervals" DisplayName = "Satellite-CLIMB-To-Place-FHWN AccessIntervals" IsDefaultName = "True" IsExpanded = "False" IsGroup = "False" IsHidden = "False" Path = "Access:/Application/STK/Scenario/CLIMB_scenario1/Satellite/CLIMB;/Application/STK/Scenario/CLIMB_scenario1/Place/FHWN" Type = "IntervalList">
+                <Interval Name = "Satellite-CLIMB-To-Place-FHWN AccessIntervals" StartTime = "7 May 2024 06:52:36.892" StopTime = "7 May 2024 07:01:49.913" />
+                <Interval Name = "Satellite-CLIMB-To-Place-FHWN AccessIntervals" StartTime = "7 May 2024 08:23:48.118" StopTime = "7 May 2024 08:32:29.990" />
+                <Interval Name = "Satellite-CLIMB-To-Place-FHWN AccessIntervals" StartTime = "7 May 2024 17:16:09.185" StopTime = "7 May 2024 17:24:03.451" />
+                <Interval Name = "Satellite-CLIMB-To-Place-FHWN AccessIntervals" StartTime = "7 May 2024 18:46:02.048" StopTime = "7 May 2024 18:55:35.797" />
             </Row>
-            <Row ClassName = "Access" ComponentName = "AccessIntervals" DisplayName = "Place-FHWN_place-Sensor-Sensor-To-Satellite-CLIMB AccessIntervals" IsDefaultName = "True" IsExpanded = "False" IsGroup = "False" IsHidden = "False" Path = "Access:/Application/STK/Scenario/CLIMB_scenario1/Place/FHWN_place/Sensor/Sensor;/Application/STK/Scenario/CLIMB_scenario1/Satellite/CLIMB" Type = "IntervalList">
-                <Interval Name = "Place-FHWN_place-Sensor-Sensor-To-Satellite-CLIMB AccessIntervals" StartTime = "7 May 2024 06:53:49.988" StopTime = "7 May 2024 07:00:38.021" />
-                <Interval Name = "Place-FHWN_place-Sensor-Sensor-To-Satellite-CLIMB AccessIntervals" StartTime = "7 May 2024 08:25:05.253" StopTime = "7 May 2024 08:31:13.675" />
-                <Interval Name = "Place-FHWN_place-Sensor-Sensor-To-Satellite-CLIMB AccessIntervals" StartTime = "7 May 2024 17:17:37.307" StopTime = "7 May 2024 17:22:34.523" />
-                <Interval Name = "Place-FHWN_place-Sensor-Sensor-To-Satellite-CLIMB AccessIntervals" StartTime = "7 May 2024 18:47:09.719" StopTime = "7 May 2024 18:54:26.951" />
-            </Row>
-            <Row ClassName = "Access" ComponentName = "AccessIntervals" DisplayName = "Facility-FHWN-To-Satellite-CLIMB AccessIntervals" IsDefaultName = "True" IsExpanded = "False" IsGroup = "False" IsHidden = "False" Path = "Access:/Application/STK/Scenario/CLIMB_scenario1/Facility/FHWN;/Application/STK/Scenario/CLIMB_scenario1/Satellite/CLIMB" Type = "IntervalList">
-                <Interval Name = "Facility-FHWN-To-Satellite-CLIMB AccessIntervals" StartTime = "7 May 2024 06:52:35.712" StopTime = "7 May 2024 07:01:51.060" />
-                <Interval Name = "Facility-FHWN-To-Satellite-CLIMB AccessIntervals" StartTime = "7 May 2024 08:23:46.895" StopTime = "7 May 2024 08:32:31.185" />
-                <Interval Name = "Facility-FHWN-To-Satellite-CLIMB AccessIntervals" StartTime = "7 May 2024 17:16:07.856" StopTime = "7 May 2024 17:24:04.779" />
-                <Interval Name = "Facility-FHWN-To-Satellite-CLIMB AccessIntervals" StartTime = "7 May 2024 18:46:00.938" StopTime = "7 May 2024 18:55:36.911" />
+            <Row ClassName = "Access" ComponentName = "AccessIntervals" DisplayName = "Place-FHWN-Sensor-Sensor-To-Satellite-CLIMB AccessIntervals" IsDefaultName = "True" IsExpanded = "False" IsGroup = "False" IsHidden = "False" Path = "Access:/Application/STK/Scenario/CLIMB_scenario1/Place/FHWN/Sensor/Sensor;/Application/STK/Scenario/CLIMB_scenario1/Satellite/CLIMB" Type = "IntervalList">
+                <Interval Name = "Place-FHWN-Sensor-Sensor-To-Satellite-CLIMB AccessIntervals" StartTime = "7 May 2024 06:53:49.988" StopTime = "7 May 2024 07:00:38.021" />
+                <Interval Name = "Place-FHWN-Sensor-Sensor-To-Satellite-CLIMB AccessIntervals" StartTime = "7 May 2024 08:25:05.253" StopTime = "7 May 2024 08:31:13.675" />
+                <Interval Name = "Place-FHWN-Sensor-Sensor-To-Satellite-CLIMB AccessIntervals" StartTime = "7 May 2024 17:17:37.307" StopTime = "7 May 2024 17:22:34.523" />
+                <Interval Name = "Place-FHWN-Sensor-Sensor-To-Satellite-CLIMB AccessIntervals" StartTime = "7 May 2024 18:47:09.719" StopTime = "7 May 2024 18:54:26.951" />
             </Row>
         </ContentView>
     </Views>
     <Views Type = "Time">
-        <TimeView FullViewRulerStartTime = "0.000000" FullViewRulerStopTime = "0.000000" GlobalIntervalComp = "AnalysisInterval" GlobalIntervalCompPath = "/Application/STK/Scenario/CLIMB_scenario1" GlobalStartOffset = "0.000000" GlobalStartTime = "22 May 2024 20:15:04.320" GlobalStopOffset = "0.000000" GlobalStopTime = "22 May 2024 20:15:04.320" MaxFullViewTime = "0.000000" MinFullViewTime = "0.000000" Name = "Scenario Analysis Period" ViewportStartTime = "0.000000" ViewportStopTime = "0.000000" />
+        <TimeView FullViewRulerStartTime = "0.000000" FullViewRulerStopTime = "0.000000" GlobalIntervalComp = "AnalysisInterval" GlobalIntervalCompPath = "/Application/STK/Scenario/CLIMB_scenario1" GlobalStartOffset = "0.000000" GlobalStartTime = "22 May 2024 20:15:04.320" GlobalStopOffset = "0.000000" GlobalStopTime = "23 May 2024 20:15:04.320" MaxFullViewTime = "0.000000" MinFullViewTime = "0.000000" Name = "Scenario Analysis Period" ViewportStartTime = "0.000000" ViewportStopTime = "0.000000" />
     </Views>
 </TimelineLine_Prefs>

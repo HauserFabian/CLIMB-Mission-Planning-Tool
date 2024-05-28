@@ -1784,7 +1784,7 @@ BEGIN Satellite
 
             BEGIN Target
 
-                Object		 Place/FHWN_place
+                Object		 Place/FHWN
 
                 AlignVec		  0.0000000000000000e+00 -1.0000000000000000e+00  0.0000000000000000e+00
 
@@ -1807,10 +1807,10 @@ BEGIN Satellite
 
         BEGIN TargetSchedule
 
-Place/FHWN_place 23121.62827943892886 23121.63715368793708
-Place/FHWN_place 23121.69559703424426 23121.70524705907606
-Place/FHWN_place 23122.19274706821707 23122.20215905498144
-Place/FHWN_place 23122.26069351638908 23122.26994879104641
+Place/FHWN 23121.62827943892886 23121.63715368793708
+Place/FHWN 23121.69559703424426 23121.70524705907606
+Place/FHWN 23122.19274706821707 23122.20215905498144
+Place/FHWN 23122.26069351638908 23122.26994879104641
 
         END TargetSchedule
 
@@ -2251,7 +2251,7 @@ Place/FHWN_place 23122.26069351638908 23122.26994879104641
             END ANGLE
             BEGIN VECTOR
                 Type		 VECTOR_TOVECTOR
-                Name		 FHWN_place
+                Name		 FHWN
                 Description		 Displacement vector to Place1
                 Origin		
                 BEGIN POINT
@@ -2262,7 +2262,7 @@ Place/FHWN_place 23122.26069351638908 23122.26994879104641
                 BEGIN POINT
                     Type		 POINT_LINKTO
                     Name		 Center
-                    RelativePath		 Place/FHWN_place
+                    RelativePath		 Place/FHWN
                 END POINT
                 LTDRefSystem		
                 BEGIN SYSTEM
@@ -2277,7 +2277,7 @@ Place/FHWN_place 23122.26069351638908 23122.26994879104641
             END VECTOR
             BEGIN VECTOR
                 Type		 VECTOR_TOVECTOR
-                Name		 FHWN_place-Sensor
+                Name		 FHWN-Sensor
                 Description		 Displacement vector to FHWN-Sensor3
                 Origin		
                 BEGIN POINT
@@ -2288,7 +2288,7 @@ Place/FHWN_place 23122.26069351638908 23122.26994879104641
                 BEGIN POINT
                     Type		 POINT_LINKTO
                     Name		 Center
-                    RelativePath		 Place/FHWN_place/Sensor/Sensor
+                    RelativePath		 Place/FHWN/Sensor/Sensor
                 END POINT
                 LTDRefSystem		
                 BEGIN SYSTEM

@@ -922,7 +922,7 @@ BEGIN Place
 
             BEGIN Graphics
 
-                Show		 On
+                Show		 Off
                 Inherit		 On
                 IsDynamic		 Off
                 ShowLabel		 On
@@ -932,7 +932,7 @@ BEGIN Place
                 AzElFillAltTranslucency		 0.5
                 UseAzElColor		 Off
                 AzElColor		 #ffffff
-                MinDisplayAlt		 317.945
+                MinDisplayAlt		 317.945245117837
                 MaxDisplayAlt		 10000000
                 NumAzElMaskSteps		 1
                 ShowAzElAtRangeMask		 Off

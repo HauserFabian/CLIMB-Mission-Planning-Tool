@@ -23,7 +23,7 @@ BEGIN Scenario
     BEGIN Interval
 
         Start		 22 May 2024 20:15:04.320000000
-        Stop		 22 May 2024 20:15:04.320000000
+        Stop		 23 May 2024 20:15:04.320000000
         SmartInterval		
         BEGIN EVENTINTERVAL
             StartEvent		
@@ -33,7 +33,7 @@ BEGIN Scenario
             END EVENT
             StopEvent		
             BEGIN EVENT
-                Epoch		 22 May 2024 20:15:04.320000000
+                Epoch		 23 May 2024 20:15:04.320000000
                 EpochState		 Explicit
             END EVENT
             IntervalState		 StartStop
@@ -233,8 +233,8 @@ BEGIN Scenario
             LaunchWindowUseEntireTraj		 Yes
             LaunchWindowTrajMETStart		 0
             LaunchWindowTrajMETStop		 900
-            LaunchWindowStart		 -32091304.32
-            LaunchWindowStop		 -32004904.32
+            LaunchWindowStart		 -33473704.32
+            LaunchWindowStop		 -33387304.32
             LaunchMETOffset		 0
             LaunchWindowUseSecEphem		 No 
             LaunchWindowUseScenFolderForSecEphem		 Yes
@@ -399,14 +399,14 @@ BEGIN Scenario
             BEGIN Class
                 Name		 Satellite
                 BEGIN Favorite
-                    Type		 Report
+                    Type		 Graph
                     BaseDir		 Install
-                    Style		 Attitude Schedule
+                    Style		 Yaw Pitch Roll
                 END Favorite
                 BEGIN Favorite
                     Type		 Report
                     BaseDir		 Install
-                    Style		 Attitude Segment
+                    Style		 Sun Vector Fixed
                 END Favorite
                 BEGIN Favorite
                     Type		 Report
@@ -416,12 +416,12 @@ BEGIN Scenario
                 BEGIN Favorite
                     Type		 Report
                     BaseDir		 Install
-                    Style		 Sun Vector Fixed
+                    Style		 Attitude Segment
                 END Favorite
                 BEGIN Favorite
-                    Type		 Graph
+                    Type		 Report
                     BaseDir		 Install
-                    Style		 Yaw Pitch Roll
+                    Style		 Attitude Schedule
                 END Favorite
             END Class
         END ReportFavorites
@@ -603,7 +603,8 @@ BEGIN Scenario
             VDFOverview		24
 
 
-Beginig of torque ass
+
+Beginig of torque a
 
             BEGIN ExternalFileList
                 BEGIN File
@@ -1805,7 +1806,7 @@ Beginig of torque assesm
             BEGIN Animation
 
                 StartTime		 22 May 2024 20:15:04.320000000
-                EndTime		 22 May 2024 20:15:04.320000000
+                EndTime		 23 May 2024 20:15:04.320000000
                 CurrentTime		 22 May 2024 20:15:04.320000000
                 Direction		 Forward
                 UpdateDelta		 30
@@ -2290,15 +2291,9 @@ Beginig of torque assesm
 
     BEGIN SubObjects
 
-        Class Facility
-
-            FHWN		
-
-        END Class
-
         Class Place
 
-            FHWN_place		
+            FHWN		
 
         END Class
 
@@ -2316,18 +2311,15 @@ Beginig of torque assesm
         Instance *
             *		
         END Instance
-        Instance Facility/FHWN
-            Facility/FHWN		
-        END Instance
-        Instance Place/FHWN_place
-            Place/FHWN_place		
-            Place/FHWN_place/Sensor/Sensor		
+        Instance Place/FHWN
+            Place/FHWN		
+            Place/FHWN/Sensor/Sensor		
             Satellite/CLIMB		
             Satellite/CLIMB1		
             Satellite/CLIMB_LongTerm		
         END Instance
-        Instance Place/FHWN_place/Sensor/Sensor
-            Place/FHWN_place/Sensor/Sensor		
+        Instance Place/FHWN/Sensor/Sensor
+            Place/FHWN/Sensor/Sensor		
         END Instance
         Instance Satellite/CLIMB
             Satellite/CLIMB		
