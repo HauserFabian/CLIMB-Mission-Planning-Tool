@@ -74,7 +74,6 @@ BEGIN Scenario
 
             BEGIN StreamingTerrain
                 UseCurrentStreamingTerrainServer		 Yes
-                CurrentStreamingTerrainServerName		 https://gcs.agi.com/
                 StreamingTerrainTilesetName		 world
                 StreamingTerrainServerName		 assets.agi.com/stk-terrain/
                 StreamingTerrainAzimuthElevationMaskEnabled		 No
@@ -399,19 +398,9 @@ BEGIN Scenario
             BEGIN Class
                 Name		 Satellite
                 BEGIN Favorite
-                    Type		 Graph
-                    BaseDir		 Install
-                    Style		 Yaw Pitch Roll
-                END Favorite
-                BEGIN Favorite
                     Type		 Report
                     BaseDir		 Install
-                    Style		 Sun Vector Fixed
-                END Favorite
-                BEGIN Favorite
-                    Type		 Report
-                    BaseDir		 Install
-                    Style		 Accel File
+                    Style		 Attitude Schedule
                 END Favorite
                 BEGIN Favorite
                     Type		 Report
@@ -421,7 +410,17 @@ BEGIN Scenario
                 BEGIN Favorite
                     Type		 Report
                     BaseDir		 Install
-                    Style		 Attitude Schedule
+                    Style		 Accel File
+                END Favorite
+                BEGIN Favorite
+                    Type		 Report
+                    BaseDir		 Install
+                    Style		 Sun Vector Fixed
+                END Favorite
+                BEGIN Favorite
+                    Type		 Graph
+                    BaseDir		 Install
+                    Style		 Yaw Pitch Roll
                 END Favorite
             END Class
         END ReportFavorites
