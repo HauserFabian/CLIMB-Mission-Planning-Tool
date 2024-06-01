@@ -1,6 +1,6 @@
 VO_V120		
 InitializeSolarPanels		 Yes
-Modelfile		 CAD_CLIMB\CAD_CLIMB_V2_3_solararrays.dae
+Modelfile		 Space\satellite.mdl
 UseCatalogModelFile		 Yes
 ModelDefaultColorFromMarker		 No
 IsShowingModel		 Yes

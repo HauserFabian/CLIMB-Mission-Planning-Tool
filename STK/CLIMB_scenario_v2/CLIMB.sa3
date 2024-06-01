@@ -1,6 +1,6 @@
 VO_V120		
 InitializeSolarPanels		 Yes
-Modelfile		 CAD_CLIMB\CAD_CLIMB_V2_3_solararrays.dae
+Modelfile		 C:\Users\120960\FHWN\Master Thesis_cloud - Dokumente\10_MOS_Software\CAD_CLIMB_STK\CAD_CLIMB_V2_3_solararrays.dae
 UseCatalogModelFile		 Yes
 ModelDefaultColorFromMarker		 No
 IsShowingModel		 Yes

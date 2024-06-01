@@ -2130,6 +2130,12 @@ Place/FHWN 23122.26069351638908 23122.26994879104641
         END ObjectCoverage
 
         BEGIN Desc
+            BEGIN ShortText
+
+            END ShortText
+            BEGIN LongText
+
+            END LongText
         END Desc
 
         BEGIN RadarCrossSection

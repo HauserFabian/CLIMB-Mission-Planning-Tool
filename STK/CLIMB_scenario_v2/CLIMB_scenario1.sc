@@ -74,6 +74,7 @@ BEGIN Scenario
 
             BEGIN StreamingTerrain
                 UseCurrentStreamingTerrainServer		 Yes
+                CurrentStreamingTerrainServerName		 https://gcs.agi.com/
                 StreamingTerrainTilesetName		 world
                 StreamingTerrainServerName		 assets.agi.com/stk-terrain/
                 StreamingTerrainAzimuthElevationMaskEnabled		 No
@@ -398,14 +399,14 @@ BEGIN Scenario
             BEGIN Class
                 Name		 Satellite
                 BEGIN Favorite
-                    Type		 Report
+                    Type		 Graph
                     BaseDir		 Install
-                    Style		 Attitude Schedule
+                    Style		 Yaw Pitch Roll
                 END Favorite
                 BEGIN Favorite
                     Type		 Report
                     BaseDir		 Install
-                    Style		 Attitude Segment
+                    Style		 Sun Vector Fixed
                 END Favorite
                 BEGIN Favorite
                     Type		 Report
@@ -415,12 +416,12 @@ BEGIN Scenario
                 BEGIN Favorite
                     Type		 Report
                     BaseDir		 Install
-                    Style		 Sun Vector Fixed
+                    Style		 Attitude Segment
                 END Favorite
                 BEGIN Favorite
-                    Type		 Graph
+                    Type		 Report
                     BaseDir		 Install
-                    Style		 Yaw Pitch Roll
+                    Style		 Attitude Schedule
                 END Favorite
             END Class
         END ReportFavorites
@@ -603,7 +604,8 @@ BEGIN Scenario
 
 
 
-Beginig of torque a
+
+Beginig of torque
 
             BEGIN ExternalFileList
                 BEGIN File
@@ -2321,6 +2323,7 @@ Beginig of torque assesm
             Place/FHWN/Sensor/Sensor		
         END Instance
         Instance Satellite/CLIMB
+            *		
             Satellite/CLIMB		
         END Instance
         Instance Satellite/CLIMB1
