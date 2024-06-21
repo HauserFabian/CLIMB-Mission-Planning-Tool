@@ -3,7 +3,7 @@ import numpy as np
 import ephem
 
 norad_id = 56937
-st = SpaceTrackClient('fabian101310@gmail.com', 'tzEDUQ!KQw_7ULO')
+st = SpaceTrackClient('email', 'password') # space-track.org account necessary (is free)
 tle_string = st.tle_latest(norad_cat_id=norad_id, ordinal=1, format='tle')
 
 line1, line2 = tle_string.strip().split('\n')
